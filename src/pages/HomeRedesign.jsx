@@ -79,9 +79,9 @@ export default function HomeRedesign() {
                     // Fallback if no banners in DB
                     {
                         src: "/banners/banner-laneige.jpg",
-                        title: "Glow Up With Laneige",
-                        subtitle: "Discover the secret to sleeping beauty.",
-                        btnText: "Shop Laneige"
+                        title: "Glass Skin Goals",
+                        subtitle: "Achieve the look you've always wanted.",
+                        btnText: "Shop Now"
                     }
                 ]);
             })

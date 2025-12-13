@@ -15,6 +15,9 @@ export default {
                 sans: ['Outfit', 'sans-serif'],
                 serif: ['Cormorant Garamond', 'serif'],
             },
+            padding: {
+                'safe': 'env(safe-area-inset-bottom)',
+            },
         },
     },
     plugins: [],

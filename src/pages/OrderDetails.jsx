@@ -120,8 +120,8 @@ export default function OrderDetails() {
         <div className="min-h-screen relative font-sans overflow-hidden pb-32">
             <Background />
 
-            {/* 🔙 Header */}
-            <header className="sticky top-0 z-30 bg-white/70 backdrop-blur-md border-b border-white/20 px-6 py-4 flex items-center">
+            {/* 🔙 Header (Mobile Only) */}
+            <header className="md:hidden sticky top-0 z-30 bg-white/70 backdrop-blur-md border-b border-white/20 px-6 py-4 flex items-center">
                 <button onClick={() => navigate(-1)} className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-gray-600 hover:text-black hover:scale-105 transition-all">
                     <ArrowLeft size={20} />
                 </button>
@@ -160,9 +160,9 @@ export default function OrderDetails() {
                                             </div>
                                             <button
                                                 onClick={() => removeFromCart(item.id)}
-                                                className="w-8 h-8 rounded-full flex items-center justify-center text-gray-300 hover:bg-rose-50 hover:text-rose-500 transition-all"
+                                                className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:bg-rose-50 hover:text-rose-500 transition-all"
                                             >
-                                                <Trash2 size={18} />
+                                                <Trash2 size={20} />
                                             </button>
                                         </div>
 
@@ -435,6 +435,26 @@ export default function OrderDetails() {
                     </div>
                 )}
             </AnimatePresence >
+            {/* 📱 Mobile Sticky Checkout Bar */}
+            <div className="fixed bottom-0 left-0 right-0 p-4 pb-safe bg-white border-t border-gray-100 md:hidden z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+                <div className="flex items-center justify-between gap-4">
+                    <div>
+                        <p className="text-gray-500 text-xs font-medium uppercase tracking-wider">Total</p>
+                        <p className="font-serif font-bold text-2xl text-gray-900">${finalTotal.toFixed(2)}</p>
+                    </div>
+                    <button
+                        onClick={handleCheckout}
+                        disabled={isLoading}
+                        className="flex-1 bg-gray-900 text-white py-3.5 rounded-xl font-bold text-lg shadow-lg hover:bg-black active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
+                        {isLoading ? <Loader2 className="animate-spin" /> : (
+                            <>
+                                <span>Place Order</span> <ArrowRight size={18} />
+                            </>
+                        )}
+                    </button>
+                </div>
+            </div>
         </div >
     );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Minus, RefreshCw, Paperclip, Mic, Video, Image as ImageIcon } from "lucide-react";
+import { MessageCircle, X, Send, Minus, RefreshCw, Paperclip, Mic, Video, Image as ImageIcon, Edit2, Trash2, MoreVertical } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import io from 'socket.io-client';
 
@@ -15,6 +15,8 @@ export default function ChatWidget() {
     const fileInputRef = useRef(null);
     const mediaRecorderRef = useRef(null);
     const [audioChunks, setAudioChunks] = useState([]);
+    const [editingMessage, setEditingMessage] = useState(null);
+    const [contextMenu, setContextMenu] = useState(null); // { id: 123, x: 0, y: 0 }
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -35,9 +37,19 @@ export default function ChatWidget() {
             setMessages((prev) => [...prev, data]);
         });
 
+        socket.on('message_updated', (data) => {
+            setMessages(prev => prev.map(msg => msg.id === data.id ? { ...msg, text: data.newText } : msg));
+        });
+
+        socket.on('message_deleted', (data) => {
+            setMessages(prev => prev.filter(msg => msg.id !== data.id));
+        });
+
         return () => {
             socket.off('connect');
             socket.off('receive_message');
+            socket.off('message_updated');
+            socket.off('message_deleted');
         };
     }, []);
 
@@ -58,7 +70,40 @@ export default function ChatWidget() {
     };
 
     const handleKeyPress = (e) => {
-        if (e.key === 'Enter') handleSend();
+        if (e.key === 'Enter') {
+            if (editingMessage) {
+                saveEdit();
+            } else {
+                handleSend();
+            }
+        }
+    };
+
+    // ✏️ Handle Edit
+    const startEdit = (msg) => {
+        setEditingMessage(msg);
+        setInputValue(msg.text);
+        setContextMenu(null);
+    };
+
+    const saveEdit = () => {
+        if (!inputValue.trim() || !editingMessage) return;
+        socket.emit('edit_message', { id: editingMessage.id, newText: inputValue });
+        setEditingMessage(null);
+        setInputValue("");
+    };
+
+    const cancelEdit = () => {
+        setEditingMessage(null);
+        setInputValue("");
+    };
+
+    // 🗑️ Handle Delete
+    const deleteMessage = (id) => {
+        if (window.confirm("Delete this message?")) {
+            socket.emit('delete_message', { id });
+        }
+        setContextMenu(null);
     };
 
     // 📎 Handle File Upload (Image/Video)
@@ -148,7 +193,7 @@ export default function ChatWidget() {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end font-sans">
+        <div className="fixed bottom-24 md:bottom-6 right-6 z-50 flex flex-col items-end font-sans">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -212,10 +257,36 @@ export default function ChatWidget() {
                                             <div className="px-4 py-2.5">{msg.text}</div>
                                         )}
 
-                                        <div className={`text-[10px] px-2 pb-1 ${msg.sender === 'user' ? 'text-white/70 text-right' : 'text-gray-400'}`}>
-                                            {msg.time}
-                                        </div>
+                                        {msg.time}
+                                        {msg.sender === 'user' && (
+                                            <button
+                                                onClick={() => setContextMenu(contextMenu?.id === msg.id ? null : { id: msg.id })}
+                                                className="ml-2 text-white/70 hover:text-white"
+                                            >
+                                                <MoreVertical size={12} />
+                                            </button>
+                                        )}
                                     </div>
+
+                                    {/* Context Menu */}
+                                    {contextMenu?.id === msg.id && (
+                                        <div className="absolute top-8 right-2 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-10 w-24">
+                                            {msg.type === 'text' && (
+                                                <button
+                                                    onClick={() => startEdit(msg)}
+                                                    className="w-full text-left px-3 py-1.5 text-xs hover:bg-gray-50 flex items-center gap-2 text-gray-700"
+                                                >
+                                                    <Edit2 size={12} /> Edit
+                                                </button>
+                                            )}
+                                            <button
+                                                onClick={() => deleteMessage(msg.id)}
+                                                className="w-full text-left px-3 py-1.5 text-xs hover:bg-gray-50 flex items-center gap-2 text-red-500"
+                                            >
+                                                <Trash2 size={12} /> Delete
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             ))}
                             <div ref={messagesEndRef} />
@@ -251,10 +322,10 @@ export default function ChatWidget() {
 
                                 {inputValue.trim() ? (
                                     <button
-                                        onClick={handleSend}
+                                        onClick={editingMessage ? saveEdit : handleSend}
                                         className="absolute right-0 w-9 h-9 bg-pink-500 text-white rounded-full flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition-all"
                                     >
-                                        <Send size={16} className="ml-0.5" />
+                                        {editingMessage ? <RefreshCw size={16} /> : <Send size={16} className="ml-0.5" />}
                                     </button>
                                 ) : (
                                     <button
@@ -282,6 +353,6 @@ export default function ChatWidget() {
             >
                 {isOpen ? <X size={24} /> : <MessageCircle size={28} />}
             </motion.button>
-        </div>
+        </div >
     );
 }

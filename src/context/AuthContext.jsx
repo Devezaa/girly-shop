@@ -7,21 +7,30 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     // 🔄 Check if user is logged in on mount
-    // 🔄 Check if user is logged in on mount and fetch fresh data
     useEffect(() => {
         const checkUser = async () => {
             const storedUser = localStorage.getItem('user');
-            if (storedUser) {
-                const parsedUser = JSON.parse(storedUser);
-                setUser(parsedUser); // Set immediately to avoid flash
+            const storedToken = localStorage.getItem('token');
 
-                // Fetch fresh data from backend
+            if (storedUser && storedToken) {
+                const parsedUser = JSON.parse(storedUser);
+                setUser(parsedUser);
+
+                // Fetch fresh data from backend (with token)
                 try {
-                    const res = await fetch(`http://localhost:5001/api/users/${parsedUser.id}`);
-                    const data = await res.json();
-                    if (data.success) {
-                        setUser(data.user);
-                        localStorage.setItem('user', JSON.stringify(data.user));
+                    const res = await fetch(`http://localhost:5001/api/users/${parsedUser.id}`, {
+                        headers: { 'Authorization': `Bearer ${storedToken}` }
+                    });
+
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data.success) {
+                            setUser(data.user);
+                            localStorage.setItem('user', JSON.stringify(data.user));
+                        }
+                    } else {
+                        // If token invalid/expired, logout
+                        logout();
                     }
                 } catch (error) {
                     console.error("Failed to sync user data", error);
@@ -45,6 +54,7 @@ export const AuthProvider = ({ children }) => {
             if (data.success) {
                 setUser(data.user);
                 localStorage.setItem('user', JSON.stringify(data.user));
+                localStorage.setItem('token', data.token); // Store Token
                 return { success: true };
             } else {
                 return { success: false, message: data.message };
@@ -67,6 +77,7 @@ export const AuthProvider = ({ children }) => {
             if (data.success) {
                 setUser(data.user);
                 localStorage.setItem('user', JSON.stringify(data.user));
+                localStorage.setItem('token', data.token); // Store Token
                 return { success: true };
             } else {
                 return { success: false, message: data.message };
@@ -79,24 +90,30 @@ export const AuthProvider = ({ children }) => {
     // 👤 Update User Profile
     const updateUser = async (updatedData) => {
         if (!user || !user.id) return { success: false, message: "User not identified" };
+        const token = localStorage.getItem('token');
 
         try {
             const res = await fetch(`http://localhost:5001/api/users/${user.id}`, {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
                 body: JSON.stringify(updatedData),
             });
 
             if (!res.ok) {
                 const text = await res.text();
+                // Handle unauthorized (401/403) by logging out potentially
+                if (res.status === 401 || res.status === 403) {
+                    return { success: false, message: "Session expired, please login again." };
+                }
                 return { success: false, message: `Server error (${res.status}): ${text}` };
             }
 
             const data = await res.json();
 
-
             if (data.success) {
-                // Merge with existing user data to keep things like token if present
                 const newUser = { ...user, ...data.user };
                 setUser(newUser);
                 localStorage.setItem('user', JSON.stringify(newUser));
@@ -113,6 +130,7 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         setUser(null);
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
     };
 
     return (

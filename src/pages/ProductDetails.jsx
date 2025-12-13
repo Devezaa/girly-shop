@@ -53,7 +53,7 @@ export default function ProductDetails() {
     const isLowStock = stock > 0 && stock < 5;
 
     return (
-        <div className="min-h-screen bg-[#FAFAFA] pb-24 md:pb-10 font-sans">
+        <div className="min-h-screen bg-[#FAFAFA] pb-10 font-sans">
             {/* 🔙 Header */}
             <div className="sticky top-0 left-0 right-0 bg-white/80 backdrop-blur-md p-4 flex justify-between items-center z-40 border-b border-gray-100">
                 <button onClick={() => navigate(-1)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
@@ -257,8 +257,8 @@ export default function ProductDetails() {
                         </div>
                     </div>
 
-                    {/* 🛒 Desktop Add to Cart */}
-                    <div className="hidden md:flex items-center gap-4 pt-4 border-t border-gray-100 mt-6">
+                    {/* 🛒 Add to Cart (Unified for Mobile & Desktop) */}
+                    <div className="flex items-center gap-4 pt-4 border-t border-gray-100 mt-6">
                         <div className={`flex items-center gap-4 bg-white border border-gray-200 rounded-full px-5 py-3 shadow-sm ${isOutOfStock ? 'opacity-50 pointer-events-none' : ''}`}>
                             <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="text-gray-400 hover:text-black">
                                 <Minus size={20} />
@@ -284,31 +284,7 @@ export default function ProductDetails() {
                 </div>
             </main>
 
-            {/* 📱 Mobile Sticky Action Bar */}
-            <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-100 md:hidden z-50 pb-safe shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
-                <div className="flex gap-3">
-                    <div className={`flex items-center gap-3 bg-gray-50 border border-gray-200 rounded-xl px-4 ${isOutOfStock ? 'opacity-50 pointer-events-none' : ''}`}>
-                        <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="text-gray-400">
-                            <Minus size={18} />
-                        </button>
-                        <span className="font-bold text-gray-900">{quantity}</span>
-                        <button onClick={() => setQuantity(Math.min(stock, quantity + 1))} className={`text-gray-400 ${quantity >= stock ? 'opacity-30 cursor-not-allowed' : ''}`}>
-                            <Plus size={18} />
-                        </button>
-                    </div>
-                    <button
-                        onClick={handleAddToCart}
-                        disabled={isOutOfStock}
-                        className={`flex-1 font-bold text-lg rounded-xl py-3.5 shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-all
-                            ${isOutOfStock
-                                ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
-                                : 'bg-pink-500 text-white shadow-pink-500/25'}`}
-                    >
-                        <ShoppingBag size={20} />
-                        {isOutOfStock ? "Out of Stock" : `Add $${(product.price * quantity).toFixed(2)}`}
-                    </button>
-                </div>
-            </div>
+            {/* 📱 Mobile Sticky Action Bar Removed */}
         </div>
     );
 }

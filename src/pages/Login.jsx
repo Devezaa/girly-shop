@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Eye, EyeOff, ArrowRight, Loader2, Mail, Lock, Sparkles } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
@@ -14,17 +14,27 @@ export default function Login() {
     const [isLoading, setIsLoading] = useState(false);
 
     // Mouse move effect for background parallax
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    // Mouse move effect for background parallax - Optimized with MotionValues to avoid re-renders
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    // Transform values for the background image (inverse movement)
+    const backgroundX = useTransform(mouseX, (value) => value * -1);
+    const backgroundY = useTransform(mouseY, (value) => value * -1);
+
     useEffect(() => {
+        // Disable parallax on mobile to save battery and performance
+        if (window.innerWidth <= 768) return;
+
         const handleMouseMove = (e) => {
-            setMousePosition({
-                x: (e.clientX / window.innerWidth) * 20,
-                y: (e.clientY / window.innerHeight) * 20,
-            });
+            // Direct update to motion value without triggering React render
+            mouseX.set((e.clientX / window.innerWidth) * 20);
+            mouseY.set((e.clientY / window.innerHeight) * 20);
         };
+
         window.addEventListener("mousemove", handleMouseMove);
         return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, []);
+    }, [mouseX, mouseY]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -50,10 +60,12 @@ export default function Login() {
             <div className="absolute inset-0 z-0">
                 <motion.div
                     className="absolute inset-0"
+                    style={{
+                        x: backgroundX,
+                        y: backgroundY
+                    }}
                     animate={{
                         scale: 1.1,
-                        x: mousePosition.x * -1,
-                        y: mousePosition.y * -1
                     }}
                     transition={{ type: "tween", ease: "linear", duration: 0.2 }}
                 >

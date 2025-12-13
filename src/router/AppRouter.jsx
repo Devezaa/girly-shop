@@ -23,6 +23,7 @@ const Notifications = lazy(() => import("../pages/Notifications"));
 const AdminProducts = lazy(() => import("../pages/AdminProducts"));
 const AdminBanners = lazy(() => import("../pages/AdminBanners"));
 const AdminVouchers = lazy(() => import("../pages/AdminVouchers"));
+const AdminChat = lazy(() => import("../pages/AdminChat"));
 const Terms = lazy(() => import("../pages/Terms"));
 const VoucherGuide = lazy(() => import("../pages/VoucherGuide"));
 const Shop = lazy(() => import("../pages/Shop"));
@@ -83,6 +84,7 @@ function AnimatedRoutes() {
             <Route path="/admin/products" element={<AdminProducts />} />
             <Route path="/admin/banners" element={<AdminBanners />} />
             <Route path="/admin/vouchers" element={<AdminVouchers />} />
+            <Route path="/admin/chat" element={<AdminChat />} />
           </Route>
 
           {/* 🎨 Main App Layout */}

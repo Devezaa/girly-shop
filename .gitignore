@@ -61,3 +61,6 @@ assets/raw/
 .env.user
 *.bak
 *.old
+
+# Ignore uploads
+server/uploads/

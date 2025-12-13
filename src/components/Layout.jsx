@@ -42,6 +42,9 @@ const Layout = () => {
                                 <Link to="/admin/vouchers" className={`font-medium transition-colors ${location.pathname === '/admin/vouchers' ? 'text-rose-500' : 'text-gray-600 hover:text-rose-500'}`}>
                                     Vouchers
                                 </Link>
+                                <Link to="/admin/chat" className={`font-medium transition-colors ${location.pathname === '/admin/chat' ? 'text-rose-500' : 'text-gray-600 hover:text-rose-500'}`}>
+                                    Chat
+                                </Link>
                             </>
                         )}
                     </nav>

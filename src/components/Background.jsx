@@ -50,15 +50,15 @@ export default function Background() {
       {/* Animated floating blobs (Static on mobile, Animated on Desktop) */}
       <div
         ref={(el) => (blobsRef.current[0] = el)}
-        className="absolute w-72 h-72 bg-pink-300/40 rounded-full blur-xl md:blur-3xl mix-blend-multiply transition-transform will-change-transform"
+        className="absolute w-72 h-72 bg-pink-300/40 rounded-full blur-lg md:blur-3xl mix-blend-multiply transition-transform will-change-transform"
       ></div>
       <div
         ref={(el) => (blobsRef.current[1] = el)}
-        className="absolute w-96 h-96 bg-rose-300/40 rounded-full blur-xl md:blur-3xl mix-blend-multiply transition-transform will-change-transform"
+        className="absolute w-96 h-96 bg-rose-300/40 rounded-full blur-lg md:blur-3xl mix-blend-multiply transition-transform will-change-transform"
       ></div>
       <div
         ref={(el) => (blobsRef.current[2] = el)}
-        className="absolute w-80 h-80 bg-fuchsia-300/40 rounded-full blur-xl md:blur-3xl mix-blend-multiply transition-transform will-change-transform"
+        className="absolute w-80 h-80 bg-fuchsia-300/40 rounded-full blur-lg md:blur-3xl mix-blend-multiply transition-transform will-change-transform"
       ></div>
     </div>
   );

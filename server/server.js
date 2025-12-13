@@ -33,6 +33,14 @@ io.on('connection', (socket) => {
         io.emit('receive_message', data);
     });
 
+    socket.on('edit_message', (data) => {
+        io.emit('message_updated', data);
+    });
+
+    socket.on('delete_message', (data) => {
+        io.emit('message_deleted', data);
+    });
+
     // WebRTC Signaling Events (Video/Voice)
     socket.on("callUser", (data) => {
         io.to(data.userToCall).emit("callUser", { signal: data.signalData, from: data.from, name: data.name });
@@ -205,23 +213,59 @@ app.delete('/api/products/:id', (req, res) => {
     res.json({ success: true, message: "Product deleted successfully" });
 });
 
-// 🔐 Login (Mock)
-app.post('/api/auth/login', (req, res) => {
+// 🔐 JWT Config
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const SECRET_KEY = "girly-shop-secret-key-change-this-in-prod"; // In production, use .env
+
+// Middleware to authenticate token
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+
+    if (!token) return res.sendStatus(401); // Unauthorized
+
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+        if (err) return res.sendStatus(403); // Forbidden
+        req.user = user;
+        next();
+    });
+};
+
+// 🔐 Login (Secure)
+app.post('/api/auth/login', async (req, res) => {
     const { email, password } = req.body;
     const users = getData('users.json');
-    const user = users.find(u => u.email === email && u.password === password);
+    const user = users.find(u => u.email === email);
 
     if (user) {
-        // Return user info excluding password
-        const { password, ...userInfo } = user;
-        res.json({ success: true, user: userInfo });
+        // Compare hashed password
+        // Note: For existing plain text passwords (legacy), we might need a migration or check
+        // For now, assuming new users use hash, old users might need a manual reset or handling
+        let validPassword = false;
+
+        // Simple check: if password length < 60 (bcrypt hash length) it's likely plain text
+        if (user.password.length < 50) {
+            validPassword = (user.password === password); // Legacy plain text fallback
+        } else {
+            validPassword = await bcrypt.compare(password, user.password);
+        }
+
+        if (validPassword) {
+            const { password: _, ...userInfo } = user;
+            // Generate Token
+            const token = jwt.sign({ id: user.id, email: user.email, role: user.role }, SECRET_KEY, { expiresIn: '7d' });
+            res.json({ success: true, user: userInfo, token });
+        } else {
+            res.status(401).json({ success: false, message: "Invalid credentials" });
+        }
     } else {
         res.status(401).json({ success: false, message: "Invalid credentials" });
     }
 });
 
-// 📝 Register (Mock)
-app.post('/api/auth/register', (req, res) => {
+// 📝 Register (Secure)
+app.post('/api/auth/register', async (req, res) => {
     const { username, email, password } = req.body;
     const users = getData('users.json');
 
@@ -229,11 +273,15 @@ app.post('/api/auth/register', (req, res) => {
         return res.status(400).json({ success: false, message: "Email already exists" });
     }
 
+    // Hash Password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const newUser = {
         id: "u" + (users.length + 1),
         username,
         email,
-        password, // In real app, hash this!
+        password: hashedPassword, // Store hashed password
         role: "customer",
         avatar: "/user-avatar.jpg",
         wishlist: []
@@ -242,15 +290,24 @@ app.post('/api/auth/register', (req, res) => {
     users.push(newUser);
     saveData('users.json', users);
 
+    // Generate Token
+    const token = jwt.sign({ id: newUser.id, email: newUser.email, role: newUser.role }, SECRET_KEY, { expiresIn: '7d' });
+
     const { password: _, ...userInfo } = newUser;
-    res.json({ success: true, user: userInfo });
+    res.json({ success: true, user: userInfo, token });
 });
 
-// ❤️ User Profile & Wishlist (Mock - fetching u1 for demo)
-// 👤 Get User Profile by ID
-app.get('/api/users/:id', (req, res) => {
+// ❤️ User Profile & Wishlist (Secure)
+// 👤 Get User Profile by ID (Protected)
+app.get('/api/users/:id', authenticateToken, (req, res) => {
     const users = getData('users.json');
     const user = users.find(u => u.id === req.params.id);
+
+    // Security check: only allow users to fetch their own data or admin
+    if (req.user.id !== req.params.id && req.user.role !== 'admin') {
+        return res.status(403).json({ success: false, message: "Forbidden" });
+    }
+
     if (user) {
         const { password, ...userInfo } = user;
         res.json({ success: true, user: userInfo });
@@ -259,20 +316,22 @@ app.get('/api/users/:id', (req, res) => {
     }
 });
 
-// 👤 Update User Profile
-app.put('/api/users/:id', (req, res) => {
+// 👤 Update User Profile (Protected)
+app.put('/api/users/:id', authenticateToken, (req, res) => {
     const { id } = req.params;
+
+    // Security check
+    if (req.user.id !== id && req.user.role !== 'admin') {
+        return res.status(403).json({ success: false, message: "Forbidden: You can only update your own profile" });
+    }
+
     console.log(`[PUT] Update request for user: ${id}`);
 
     const { username, email, avatar } = req.body;
-    console.log(`Payload size: ${JSON.stringify(req.body).length} bytes`);
-    if (avatar) console.log(`Avatar present (starts with): ${avatar.substring(0, 30)}...`);
-
     let users = getData('users.json');
     const index = users.findIndex(u => u.id === id);
 
     if (index === -1) {
-        console.error(`User ${id} not found in database`);
         return res.status(404).json({ success: false, message: "User not found" });
     }
 
