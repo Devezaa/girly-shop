@@ -1,0 +1,165 @@
+/* 🌷 Lovely Boutique - App Level Styles
+   -------------------------------------
+   Base global layout, transitions, and effects
+*/
+
+/* 🌸 Brand Variables (moved from variables.css) */
+:root {
+  --font-sans: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+
+  /* 🎀 Colors */
+  --color-white: #ffffff;
+  --color-gray: #444;
+  --color-pink-50: #fff5f7;
+  --color-pink-100: #ffe4e6;
+  --color-pink-200: #fecdd3;
+  --color-pink-300: #f9a8d4;
+  --color-pink-400: #f472b6;
+  --color-pink-500: #ec4899;
+  --color-pink-600: #db2777;
+
+  /* 🌸 Gradients */
+  --gradient-pink: linear-gradient(135deg, #f9a8d4, #f472b6, #ec4899);
+  --gradient-soft: linear-gradient(135deg, #fff0f6, #ffe4e6, #ffe4ec);
+  --gradient-dark: linear-gradient(135deg, #2b002b, #3a003a, #500050);
+
+  /* 🌼 Shadows */
+  --shadow-medium: 0 8px 16px rgba(236, 72, 153, 0.15);
+  --shadow-strong: 0 12px 24px rgba(236, 72, 153, 0.25);
+
+  /* 🌺 Transitions & Radius */
+  --transition-fast: all 0.25s ease;
+  --transition-medium: all 0.4s ease;
+  --radius-md: 8px;
+}
+
+/* 🌸 Root App Wrapper */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-pink-50);
+  color: var(--color-gray);
+  transition: var(--transition-medium);
+  overflow-x: hidden;
+}
+
+/* 💖 Page Container */
+.page {
+  flex: 1;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* 🩰 Smooth Page Transitions */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 🌺 Animated Gradient Background */
+.gradient-bg {
+  background: var(--gradient-soft);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 🧁 Section Headings */
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--color-pink-600);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin: 0.5rem auto 0;
+  background: var(--color-pink-400);
+  border-radius: var(--radius-md);
+}
+
+/* 💫 Buttons Global Style */
+button {
+  font-family: var(--font-sans);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+button:focus {
+  outline: 2px solid var(--color-pink-300);
+  outline-offset: 3px;
+}
+
+/* 🌼 Floating Button (for Cart or Scroll) */
+.floating-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: var(--gradient-pink);
+  color: var(--color-white);
+  border-radius: 50%;
+  padding: 0.8rem;
+  box-shadow: var(--shadow-medium);
+  z-index: 50;
+  transition: var(--transition-fast);
+}
+.floating-btn:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-strong);
+}
+
+/* 🌙 Dark Mode Styles */
+[data-theme="dark"] #root {
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+}
+[data-theme="dark"] .section-title {
+  color: #fda4af;
+}
+[data-theme="dark"] .gradient-bg {
+  background: var(--gradient-dark);
+}
+
+/* 💕 Footer Styling */
+footer {
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 1.5rem 0;
+  color: var(--color-gray);
+  background-color: var(--color-pink-100);
+  margin-top: auto;
+  border-top: 1px solid var(--color-pink-200);
+}
+footer a {
+  color: var(--color-pink-500);
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+footer a:hover {
+  color: var(--color-pink-600);
+}
+
+/* 💖 Scroll Animation Classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}

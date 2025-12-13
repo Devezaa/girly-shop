@@ -1,0 +1,527 @@
+[
+  {
+    "id": 105,
+    "name": "Gucci Flora Gorgeous Magnolia",
+    "price": 120,
+    "image": "/products/gucci-flora.jpg",
+    "category": "Treat",
+    "rating": 4.9,
+    "reviews": 320,
+    "isNew": true,
+    "stock": 10,
+    "oldPrice": null,
+    "brand": "",
+    "volume": "",
+    "description": ""
+  },
+  {
+    "id": 106,
+    "name": "Chanel Chance Eau Tendre",
+    "price": 135,
+    "image": "/products/chanel-chance.jpg",
+    "category": "Treat",
+    "rating": 5,
+    "reviews": 450,
+    "isNew": true,
+    "stock": 50
+  },
+  {
+    "id": 107,
+    "name": "Dior Addict Lip Glow",
+    "price": 40,
+    "image": "/products/dior-addict.jpg",
+    "category": "Treat",
+    "rating": 4.8,
+    "reviews": 890,
+    "isNew": false,
+    "stock": 50
+  },
+  {
+    "id": 108,
+    "name": "CeraVe Daily Moisturizing Lotion",
+    "price": 15,
+    "image": "/products/cerave-lotion.jpg",
+    "category": "Moisturize",
+    "rating": 4.7,
+    "reviews": 1200,
+    "isNew": false,
+    "stock": 50
+  },
+  {
+    "id": 109,
+    "name": "Rom&nd Zero Velvet Tint",
+    "price": 12,
+    "image": "/products/romand-lip.jpg",
+    "category": "Treat",
+    "rating": 4.6,
+    "reviews": 560,
+    "isNew": true,
+    "stock": 50
+  },
+  {
+    "id": 101,
+    "name": "Anua Niacinamide 10% + TXA 4%",
+    "price": 24,
+    "image": "/products/anua-niacinamide.jpg",
+    "category": "Treat",
+    "rating": 4.9,
+    "reviews": 120,
+    "isNew": true,
+    "stock": 50
+  },
+  {
+    "id": 102,
+    "name": "Medicube PDRN Pink Peptide Serum",
+    "price": 32,
+    "image": "/products/medicube-serum.jpg",
+    "category": "Treat",
+    "rating": 5,
+    "reviews": 85,
+    "isNew": true,
+    "stock": 50
+  },
+  {
+    "id": 103,
+    "name": "Anessa Perfect UV Sunscreen",
+    "price": 28.5,
+    "image": "/products/anessa-sunscreen.jpg",
+    "category": "Protect",
+    "rating": 4.8,
+    "reviews": 340,
+    "isNew": false,
+    "stock": 50
+  },
+  {
+    "id": 104,
+    "name": "Tocobo Cotton Soft Sun Stick",
+    "price": 18,
+    "image": "/products/tocobo-sunstick.jpg",
+    "category": "Protect",
+    "rating": 4.7,
+    "reviews": 210,
+    "isNew": true,
+    "stock": 50
+  },
+  {
+    "id": 1,
+    "name": "Anua Heartleaf Pore Control Cleansing Oil",
+    "brand": "Anua",
+    "price": 18,
+    "oldPrice": 22,
+    "image": "/prod-anua.jpg",
+    "category": "Cleanser",
+    "rating": 4.9,
+    "volume": "200 ml",
+    "stock": 50
+  },
+  {
+    "id": 2,
+    "name": "Mixsoon Bean Essence",
+    "brand": "Mixsoon",
+    "price": 24,
+    "oldPrice": 30,
+    "image": "/prod-mixsoon.jpg",
+    "category": "Essence",
+    "rating": 4.8,
+    "volume": "50 ml",
+    "stock": 50
+  },
+  {
+    "id": 3,
+    "name": "Nature Republic Aloe Vera 92% Soothing Gel",
+    "brand": "Nature Republic",
+    "price": 8,
+    "oldPrice": 12,
+    "image": "/prod-aloe.jpg",
+    "category": "Moisturizer",
+    "rating": 4.7,
+    "volume": "300 ml",
+    "stock": 50
+  },
+  {
+    "id": 4,
+    "name": "Medicube Collagen Night Wrapping Mask",
+    "brand": "Medicube",
+    "price": 28,
+    "oldPrice": 35,
+    "image": "/prod-collagen.jpg",
+    "category": "Mask",
+    "rating": 4.9,
+    "volume": "75 ml",
+    "stock": 50
+  },
+  {
+    "id": 5,
+    "name": "Anua Dark Spot Serum",
+    "volume": "30 ml",
+    "price": 17.5,
+    "oldPrice": 21,
+    "image": "/prod-anua.jpg",
+    "rating": 4.8,
+    "category": "Treat",
+    "stock": 50
+  },
+  {
+    "id": 6,
+    "name": "Benton Snail Bee High Content content",
+    "volume": "60 ml",
+    "price": 14.5,
+    "oldPrice": 16,
+    "image": "/prod-collagen.jpg",
+    "rating": 4.6,
+    "category": "Repair",
+    "stock": 50
+  },
+  {
+    "id": 110,
+    "name": "Pich Pisey Bikini Moisture Cream",
+    "price": 10,
+    "oldPrice": 15,
+    "image": "http://localhost:5001/uploads/bikini-cream.jpg",
+    "images": [
+      "http://localhost:5001/uploads/bikini-cream.jpg",
+      "/products/anua-niacinamide.jpg",
+      "/products/medicube-serum.jpg"
+    ],
+    "category": "Moisturize",
+    "brand": "Pich Pisey",
+    "rating": 5,
+    "reviews": 12,
+    "isNew": true,
+    "volume": "50 g",
+    "highlights": [
+      "Intense 24h hydration",
+      "Safe for sensitive areas",
+      "Brightening formula",
+      "Non-sticky texture"
+    ],
+    "howToUse": [
+      "Cleanse the area thoroughly before application.",
+      "Take a pea-sized amount of the cream.",
+      "Gently massage into the skin until fully absorbed.",
+      "Use twice daily (morning and night) for best results."
+    ],
+    "description": "Reveal your confidence with the Pich Pisey Bikini Moisture Cream. This specialized formula is designed to hydrate, brighten, and smooth delicate skin. Infused with gentle nourishing ingredients, it helps reduce dark spots and irritation while providing deep moisture.",
+    "stock": 50
+  },
+  {
+    "id": 111,
+    "name": "Phka Blush (Pkor Lorn)",
+    "price": 10,
+    "oldPrice": 12.5,
+    "image": "http://localhost:5001/uploads/phka-blush.png",
+    "images": [
+      "http://localhost:5001/uploads/phka-blush.png"
+    ],
+    "category": "Makeup",
+    "brand": "Em's",
+    "rating": 4.8,
+    "reviews": 8,
+    "isNew": true,
+    "highlights": [
+      "Natural matte finish",
+      "Long-lasting pigment",
+      "Blendable texture",
+      "Includes mirror"
+    ],
+    "howToUse": [
+      "Swirl a brush into the powder.",
+      "Tap off excess product.",
+      "Smile and apply to the apples of your cheeks.",
+      "Blend upwards towards your temples for a lifted look."
+    ],
+    "description": "Add a pop of natural color to your complexion with Phka Blush. The silky-smooth powder blends effortlessly into the skin, creating a soft-focus finish that lasts all day. Available in a universally flattering shade that suits all skin tones.",
+    "stock": 50
+  },
+  {
+    "id": 112,
+    "name": "Phka Blush (Kolab)",
+    "price": 10,
+    "oldPrice": 12.5,
+    "image": "http://localhost:5001/uploads/kolab-1.png",
+    "images": [
+      "http://localhost:5001/uploads/kolab-1.png",
+      "http://localhost:5001/uploads/kolab-2.png",
+      "http://localhost:5001/uploads/kolab-3.png",
+      "http://localhost:5001/uploads/kolab-4.png",
+      "http://localhost:5001/uploads/kolab-5.png"
+    ],
+    "category": "Makeup",
+    "brand": "Em's",
+    "rating": 5,
+    "reviews": 3,
+    "isNew": true,
+    "highlights": [
+      "Rosy pink shade",
+      "Highly pigmented",
+      "Smooth matte finish",
+      "Cute heart packaging"
+    ],
+    "howToUse": [
+      "Best applied with a fluffy blush brush.",
+      "Start light and build up intensity.",
+      "Perfect for a 'cold girl' makeup look."
+    ],
+    "description": "The Kolab shade offers a stunning rosy pink hue that gives your cheeks a fresh, blooming appearance. Inspired by the beauty of roses (Kolab), this blush provides a romantic flush of color.",
+    "stock": 50
+  },
+  {
+    "id": 113,
+    "name": "Phka Blush (Chhuk)",
+    "price": 10,
+    "oldPrice": 12.5,
+    "image": "http://localhost:5001/uploads/chhuk-1.png",
+    "images": [
+      "http://localhost:5001/uploads/chhuk-1.png",
+      "http://localhost:5001/uploads/chhuk-2.png",
+      "http://localhost:5001/uploads/chhuk-3.jpg",
+      "http://localhost:5001/uploads/chhuk-4.jpg"
+    ],
+    "category": "Makeup",
+    "brand": "Em's",
+    "rating": 5,
+    "reviews": 5,
+    "isNew": true,
+    "highlights": [
+      "Vibrant lotus pink",
+      "Soft-matte powder",
+      "All-day wear",
+      "Cruelty-free"
+    ],
+    "howToUse": [
+      "Dip brush into powder.",
+      "Smile to find apples of cheeks.",
+      "Sweep upwards for a fresh look."
+    ],
+    "description": "Chhuk (Lotus) brings a vibrant pop of color to your cheeks. This lively shade embodies the energy and beauty of the lotus flower, perfect for brightening up any makeup look.",
+    "stock": 50
+  },
+  {
+    "id": 114,
+    "name": "Phka Blush (Romduol)",
+    "price": 10,
+    "oldPrice": 12.5,
+    "image": "http://localhost:5001/uploads/romduol-1.png",
+    "images": [
+      "http://localhost:5001/uploads/romduol-1.png",
+      "http://localhost:5001/uploads/romduol-2.png",
+      "http://localhost:5001/uploads/romduol-3.jpg",
+      "http://localhost:5001/uploads/romduol-4.jpg"
+    ],
+    "category": "Makeup",
+    "brand": "Em's",
+    "rating": 5,
+    "reviews": 2,
+    "isNew": true,
+    "highlights": [
+      "Warm orange-yellow tone",
+      "Sun-kissed glow",
+      "National Flower shade",
+      "Soft focus effect"
+    ],
+    "howToUse": [
+      "Apply to cheeks for a warm glow.",
+      "Can also be used as eyeshadow.",
+      "Build up for a more intense sunset look."
+    ],
+    "description": "Inspired by the Romduol, Cambodia's national flower, this unique yellowish-orange shade provides a stunning sun-kissed warmth to your complexion. Perfect for warm undertones or creating a trendy monochromatic look.",
+    "stock": 50
+  },
+  {
+    "id": 115,
+    "name": "Phka Blush (Tirk Dos)",
+    "price": 10,
+    "oldPrice": 12.5,
+    "image": "http://localhost:5001/uploads/tirkdos-1.png",
+    "images": [
+      "http://localhost:5001/uploads/tirkdos-1.png",
+      "http://localhost:5001/uploads/tirkdos-2.png",
+      "http://localhost:5001/uploads/tirkdos-3.png"
+    ],
+    "category": "Makeup",
+    "brand": "Em's",
+    "rating": 5,
+    "reviews": 1,
+    "isNew": true,
+    "highlights": [
+      "Warm terracotta nude",
+      "Natural contour shade",
+      "Soft matte finish",
+      "Multipurpose (Cheek/Eye)"
+    ],
+    "howToUse": [
+      "Apply under cheekbones for a contoured look.",
+      "Use as a transition shade for eyeshadow.",
+      "Blend well for a seamless natural flush."
+    ],
+    "description": "Tirk Dos offers a sophisticated warm terracotta nude shade. Perfect for a natural everyday look or for adding warmth and definition to the face (like a soft bronzer/blush hybrid).",
+    "stock": 50
+  },
+  {
+    "id": 116,
+    "name": "Phka Blush (Angkeadey)",
+    "price": 10,
+    "oldPrice": 12.5,
+    "image": "http://localhost:5001/uploads/angkeadey-1.png",
+    "images": [
+      "http://localhost:5001/uploads/angkeadey-1.png",
+      "http://localhost:5001/uploads/angkeadey-2.png"
+    ],
+    "category": "Makeup",
+    "brand": "Em's",
+    "rating": 5,
+    "reviews": 4,
+    "isNew": true,
+    "highlights": [
+      "Deep berry red",
+      "Bold & dramatic",
+      "High color payoff",
+      "Velvet matte finish"
+    ],
+    "howToUse": [
+      "Use a light hand as it is very pigmented.",
+      "Tap onto cheeks and blend quickly.",
+      "Can create a 'drunk blush' or 'sunburn' look."
+    ],
+    "description": "Angkeadey delivers a rich, deep berry red hue. This bold shade allows for a dramatic flush, perfect for evening looks or for those who love a striking pop of color.",
+    "stock": 50
+  },
+  {
+    "id": 117,
+    "name": "Phka Malis Lip Oil",
+    "price": 10,
+    "oldPrice": 14,
+    "image": "http://localhost:5001/uploads/malis-1.png",
+    "images": [
+      "http://localhost:5001/uploads/malis-1.png",
+      "http://localhost:5001/uploads/malis-2.png",
+      "http://localhost:5001/uploads/malis-3.png",
+      "http://localhost:5001/uploads/malis-4.png"
+    ],
+    "category": "Lip Care",
+    "brand": "Em's",
+    "rating": 5,
+    "reviews": 8,
+    "isNew": true,
+    "highlights": [
+      "Clear with subtle shimmer",
+      "Non-sticky formula",
+      "Hydrating & Plumping",
+      "Jasmine (Malis) Scent"
+    ],
+    "howToUse": [
+      "Apply directly to bare lips for a glossy look.",
+      "Layer over lipstick for added shine.",
+      "Use daily for hydration."
+    ],
+    "description": "Inspired by the fragrant Jasmine flower (Malis), this crystal-clear lip oil provides intense hydration with a non-sticky, glass-like finish. Infused with subtle shimmer particles to make your lips look plump and juicy.",
+    "stock": 50
+  },
+  {
+    "id": 118,
+    "name": "Phka Romyol Lip Oil",
+    "price": 10,
+    "oldPrice": 14,
+    "image": "http://localhost:5001/uploads/romyol-1.png",
+    "images": [
+      "http://localhost:5001/uploads/romyol-1.png",
+      "http://localhost:5001/uploads/romyol-2.png",
+      "http://localhost:5001/uploads/romyol-3.png",
+      "http://localhost:5001/uploads/romyol-4.png"
+    ],
+    "category": "Lip Care",
+    "brand": "Em's",
+    "rating": 5,
+    "reviews": 12,
+    "isNew": true,
+    "highlights": [
+      "Tinted Strawberry Red",
+      "High Shine & Plumping",
+      "Nourishing Formula",
+      "Hibiscus (Romyol) Inspired"
+    ],
+    "howToUse": [
+      "Swipe on lips for a sheer red tint.",
+      "Apply multiple layers for more color payoff.",
+      "Perfect for a 'clean girl' makeup look."
+    ],
+    "description": "Named after the vibrant Hibiscus (Romyol), this tinted lip oil gives your lips a juicy, sheer red glaze. It combines the shine of a gloss with the nourishment of an oil for the perfect healthy lip glow.",
+    "stock": 50
+  },
+  {
+    "id": 119,
+    "name": "Phka Trabekprei Lip Oil",
+    "price": 10,
+    "oldPrice": 14,
+    "image": "http://localhost:5001/uploads/trabekprei-1.png",
+    "images": [
+      "http://localhost:5001/uploads/trabekprei-1.png",
+      "http://localhost:5001/uploads/trabekprei-2.png",
+      "http://localhost:5001/uploads/trabekprei-3.png",
+      "http://localhost:5001/uploads/trabekprei-4.png",
+      "http://localhost:5001/uploads/trabekprei-5.png"
+    ],
+    "category": "Lip Care",
+    "brand": "Em's",
+    "rating": 5,
+    "reviews": 6,
+    "isNew": true,
+    "highlights": [
+      "Color-Changing (Blue to Pink)",
+      "Reacts to pH level",
+      "Unique Wild Guava Scent",
+      "Glassy Shine"
+    ],
+    "howToUse": [
+      "Apply the blue oil to bare lips.",
+      "Watch it magically transform to pink.",
+      "The shade adjusts to your unique pH."
+    ],
+    "description": "Experience magic with Trabekprei (Wild Guava). This transparent blue oil transforms into a personalized soft pink shade upon contact with your lips, adjusting to your unique pH level.",
+    "stock": 50
+  },
+  {
+    "id": 120,
+    "name": "Pich Pisey Armpit Cream",
+    "price": 7.5,
+    "oldPrice": 12,
+    "image": "http://localhost:5001/uploads/armpit-cream-1.png",
+    "images": [
+      "http://localhost:5001/uploads/armpit-cream-1.png",
+      "http://localhost:5001/uploads/armpit-cream-2.png",
+      "http://localhost:5001/uploads/armpit-cream-3.png",
+      "http://localhost:5001/uploads/armpit-cream-4.png",
+      "http://localhost:5001/uploads/armpit-cream-5.png"
+    ],
+    "category": "Body Care",
+    "brand": "Pich Pisey",
+    "rating": 4.8,
+    "reviews": 34,
+    "isNew": true,
+    "highlights": [
+      "Whitens & Brightens",
+      "Smooths Chicken Skin",
+      "Reduces Odor",
+      "Fast Absorption"
+    ],
+    "howToUse": [
+      "Apply a small amount to clean, dry underarms.",
+      "Massage gently until fully absorbed.",
+      "Use twice daily (morning & night) for best results."
+    ],
+    "description": "Achieve smooth, bright, and confident underarms with Pich Pisey Armpit Cream. This specialized formula targets chicken skin, dark spots, and roughness, leaving your skin soft and evenly toned. Perfect for sleeveless days!",
+    "stock": 50
+  },
+  {
+    "id": 121,
+    "name": "D-nee",
+    "price": 2,
+    "image": "http://localhost:5001/uploads/image-1765631525802-446363262.jpg",
+    "category": "Cleanse",
+    "brand": "SOOY LOTION",
+    "rating": 0,
+    "reviews": 0,
+    "isNew": true,
+    "stock": 50
+  }
+]
