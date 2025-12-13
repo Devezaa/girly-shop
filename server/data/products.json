@@ -177,9 +177,9 @@
     "name": "Pich Pisey Bikini Moisture Cream",
     "price": 10,
     "oldPrice": 15,
-    "image": "http://localhost:5001/uploads/bikini-cream.jpg",
+    "image": "https://girly-shop.onrender.com/uploads/bikini-cream.jpg",
     "images": [
-      "http://localhost:5001/uploads/bikini-cream.jpg",
+      "https://girly-shop.onrender.com/uploads/bikini-cream.jpg",
       "/products/anua-niacinamide.jpg",
       "/products/medicube-serum.jpg"
     ],
@@ -209,9 +209,9 @@
     "name": "Phka Blush (Pkor Lorn)",
     "price": 10,
     "oldPrice": 12.5,
-    "image": "http://localhost:5001/uploads/phka-blush.png",
+    "image": "https://girly-shop.onrender.com/uploads/phka-blush.png",
     "images": [
-      "http://localhost:5001/uploads/phka-blush.png"
+      "https://girly-shop.onrender.com/uploads/phka-blush.png"
     ],
     "category": "Makeup",
     "brand": "Em's",
@@ -238,13 +238,13 @@
     "name": "Phka Blush (Kolab)",
     "price": 10,
     "oldPrice": 12.5,
-    "image": "http://localhost:5001/uploads/kolab-1.png",
+    "image": "https://girly-shop.onrender.com/uploads/kolab-1.png",
     "images": [
-      "http://localhost:5001/uploads/kolab-1.png",
-      "http://localhost:5001/uploads/kolab-2.png",
-      "http://localhost:5001/uploads/kolab-3.png",
-      "http://localhost:5001/uploads/kolab-4.png",
-      "http://localhost:5001/uploads/kolab-5.png"
+      "https://girly-shop.onrender.com/uploads/kolab-1.png",
+      "https://girly-shop.onrender.com/uploads/kolab-2.png",
+      "https://girly-shop.onrender.com/uploads/kolab-3.png",
+      "https://girly-shop.onrender.com/uploads/kolab-4.png",
+      "https://girly-shop.onrender.com/uploads/kolab-5.png"
     ],
     "category": "Makeup",
     "brand": "Em's",
@@ -270,12 +270,12 @@
     "name": "Phka Blush (Chhuk)",
     "price": 10,
     "oldPrice": 12.5,
-    "image": "http://localhost:5001/uploads/chhuk-1.png",
+    "image": "https://girly-shop.onrender.com/uploads/chhuk-1.png",
     "images": [
-      "http://localhost:5001/uploads/chhuk-1.png",
-      "http://localhost:5001/uploads/chhuk-2.png",
-      "http://localhost:5001/uploads/chhuk-3.jpg",
-      "http://localhost:5001/uploads/chhuk-4.jpg"
+      "https://girly-shop.onrender.com/uploads/chhuk-1.png",
+      "https://girly-shop.onrender.com/uploads/chhuk-2.png",
+      "https://girly-shop.onrender.com/uploads/chhuk-3.jpg",
+      "https://girly-shop.onrender.com/uploads/chhuk-4.jpg"
     ],
     "category": "Makeup",
     "brand": "Em's",
@@ -301,12 +301,12 @@
     "name": "Phka Blush (Romduol)",
     "price": 10,
     "oldPrice": 12.5,
-    "image": "http://localhost:5001/uploads/romduol-1.png",
+    "image": "https://girly-shop.onrender.com/uploads/romduol-1.png",
     "images": [
-      "http://localhost:5001/uploads/romduol-1.png",
-      "http://localhost:5001/uploads/romduol-2.png",
-      "http://localhost:5001/uploads/romduol-3.jpg",
-      "http://localhost:5001/uploads/romduol-4.jpg"
+      "https://girly-shop.onrender.com/uploads/romduol-1.png",
+      "https://girly-shop.onrender.com/uploads/romduol-2.png",
+      "https://girly-shop.onrender.com/uploads/romduol-3.jpg",
+      "https://girly-shop.onrender.com/uploads/romduol-4.jpg"
     ],
     "category": "Makeup",
     "brand": "Em's",
@@ -332,11 +332,11 @@
     "name": "Phka Blush (Tirk Dos)",
     "price": 10,
     "oldPrice": 12.5,
-    "image": "http://localhost:5001/uploads/tirkdos-1.png",
+    "image": "https://girly-shop.onrender.com/uploads/tirkdos-1.png",
     "images": [
-      "http://localhost:5001/uploads/tirkdos-1.png",
-      "http://localhost:5001/uploads/tirkdos-2.png",
-      "http://localhost:5001/uploads/tirkdos-3.png"
+      "https://girly-shop.onrender.com/uploads/tirkdos-1.png",
+      "https://girly-shop.onrender.com/uploads/tirkdos-2.png",
+      "https://girly-shop.onrender.com/uploads/tirkdos-3.png"
     ],
     "category": "Makeup",
     "brand": "Em's",
@@ -362,10 +362,10 @@
     "name": "Phka Blush (Angkeadey)",
     "price": 10,
     "oldPrice": 12.5,
-    "image": "http://localhost:5001/uploads/angkeadey-1.png",
+    "image": "https://girly-shop.onrender.com/uploads/angkeadey-1.png",
     "images": [
-      "http://localhost:5001/uploads/angkeadey-1.png",
-      "http://localhost:5001/uploads/angkeadey-2.png"
+      "https://girly-shop.onrender.com/uploads/angkeadey-1.png",
+      "https://girly-shop.onrender.com/uploads/angkeadey-2.png"
     ],
     "category": "Makeup",
     "brand": "Em's",
@@ -391,12 +391,12 @@
     "name": "Phka Malis Lip Oil",
     "price": 10,
     "oldPrice": 14,
-    "image": "http://localhost:5001/uploads/malis-1.png",
+    "image": "https://girly-shop.onrender.com/uploads/malis-1.png",
     "images": [
-      "http://localhost:5001/uploads/malis-1.png",
-      "http://localhost:5001/uploads/malis-2.png",
-      "http://localhost:5001/uploads/malis-3.png",
-      "http://localhost:5001/uploads/malis-4.png"
+      "https://girly-shop.onrender.com/uploads/malis-1.png",
+      "https://girly-shop.onrender.com/uploads/malis-2.png",
+      "https://girly-shop.onrender.com/uploads/malis-3.png",
+      "https://girly-shop.onrender.com/uploads/malis-4.png"
     ],
     "category": "Lip Care",
     "brand": "Em's",
@@ -422,12 +422,12 @@
     "name": "Phka Romyol Lip Oil",
     "price": 10,
     "oldPrice": 14,
-    "image": "http://localhost:5001/uploads/romyol-1.png",
+    "image": "https://girly-shop.onrender.com/uploads/romyol-1.png",
     "images": [
-      "http://localhost:5001/uploads/romyol-1.png",
-      "http://localhost:5001/uploads/romyol-2.png",
-      "http://localhost:5001/uploads/romyol-3.png",
-      "http://localhost:5001/uploads/romyol-4.png"
+      "https://girly-shop.onrender.com/uploads/romyol-1.png",
+      "https://girly-shop.onrender.com/uploads/romyol-2.png",
+      "https://girly-shop.onrender.com/uploads/romyol-3.png",
+      "https://girly-shop.onrender.com/uploads/romyol-4.png"
     ],
     "category": "Lip Care",
     "brand": "Em's",
@@ -453,13 +453,13 @@
     "name": "Phka Trabekprei Lip Oil",
     "price": 10,
     "oldPrice": 14,
-    "image": "http://localhost:5001/uploads/trabekprei-1.png",
+    "image": "https://girly-shop.onrender.com/uploads/trabekprei-1.png",
     "images": [
-      "http://localhost:5001/uploads/trabekprei-1.png",
-      "http://localhost:5001/uploads/trabekprei-2.png",
-      "http://localhost:5001/uploads/trabekprei-3.png",
-      "http://localhost:5001/uploads/trabekprei-4.png",
-      "http://localhost:5001/uploads/trabekprei-5.png"
+      "https://girly-shop.onrender.com/uploads/trabekprei-1.png",
+      "https://girly-shop.onrender.com/uploads/trabekprei-2.png",
+      "https://girly-shop.onrender.com/uploads/trabekprei-3.png",
+      "https://girly-shop.onrender.com/uploads/trabekprei-4.png",
+      "https://girly-shop.onrender.com/uploads/trabekprei-5.png"
     ],
     "category": "Lip Care",
     "brand": "Em's",
@@ -485,13 +485,13 @@
     "name": "Pich Pisey Armpit Cream",
     "price": 7.5,
     "oldPrice": 12,
-    "image": "http://localhost:5001/uploads/armpit-cream-1.png",
+    "image": "https://girly-shop.onrender.com/uploads/armpit-cream-1.png",
     "images": [
-      "http://localhost:5001/uploads/armpit-cream-1.png",
-      "http://localhost:5001/uploads/armpit-cream-2.png",
-      "http://localhost:5001/uploads/armpit-cream-3.png",
-      "http://localhost:5001/uploads/armpit-cream-4.png",
-      "http://localhost:5001/uploads/armpit-cream-5.png"
+      "https://girly-shop.onrender.com/uploads/armpit-cream-1.png",
+      "https://girly-shop.onrender.com/uploads/armpit-cream-2.png",
+      "https://girly-shop.onrender.com/uploads/armpit-cream-3.png",
+      "https://girly-shop.onrender.com/uploads/armpit-cream-4.png",
+      "https://girly-shop.onrender.com/uploads/armpit-cream-5.png"
     ],
     "category": "Body Care",
     "brand": "Pich Pisey",
@@ -516,7 +516,7 @@
     "id": 121,
     "name": "D-nee",
     "price": 2,
-    "image": "http://localhost:5001/uploads/image-1765631525802-446363262.jpg",
+    "image": "https://girly-shop.onrender.com/uploads/image-1765631525802-446363262.jpg",
     "category": "Cleanse",
     "brand": "SOOY LOTION",
     "rating": 0,

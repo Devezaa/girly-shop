@@ -1,41 +1,41 @@
 [
-  {
-    "id": 1,
-    "src": "/banners/banner-laneige.jpg",
-    "alt": "Laneige Special",
-    "title": "Glow Up With Laneige",
-    "subtitle": "Discover the secret to sleeping beauty.",
-    "btnText": "Shop Laneige"
-  },
-  {
-    "id": 2,
-    "src": "/banners/banner-vitapair.jpg",
-    "alt": "Vitapair C Serum",
-    "title": "Brighten Your Day",
-    "subtitle": "Vitamin C for that radiant summer glow.",
-    "btnText": "Shop Serums"
-  },
-  {
-    "id": 3,
-    "src": "/banners/banner-innisfree.jpg",
-    "alt": "Innisfree Green Tea",
-    "title": "Fresh from Jeju",
-    "subtitle": "Hydrate with the power of Green Tea.",
-    "btnText": "Explore Innisfree"
-  },
-  {
-    "id": 4,
-    "src": "/banners/banner-serum1.jpg",
-    "alt": "Glow Serum",
-    "title": "Glass Skin Goals",
-    "subtitle": "Achieve the look you've always wanted.",
-    "btnText": "Shop Now"
-  },
-  {
-    "id": 1765640017392,
-    "src": "http://localhost:5001/uploads/image-1765640023841-453992764.jpg",
-    "title": "New Banner",
-    "subtitle": "Subtitle goes here",
-    "btnText": "Shop Now"
-  }
+    {
+        "id": 1,
+        "src": "/banners/banner-laneige.jpg",
+        "alt": "Laneige Special",
+        "title": "Glow Up With Laneige",
+        "subtitle": "Discover the secret to sleeping beauty.",
+        "btnText": "Shop Laneige"
+    },
+    {
+        "id": 2,
+        "src": "/banners/banner-vitapair.jpg",
+        "alt": "Vitapair C Serum",
+        "title": "Brighten Your Day",
+        "subtitle": "Vitamin C for that radiant summer glow.",
+        "btnText": "Shop Serums"
+    },
+    {
+        "id": 3,
+        "src": "/banners/banner-innisfree.jpg",
+        "alt": "Innisfree Green Tea",
+        "title": "Fresh from Jeju",
+        "subtitle": "Hydrate with the power of Green Tea.",
+        "btnText": "Explore Innisfree"
+    },
+    {
+        "id": 4,
+        "src": "/banners/banner-serum1.jpg",
+        "alt": "Glow Serum",
+        "title": "Glass Skin Goals",
+        "subtitle": "Achieve the look you've always wanted.",
+        "btnText": "Shop Now"
+    },
+    {
+        "id": 1765640017392,
+        "src": "https://girly-shop.onrender.com/uploads/image-1765640023841-453992764.jpg",
+        "title": "New Banner",
+        "subtitle": "Subtitle goes here",
+        "btnText": "Shop Now"
+    }
 ]

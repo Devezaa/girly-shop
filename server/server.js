@@ -15,6 +15,7 @@ const io = new Server(server, {
             "http://localhost:5173",
             "http://localhost:5174",
             "http://localhost:5175",
+            "https://girly-shop-rlga1zpx5-devezaas-projects.vercel.app", // Allow specific Vercel deployment
             process.env.CLIENT_URL // Allow deployed frontend URL
         ].filter(Boolean),
         methods: ["GET", "POST"]
