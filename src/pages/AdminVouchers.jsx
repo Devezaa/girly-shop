@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { API_BASE_URL } from '../config';
 import { Save, Trash2, Plus, Ticket } from "lucide-react";
 
 export default function AdminVouchers() {
@@ -6,7 +7,7 @@ export default function AdminVouchers() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5001/api/vouchers')
+        fetch(`${API_BASE_URL}/api/vouchers`)
             .then(res => res.json())
             .then(data => {
                 setVouchers(data);
@@ -44,7 +45,7 @@ export default function AdminVouchers() {
     };
 
     const handleSave = () => {
-        fetch('http://localhost:5001/api/vouchers', {
+        fetch(`${API_BASE_URL}/api/vouchers`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(vouchers)

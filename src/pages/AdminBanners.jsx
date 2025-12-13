@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { API_BASE_URL } from '../config';
 import { Save, Trash2, Plus, Image as ImageIcon, Loader2, Upload } from "lucide-react";
 
 export default function AdminBanners() {
@@ -7,7 +8,7 @@ export default function AdminBanners() {
     const [uploading, setUploading] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:5001/api/banners')
+        fetch(`${API_BASE_URL}/api/banners`)
             .then(res => res.json())
             .then(data => {
                 setBanners(data);
@@ -46,7 +47,7 @@ export default function AdminBanners() {
         formData.append('image', file);
 
         try {
-            const res = await fetch('http://localhost:5001/api/upload', {
+            const res = await fetch(`${API_BASE_URL}/api/upload`, {
                 method: 'POST',
                 body: formData
             });
@@ -65,7 +66,7 @@ export default function AdminBanners() {
     };
 
     const handleSave = () => {
-        fetch('http://localhost:5001/api/banners', {
+        fetch(`${API_BASE_URL}/api/banners`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(banners)

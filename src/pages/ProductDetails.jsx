@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { API_BASE_URL } from '../config';
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Heart, Star, Minus, Plus, ShoppingBag, ShieldCheck, Truck, Award, Check, Package, Droplet } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,7 +19,7 @@ export default function ProductDetails() {
     const [activeTab, setActiveTab] = useState("description"); // description, usage, ingredients
 
     useEffect(() => {
-        fetch(`http://localhost:5001/api/products/${id}`)
+        fetch(`${API_BASE_URL}/api/products/${id}`)
             .then(res => res.json())
             .then(data => {
                 setProduct(data);

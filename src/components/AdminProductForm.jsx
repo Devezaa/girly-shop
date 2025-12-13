@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { API_BASE_URL } from '../config';
 import { X, Image as ImageIcon, Upload, Loader2, DollarSign, Package, Tag, Type } from "lucide-react";
 
 const CATEGORIES = ["Cleanse", "Treat", "Moisturize", "Protect", "Mask", "Repair", "Makeup", "Body Care", "Lip Care"];
@@ -49,7 +50,7 @@ export default function AdminProductForm({ initialData, onSubmit, onCancel }) {
         data.append('image', file);
 
         try {
-            const res = await fetch('http://localhost:5001/api/upload', {
+            const res = await fetch(`${API_BASE_URL}/api/upload`, {
                 method: 'POST',
                 body: data
             });

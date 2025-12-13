@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API_BASE_URL } from '../config';
 import { Search, SlidersHorizontal, ArrowRight, Droplets, Sparkles, Shield, SprayCan, Star, Mail, CheckCircle, Flame, Heart } from "lucide-react";
 import ProductCard from "../components/ProductCard";
 import { motion } from "framer-motion";
@@ -37,7 +38,7 @@ export default function HomeRedesign() {
 
     // 🔄 Fetch Products from API
     React.useEffect(() => {
-        fetch('http://localhost:5001/api/products')
+        fetch(`${API_BASE_URL}/api/products`)
             .then(res => res.json())
             .then(data => setProducts(data))
             .catch(err => console.error("Failed to fetch products:", err));
@@ -46,7 +47,7 @@ export default function HomeRedesign() {
     // 🔍 Live Search Handler
     const handleSearch = (query) => {
         setSearchQuery(query);
-        fetch(`http://localhost:5001/api/products?search=${query}`)
+        fetch(`${API_BASE_URL}/api/products?search=${query}`)
             .then(res => res.json())
             .then(data => setProducts(data));
     };
@@ -71,7 +72,7 @@ export default function HomeRedesign() {
 
     // 🔄 Fetch Banners
     React.useEffect(() => {
-        fetch('http://localhost:5001/api/banners')
+        fetch(`${API_BASE_URL}/api/banners`)
             .then(res => res.json())
             .then(data => {
                 if (data.length > 0) setBanners(data);

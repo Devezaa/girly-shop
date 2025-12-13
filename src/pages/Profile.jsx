@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { API_BASE_URL } from '../config';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { ArrowLeft, Save, User, Mail, Camera } from "lucide-react";
@@ -48,7 +49,7 @@ export default function Profile() {
         formData.append("image", file);
 
         try {
-            const uploadRes = await fetch("http://localhost:5001/api/upload", {
+            const uploadRes = await fetch(`${API_BASE_URL}/api/upload`, {
                 method: "POST",
                 body: formData
             });

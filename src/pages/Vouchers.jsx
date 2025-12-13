@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { API_BASE_URL } from '../config';
 import { ArrowLeft, Copy, Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +10,7 @@ export default function Vouchers() {
     const [vouchers, setVouchers] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5001/api/vouchers')
+        fetch(`${API_BASE_URL}/api/vouchers`)
             .then(res => res.json())
             .then(data => setVouchers(data))
             .catch(err => console.error(err));

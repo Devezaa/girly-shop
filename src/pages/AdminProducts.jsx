@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { API_BASE_URL } from '../config';
 import { Plus, Edit2, Trash2, Search, Save, X, MoreHorizontal, Package, TrendingUp, AlertCircle, Tag, DollarSign } from "lucide-react";
 import AdminProductForm from "../components/AdminProductForm";
 
@@ -14,7 +15,7 @@ export default function AdminProducts() {
 
     // 🔄 Fetch Products
     const fetchProducts = () => {
-        fetch('http://localhost:5001/api/products')
+        fetch(`${API_BASE_URL}/api/products`)
             .then(res => res.json())
             .then(data => setProducts(data))
             .catch(err => console.error("Error fetching products:", err));
@@ -28,8 +29,8 @@ export default function AdminProducts() {
     const handleSave = (formData) => {
         const method = editingProduct ? "PUT" : "POST";
         const url = editingProduct
-            ? `http://localhost:5001/api/products/${editingProduct.id}`
-            : 'http://localhost:5001/api/products';
+            ? `${API_BASE_URL}/api/products/${editingProduct.id}`
+            : `${API_BASE_URL}/api/products`;
 
         fetch(url, {
             method,
@@ -51,7 +52,7 @@ export default function AdminProducts() {
     // 🗑️ Handle Delete
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this product?")) {
-            await fetch(`http://localhost:5001/api/products/${id}`, { method: "DELETE" })
+            await fetch(`${API_BASE_URL}/api/products/${id}`, { method: "DELETE" })
                 .then(res => res.json())
                 .then(data => {
                     if (data.success) fetchProducts();
@@ -71,7 +72,7 @@ export default function AdminProducts() {
             return;
         }
 
-        fetch(`http://localhost:5001/api/products/${id}`, {
+        fetch(`${API_BASE_URL}/api/products/${id}`, {
             method: "PUT",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ price: inlinePrice })

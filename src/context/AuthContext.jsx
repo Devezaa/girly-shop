@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { API_BASE_URL } from '../config';
 
 const AuthContext = createContext();
 
@@ -18,7 +19,7 @@ export const AuthProvider = ({ children }) => {
 
                 // Fetch fresh data from backend (with token)
                 try {
-                    const res = await fetch(`http://localhost:5001/api/users/${parsedUser.id}`, {
+                    const res = await fetch(`${API_BASE_URL}/api/users/${parsedUser.id}`, {
                         headers: { 'Authorization': `Bearer ${storedToken}` }
                     });
 
@@ -44,7 +45,7 @@ export const AuthProvider = ({ children }) => {
     // 🔐 Login
     const login = async (email, password) => {
         try {
-            const res = await fetch('http://localhost:5001/api/auth/login', {
+            const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),
@@ -67,7 +68,7 @@ export const AuthProvider = ({ children }) => {
     // 📝 Register
     const register = async (username, email, password) => {
         try {
-            const res = await fetch('http://localhost:5001/api/auth/register', {
+            const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, email, password }),
@@ -93,7 +94,7 @@ export const AuthProvider = ({ children }) => {
         const token = localStorage.getItem('token');
 
         try {
-            const res = await fetch(`http://localhost:5001/api/users/${user.id}`, {
+            const res = await fetch(`${API_BASE_URL}/api/users/${user.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

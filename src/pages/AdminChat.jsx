@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { Send, User, Mic, Video, Image as ImageIcon, Paperclip, Edit2, Trash2, MoreVertical, RefreshCw } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import io from 'socket.io-client';
+import { API_BASE_URL } from '../config';
 
-const socket = io('http://localhost:5001');
+const socket = io(API_BASE_URL);
 
 export default function AdminChat() {
     const [messages, setMessages] = useState([]);

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import { API_BASE_URL } from '../config';
 
 // 🌷 Create context
 const CartContext = createContext();
@@ -28,7 +29,7 @@ export function CartProvider({ children }) {
 
   /** 🔄 Fetch Vouchers from API */
   useEffect(() => {
-    fetch('http://localhost:5001/api/vouchers')
+    fetch(`${API_BASE_URL}/api/vouchers`)
       .then(res => res.json())
       .then(data => setAvailableVouchers(data))
       .catch(err => console.error("Failed to load vouchers", err));

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API_BASE_URL } from '../config';
 import { ArrowLeft, ArrowRight, MapPin, ChevronRight, Plus, Minus, Trash2, ShoppingBag, CheckCircle, Loader2, CreditCard, ShieldCheck, X, PenLine, Ticket } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
@@ -52,7 +53,7 @@ export default function OrderDetails() {
                     paymentMethod: "Paylater"
                 };
 
-                const res = await fetch('http://localhost:5001/api/orders', {
+                const res = await fetch(`${API_BASE_URL}/api/orders`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(orderData)

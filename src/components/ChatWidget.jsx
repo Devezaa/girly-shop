@@ -2,8 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Minus, RefreshCw, Paperclip, Mic, Video, Image as ImageIcon, Edit2, Trash2, MoreVertical } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import io from 'socket.io-client';
+import { API_BASE_URL } from '../config';
 
-const socket = io('http://localhost:5001');
+const socket = io(API_BASE_URL);
 
 export default function ChatWidget() {
     const [isOpen, setIsOpen] = useState(false);
@@ -115,7 +116,7 @@ export default function ChatWidget() {
         formData.append('image', file);
 
         try {
-            const res = await fetch('http://localhost:5001/api/upload', {
+            const res = await fetch(`${API_BASE_URL}/api/upload`, {
                 method: 'POST',
                 body: formData
             });
@@ -158,7 +159,7 @@ export default function ChatWidget() {
                 const formData = new FormData();
                 formData.append('image', audioFile); // Reusing 'image' field for simplicity on server
 
-                const res = await fetch('http://localhost:5001/api/upload', { method: 'POST', body: formData });
+                const res = await fetch(`${API_BASE_URL}/api/upload`, { method: 'POST', body: formData });
                 const data = await res.json();
 
                 if (data.success) {

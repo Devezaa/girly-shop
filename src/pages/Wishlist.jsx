@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
+import { API_BASE_URL } from '../config';
 import { ArrowLeft, Heart, ShoppingBag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion"; // ✨ Animation
@@ -16,7 +17,7 @@ export default function Wishlist() {
 
   // 🔄 Fetch Products to match IDs
   useEffect(() => {
-    fetch('http://localhost:5001/api/products')
+    fetch(`${API_BASE_URL}/api/products`)
       .then(res => res.json())
       .then(data => {
         setProducts(data);
