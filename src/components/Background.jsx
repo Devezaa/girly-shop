@@ -34,7 +34,11 @@ export default function Background() {
       frame = requestAnimationFrame(animate);
     };
 
-    animate();
+    // Only animate on desktop to save battery/performance on mobile
+    if (window.innerWidth > 768) {
+      animate();
+    }
+
     return () => cancelAnimationFrame(frame);
   }, []);
 
@@ -43,18 +47,18 @@ export default function Background() {
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-rose-50 to-fuchsia-50" />
 
-      {/* Animated floating blobs */}
+      {/* Animated floating blobs (Static on mobile, Animated on Desktop) */}
       <div
         ref={(el) => (blobsRef.current[0] = el)}
-        className="absolute w-72 h-72 bg-pink-300/40 rounded-full blur-3xl mix-blend-multiply"
+        className="absolute w-72 h-72 bg-pink-300/40 rounded-full blur-xl md:blur-3xl mix-blend-multiply transition-transform will-change-transform"
       ></div>
       <div
         ref={(el) => (blobsRef.current[1] = el)}
-        className="absolute w-96 h-96 bg-rose-300/40 rounded-full blur-3xl mix-blend-multiply"
+        className="absolute w-96 h-96 bg-rose-300/40 rounded-full blur-xl md:blur-3xl mix-blend-multiply transition-transform will-change-transform"
       ></div>
       <div
         ref={(el) => (blobsRef.current[2] = el)}
-        className="absolute w-80 h-80 bg-fuchsia-300/40 rounded-full blur-3xl mix-blend-multiply"
+        className="absolute w-80 h-80 bg-fuchsia-300/40 rounded-full blur-xl md:blur-3xl mix-blend-multiply transition-transform will-change-transform"
       ></div>
     </div>
   );
