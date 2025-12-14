@@ -148,7 +148,7 @@ export default function ProductDetails() {
 
                         {/* Mobile Scrolling Thumbnails */}
                         {images.length > 1 && (
-                            <div className="flex md:hidden gap-3 overflow-x-auto px-4 no-scrollbar -mt-6 relative z-10">
+                            <div className="flex md:hidden gap-3 overflow-x-auto px-4 py-2 no-scrollbar -mt-6 relative z-10">
                                 {images.map((img, idx) => (
                                     <button
                                         key={idx}
@@ -182,27 +182,27 @@ export default function ProductDetails() {
                                 </div>
                             </div>
 
-                            <h1 className="text-3xl md:text-5xl lg:text-5xl font-serif font-medium text-gray-900 leading-[1.1] tracking-tight">
+                            <h1 className="text-3xl md:text-5xl lg:text-5xl font-serif font-medium text-gray-900 leading-tight md:leading-[1.1] tracking-tight">
                                 {product.name}
                             </h1>
 
-                            <div className="flex items-baseline gap-4 border-b border-gray-100 pb-6">
-                                <span className="text-4xl font-light text-gray-900 tracking-tight">${product.price.toFixed(2)}</span>
+                            <div className="flex items-baseline gap-2 md:gap-4 border-b border-gray-100 pb-4 md:pb-6">
+                                <span className="text-3xl md:text-4xl font-light text-gray-900 tracking-tight">${product.price.toFixed(2)}</span>
                                 {product.oldPrice && (
-                                    <span className="text-xl text-gray-300 line-through decoration-1">${product.oldPrice.toFixed(2)}</span>
+                                    <span className="text-lg md:text-xl text-gray-300 line-through decoration-1">${product.oldPrice.toFixed(2)}</span>
                                 )}
                             </div>
                         </div>
 
                         {/* Description */}
-                        <p className="text-gray-500 leading-7 text-sm md:text-base font-light">
+                        <p className="text-gray-500 leading-7 text-base md:text-base font-light">
                             {product.description || "Designed with precision and care, this premium product delivers exceptional quality and performance. Perfect for your daily routine."}
                         </p>
 
                         {/* 📦 Stock Status */}
                         <div className="flex items-center gap-2 py-2">
                             <div className={`w-2.5 h-2.5 rounded-full ${isOutOfStock ? 'bg-red-500' : isLowStock ? 'bg-orange-500' : 'bg-green-500'}`} />
-                            <span className={`text-sm font-medium ${isOutOfStock ? 'text-red-500' : isLowStock ? 'text-orange-500' : 'text-green-600'}`}>
+                            <span className={`text-base font-medium ${isOutOfStock ? 'text-red-500' : isLowStock ? 'text-orange-500' : 'text-green-600'}`}>
                                 {isOutOfStock ? "Out of Stock" : isLowStock ? `Low Stock: Only ${stock} left` : `In Stock: ${stock} items available`}
                             </span>
                         </div>
