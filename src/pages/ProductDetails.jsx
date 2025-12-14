@@ -65,6 +65,7 @@ export default function ProductDetails() {
     const images = product.images && product.images.length > 0 ? product.images : [product.image];
     const stock = product.stock || 0;
     const isOutOfStock = stock === 0;
+    const isLowStock = stock > 0 && stock < 10;
 
     return (
         <div className="min-h-screen bg-white pb-32 md:pb-16 font-sans">
@@ -187,6 +188,14 @@ export default function ProductDetails() {
                         <p className="text-gray-500 leading-7 text-sm md:text-base font-light">
                             {product.description || "Designed with precision and care, this premium product delivers exceptional quality and performance. Perfect for your daily routine."}
                         </p>
+
+                        {/* 📦 Stock Status */}
+                        <div className="flex items-center gap-2 py-2">
+                            <div className={`w-2.5 h-2.5 rounded-full ${isOutOfStock ? 'bg-red-500' : isLowStock ? 'bg-orange-500' : 'bg-green-500'}`} />
+                            <span className={`text-sm font-medium ${isOutOfStock ? 'text-red-500' : isLowStock ? 'text-orange-500' : 'text-green-600'}`}>
+                                {isOutOfStock ? "Out of Stock" : isLowStock ? `Low Stock: Only ${stock} left` : `In Stock: ${stock} items available`}
+                            </span>
+                        </div>
 
                         {/* Selectors */}
                         <div className="space-y-6">
