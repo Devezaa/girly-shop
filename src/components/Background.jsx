@@ -14,9 +14,9 @@ export default function Background() {
       <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-rose-50 to-fuchsia-50" />
 
       {/* Animated floating blobs (CSS Animation - Smooth & GPU optimized) */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-pink-300/30 rounded-full blur-[100px] animate-blob mix-blend-multiply opacity-70"></div>
-      <div className="absolute top-0 right-0 w-96 h-96 bg-rose-300/30 rounded-full blur-[100px] animate-blob-delay mix-blend-multiply opacity-70"></div>
-      <div className="absolute -bottom-32 left-20 w-96 h-96 bg-fuchsia-300/30 rounded-full blur-[100px] animate-blob mix-blend-multiply opacity-70"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-pink-300/30 rounded-full blur-[100px] animate-blob mix-blend-multiply opacity-70 hidden md:block"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-rose-300/30 rounded-full blur-[100px] animate-blob-delay mix-blend-multiply opacity-70 hidden md:block"></div>
+      <div className="absolute -bottom-32 left-20 w-96 h-96 bg-fuchsia-300/30 rounded-full blur-[100px] animate-blob mix-blend-multiply opacity-70 hidden md:block"></div>
     </div>
   );
 }
