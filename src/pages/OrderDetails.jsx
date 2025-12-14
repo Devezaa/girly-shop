@@ -261,47 +261,47 @@ export default function OrderDetails() {
 
                             {/* Order Summary */}
                             <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-                                <h3 className="font-serif text-lg font-bold text-gray-900 mb-5 font-khmer">សង្ខេបការបញ្ជាទិញ</h3>
+                                <h3 className="font-serif text-lg font-bold text-gray-900 mb-5">Order Summary</h3>
 
                                 <div className="space-y-3 mb-5">
                                     <div className="flex justify-between text-gray-500 text-sm">
-                                        <span className="font-khmer text-xs">សរុបបណ្តោះអាសន្ន</span>
-                                        <span className="font-medium text-gray-900">${totalPrice.toFixed(2)}</span>
+                                        <span className="font-medium text-xs uppercase tracking-wide">Subtotal</span>
+                                        <span className="font-bold text-gray-900">${totalPrice.toFixed(2)}</span>
                                     </div>
                                     {discount > 0 && (
                                         <div className="flex justify-between text-green-600 text-sm font-medium">
-                                            <span className="font-khmer text-xs">បញ្ចុះតម្លៃ (Voucher)</span>
+                                            <span className="font-medium text-xs uppercase tracking-wide">Discount</span>
                                             <span>-${discount.toFixed(2)}</span>
                                         </div>
                                     )}
                                     <div className="flex justify-between text-gray-500 text-sm">
-                                        <span className="font-khmer text-xs">សេវាដឹកជញ្ជូន</span>
-                                        <span className="font-medium text-gray-900">${shippingCost.toFixed(2)}</span>
+                                        <span className="font-medium text-xs uppercase tracking-wide">Shipping</span>
+                                        <span className="font-bold text-gray-900">${shippingCost.toFixed(2)}</span>
                                     </div>
                                 </div>
 
                                 <div className="border-t border-dashed border-gray-100 pt-4 mb-6">
                                     <div className="flex justify-between items-end">
-                                        <span className="text-gray-500 font-medium font-khmer text-sm">សរុបរួម</span>
-                                        <span className="text-2xl font-serif font-bold text-gray-900">${finalTotal.toFixed(2)}</span>
+                                        <span className="text-gray-500 font-bold text-sm uppercase tracking-wide">Total</span>
+                                        <span className="text-3xl font-serif font-bold text-gray-900">${finalTotal.toFixed(2)}</span>
                                     </div>
                                 </div>
 
                                 <button
                                     onClick={handleCheckout}
                                     disabled={isLoading}
-                                    className="w-full bg-gray-900 text-white py-3.5 rounded-xl font-bold text-base hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-md"
+                                    className="w-full bg-gray-900 text-white py-4 rounded-xl font-bold text-base hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed shadow-xl shadow-gray-200"
                                 >
                                     {isLoading ? <Loader2 className="animate-spin" size={20} /> : (
                                         <>
-                                            <span className="font-khmer">បញ្ជាទិញឥឡូវនេះ</span> <ArrowRight size={18} />
+                                            <span>Place Order</span> <ArrowRight size={20} />
                                         </>
                                     )}
                                 </button>
 
-                                <div className="mt-4 flex items-center justify-center gap-1.5 text-gray-400 text-[10px]">
-                                    <ShieldCheck size={12} />
-                                    <span className="font-khmer">ការទូទាត់ដែលមានសុវត្ថិភាព</span>
+                                <div className="mt-6 flex items-center justify-center gap-2 text-gray-400 text-xs font-medium bg-gray-50 py-2 rounded-lg">
+                                    <ShieldCheck size={14} />
+                                    <span>Secure 256-bit SSL Encrypted Payment</span>
                                 </div>
                             </div>
                         </div>
