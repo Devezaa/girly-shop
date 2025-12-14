@@ -438,11 +438,11 @@ export default function OrderDetails() {
                     <button
                         onClick={handleCheckout}
                         disabled={isLoading}
-                        className="flex-1 bg-gray-900 text-white py-3 rounded-xl font-bold text-base shadow-lg hover:bg-black active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="flex-1 bg-gray-900 text-white py-4 rounded-xl font-bold text-base shadow-xl shadow-gray-200 hover:bg-black active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         {isLoading ? <Loader2 className="animate-spin" size={20} /> : (
                             <>
-                                <span>Place Order</span> <ArrowRight size={18} />
+                                <span>Place Order</span> <ArrowRight size={20} />
                             </>
                         )}
                     </button>
