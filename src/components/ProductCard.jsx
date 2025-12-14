@@ -16,10 +16,10 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
   // 🎨 Minimalist Gray Style (Restored)
   return (
     <Link to={`/product/${product.id}`} className="block group">
-      <div className="bg-[#Fdf2f8] rounded-[2rem] p-3 relative aspect-[4/5] flex flex-col justify-between overflow-hidden hover:shadow-lg transition-all duration-300 group-hover:scale-[1.02]">
+      <div className="bg-white rounded-2xl p-4 relative aspect-[4/5] flex flex-col justify-between overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 group-hover:-translate-y-1">
 
         {/* 🖼️ Image */}
-        <div className="absolute inset-0 flex items-center justify-center p-6 pb-24">
+        <div className="absolute inset-0 flex items-center justify-center p-6 pb-20">
           <img
             src={imageUrl}
             alt={product.name}
@@ -38,12 +38,12 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
             e.stopPropagation();
             onWish && onWish();
           }}
-          className="absolute top-4 left-4 z-10"
+          className="absolute top-3 left-3 z-10"
         >
-          <Heart size={22} strokeWidth={1.5} className={`transition-colors ${wished ? "fill-rose-500 text-rose-500" : "text-gray-400 hover:text-gray-600"}`} />
+          <Heart size={20} strokeWidth={1.5} className={`transition-colors ${wished ? "fill-rose-500 text-rose-500" : "text-gray-400 hover:text-gray-600"}`} />
         </button>
 
-        {/* 🛍️ Add to Cart Icon - Large White Circle */}
+        {/* 🛍️ Add to Cart Icon - Minimal Circle */}
         <button
           type="button"
           onClick={(e) => {
@@ -51,18 +51,19 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
             e.stopPropagation();
             if (onAdd) onAdd();
           }}
-          className="absolute top-3 right-3 z-10 w-10 h-10 bg-white shadow-sm flex items-center justify-center rounded-full hover:scale-110 transition-transform active:scale-95"
+          className="absolute top-3 right-3 z-10 w-9 h-9 bg-gray-50 flex items-center justify-center rounded-full hover:bg-gray-900 hover:text-white transition-all active:scale-95 group-hover:bg-gray-900 group-hover:text-white"
         >
-          <ShoppingBag size={18} className="text-gray-900" />
+          <ShoppingBag size={16} className="text-current transition-colors" />
         </button>
 
-        {/* 📝 Content Overlay - Floating White Card */}
-        <div className="relative z-10 mt-auto bg-white rounded-2xl p-3 shadow-sm text-center mx-1 mb-1">
-          <h3 className="font-serif font-medium text-gray-900 text-sm leading-tight mb-2 line-clamp-2 min-h-[2.5em]">
+        {/* 📝 Content - Clean Bottom (No Floating Block) */}
+        <div className="relative z-10 mt-auto pt-2 border-t border-gray-50">
+          <h3 className="font-serif font-medium text-gray-900 text-sm leading-tight mb-1 line-clamp-1">
             {product.name}
           </h3>
-          <div className="flex items-center justify-center">
-            <span className="font-extrabold text-gray-900 text-lg">${price.toFixed(2)}</span>
+          <div className="flex items-center justify-between">
+            <span className="font-bold text-gray-900 text-base">${price.toFixed(2)}</span>
+            {/* Optional: Add Rating Stars here if available, or keep simple */}
           </div>
         </div>
       </div>

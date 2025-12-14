@@ -401,7 +401,7 @@ export default function HomeRedesign() {
                                 <motion.div
                                     key={idx}
                                     whileTap={{ scale: 0.95 }}
-                                    className="min-w-[80px] h-[80px] bg-white rounded-[1.5rem] border border-gray-100 flex flex-col items-center justify-center gap-2 shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-lg transition-all cursor-pointer snap-center"
+                                    className="min-w-[80px] h-[80px] bg-white rounded-2xl border border-gray-100 flex flex-col items-center justify-center gap-2 shadow-sm hover:shadow-md transition-all cursor-pointer snap-center"
                                 >
                                     <div className="w-12 h-12 flex items-center justify-center">
                                         <img
@@ -430,7 +430,7 @@ export default function HomeRedesign() {
                         <h3 className="font-bold text-gray-900 text-lg tracking-tight mb-4">Lovely Reviews</h3>
                         <div className="flex gap-3 overflow-x-auto no-scrollbar pb-4 -mx-5 px-5 snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-3 md:mx-0 md:px-0 md:overflow-visible">
                             {reviews.map((review, idx) => (
-                                <div key={idx} className="min-w-[220px] bg-[#FDF2F8] p-5 rounded-[1.5rem] shadow-sm flex flex-col gap-2 snap-center group hover:bg-white hover:shadow-md transition-all">
+                                <div key={idx} className="min-w-[220px] bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex flex-col gap-2 snap-center group">
                                     <div className="flex gap-1 text-[#FFB040]">
                                         {[...Array(review.rating)].map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
                                     </div>
