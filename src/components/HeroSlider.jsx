@@ -49,7 +49,7 @@ export default function HeroSlider() {
     if (banners.length === 0) return <div className="h-[50vh] bg-gray-100 animate-pulse rounded-b-3xl" />;
 
     return (
-        <div className="relative h-[28rem] md:h-[32rem] w-full overflow-hidden rounded-b-[3rem] shadow-sm group bg-gray-200">
+        <div className="relative h-80 md:h-[32rem] w-full overflow-hidden rounded-b-[2rem] md:rounded-b-[3rem] shadow-sm group bg-gray-200">
             <AnimatePresence mode='wait'>
                 <motion.div
                     key={currentIndex}
@@ -71,12 +71,12 @@ export default function HeroSlider() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
                     {/* Content */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 mt-10">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 mt-4 md:mt-10">
                         <motion.span
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.3 }}
-                            className="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider text-white uppercase bg-white/20 backdrop-blur-md rounded-full border border-white/30"
+                            className="inline-block px-3 py-1 mb-2 md:mb-4 text-[10px] md:text-xs font-bold tracking-wider text-white uppercase bg-white/20 backdrop-blur-md rounded-full border border-white/30"
                         >
                             Featured Collection
                         </motion.span>
@@ -84,7 +84,7 @@ export default function HeroSlider() {
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.4 }}
-                            className="text-4xl md:text-6xl font-serif font-bold text-white mb-4 drop-shadow-lg leading-tight"
+                            className="text-3xl md:text-6xl font-serif font-bold text-white mb-2 md:mb-4 drop-shadow-lg leading-tight"
                         >
                             {banners[currentIndex].title}
                         </motion.h2>

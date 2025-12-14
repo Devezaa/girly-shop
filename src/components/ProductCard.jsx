@@ -57,12 +57,12 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
         </button>
 
         {/* 📝 Content Overlay */}
-        <div className="relative z-10 mt-auto bg-white/95 md:bg-white/60 md:backdrop-blur-sm rounded-xl p-3 border border-white/50">
-          <h3 className="font-serif font-medium text-gray-900 text-sm md:text-base leading-tight mb-1 truncate">
+        <div className="relative z-10 mt-auto bg-white/95 md:bg-white/60 md:backdrop-blur-sm rounded-xl p-2 md:p-3 border border-white/50">
+          <h3 className="font-serif font-medium text-gray-900 text-xs md:text-base leading-tight mb-1 truncate">
             {product.name}
           </h3>
           <div className="flex items-center justify-between">
-            <span className="font-bold text-gray-900 text-sm md:text-base">${price.toFixed(2)}</span>
+            <span className="font-bold text-gray-900 text-xs md:text-base">${price.toFixed(2)}</span>
           </div>
         </div>
       </div>

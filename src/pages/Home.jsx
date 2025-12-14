@@ -18,13 +18,13 @@ export default function Home() {
       <div className="relative z-10 flex flex-col items-center text-center px-6">
 
         {/* Feature Section */}
-        <section className="mt-12 md:mt-20 max-w-6xl w-full">
+        <section className="mt-8 md:mt-20 max-w-6xl w-full">
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-3xl font-semibold text-pink-700 mb-8"
+            className="text-2xl md:text-3xl font-semibold text-pink-700 mb-6 md:mb-8"
           >
             Why You’ll Love Shopping With Us 💕
           </motion.h2>
