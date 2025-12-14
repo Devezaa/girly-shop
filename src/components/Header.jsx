@@ -44,9 +44,6 @@ export default function Header({ cartCount = 0 }) {
           <Link to="/shop" className="hover:text-pink-600 transition">
             Shop
           </Link>
-          <Link to="/promotions" className="hover:text-pink-600 transition">
-            Campaigns
-          </Link>
           <a href="#about" className="hover:text-pink-600 transition">
             About
           </a>

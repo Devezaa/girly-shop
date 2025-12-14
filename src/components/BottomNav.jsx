@@ -11,7 +11,6 @@ export default function BottomNav() {
     const navItems = [
         { to: "/home", icon: <Home size={24} />, label: "Home" },
         { to: "/shop", icon: <Search size={24} />, label: "Shop" },
-        { to: "/promotions", icon: <Sparkles size={24} />, label: "Promos" },
         {
             to: "/cart",
             icon: <ShoppingBag size={24} />,
