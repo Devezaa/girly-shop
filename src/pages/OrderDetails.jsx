@@ -92,23 +92,22 @@ export default function OrderDetails() {
 
     if (cart.length === 0 && !showSuccess) {
         return (
-            <div className="min-h-screen relative font-sans overflow-hidden flex flex-col items-center justify-center text-center px-4">
-                <Background />
+            <div className="min-h-screen relative font-sans overflow-hidden flex flex-col items-center justify-center text-center px-4 bg-gray-50">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="relative z-10 p-8 rounded-[3rem] bg-white/60 backdrop-blur-xl shadow-xl border border-white/50"
+                    className="relative z-10 p-10 rounded-3xl bg-white shadow-sm border border-gray-100"
                 >
-                    <div className="w-24 h-24 bg-gradient-to-tr from-pink-100 to-rose-50 rounded-full flex items-center justify-center text-pink-500 mb-6 mx-auto shadow-inner">
-                        <ShoppingBag size={40} strokeWidth={1.5} />
+                    <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 mb-6 mx-auto">
+                        <ShoppingBag size={32} strokeWidth={1.5} />
                     </div>
-                    <h2 className="text-3xl font-serif font-bold text-gray-800 mb-3">Your Bag is Empty</h2>
-                    <p className="text-gray-500 mb-8 max-w-xs leading-relaxed mx-auto">
-                        Looks like you haven't indulged in any self-care treats yet.
+                    <h2 className="text-2xl font-serif font-bold text-gray-900 mb-2">Your Bag is Empty</h2>
+                    <p className="text-gray-500 mb-8 max-w-xs leading-relaxed mx-auto text-sm">
+                        Looks like you haven't added anything yet.
                     </p>
                     <button
                         onClick={() => navigate('/shop')}
-                        className="bg-gray-900 text-white px-10 py-4 rounded-full font-medium shadow-lg hover:bg-gray-800 hover:scale-105 active:scale-95 transition-all"
+                        className="bg-gray-900 text-white px-8 py-3 rounded-xl font-medium shadow-lg hover:bg-black hover:scale-105 active:scale-95 transition-all text-sm"
                     >
                         Start Shopping
                     </button>
@@ -118,77 +117,76 @@ export default function OrderDetails() {
     }
 
     return (
-        <div className="min-h-screen relative font-sans overflow-hidden pb-32">
-            <Background />
+        <div className="min-h-screen relative font-sans overflow-hidden bg-gray-50 pb-32">
 
             {/* 🔙 Header (Mobile Only) */}
-            <header className="md:hidden sticky top-0 z-30 bg-white/70 backdrop-blur-md border-b border-white/20 px-6 py-4 flex items-center">
-                <button onClick={() => navigate(-1)} className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-gray-600 hover:text-black hover:scale-105 transition-all">
-                    <ArrowLeft size={20} />
+            <header className="md:hidden sticky top-0 z-30 bg-white border-b border-gray-100 px-5 py-3 flex items-center shadow-sm">
+                <button onClick={() => navigate(-1)} className="w-9 h-9 bg-gray-50 rounded-full flex items-center justify-center text-gray-600 hover:text-black hover:bg-gray-100 transition-all">
+                    <ArrowLeft size={18} />
                 </button>
-                <h1 className="flex-1 text-center font-serif text-2xl font-bold text-gray-900">
-                    Shopping Bag <span className="text-sm font-sans font-normal text-gray-500 ml-2">({cart.length} items)</span>
+                <h1 className="flex-1 text-center font-serif text-lg font-bold text-gray-900">
+                    Shopping Bag <span className="text-xs font-sans font-normal text-gray-500 ml-1">({cart.length})</span>
                 </h1>
-                <div className="w-10"></div> {/* Spacer for symmetry */}
+                <div className="w-9"></div> {/* Spacer for symmetry */}
             </header>
 
-            <main className="max-w-7xl mx-auto px-6 py-8 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+            <main className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
 
                     {/* 🛒 Cart Items List */}
-                    <div className="lg:col-span-8 space-y-6">
+                    <div className="lg:col-span-8 space-y-4">
                         <AnimatePresence>
                             {cart.map((item, index) => (
                                 <motion.div
                                     key={item.id}
-                                    initial={{ opacity: 0, y: 20 }}
+                                    initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, x: -50 }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="group relative bg-white/70 backdrop-blur-lg rounded-[2rem] p-4 flex gap-6 hover:shadow-lg transition-all border border-white/50"
+                                    exit={{ opacity: 0, x: -20 }}
+                                    transition={{ delay: index * 0.05 }}
+                                    className="group relative bg-white rounded-2xl p-4 flex gap-4 hover:shadow-md transition-all border border-gray-100"
                                 >
                                     {/* Product Image */}
-                                    <div className="w-28 h-28 bg-white rounded-2xl flex items-center justify-center p-3 shadow-sm shrink-0">
-                                        <img src={item.image} className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500" alt={item.name} />
+                                    <div className="w-24 h-24 bg-gray-50 rounded-xl flex items-center justify-center p-2 shrink-0">
+                                        <img src={item.image} className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" alt={item.name} />
                                     </div>
 
                                     {/* Content */}
-                                    <div className="flex-1 flex flex-col justify-between py-1">
+                                    <div className="flex-1 flex flex-col justify-between py-0.5">
                                         <div className="flex justify-between items-start">
                                             <div>
-                                                <h3 className="font-serif text-lg font-bold text-gray-900 leading-tight mb-1">{item.name}</h3>
-                                                <p className="text-gray-400 text-sm font-medium tracking-wide uppercase">{item.brand || 'Boutique Collection'}</p>
+                                                <h3 className="font-serif text-base font-bold text-gray-900 leading-tight mb-1 line-clamp-1">{item.name}</h3>
+                                                <p className="text-gray-400 text-xs font-medium tracking-wide uppercase">{item.brand || 'Collection'}</p>
                                             </div>
                                             <button
                                                 onClick={() => removeFromCart(item.id)}
-                                                className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:bg-rose-50 hover:text-rose-500 transition-all"
+                                                className="w-8 h-8 rounded-full flex items-center justify-center text-gray-300 hover:bg-rose-50 hover:text-rose-500 transition-all"
                                             >
-                                                <Trash2 size={20} />
+                                                <Trash2 size={16} />
                                             </button>
                                         </div>
 
-                                        <div className="flex items-end justify-between mt-4">
+                                        <div className="flex items-end justify-between mt-2">
                                             {/* Quantity Controls */}
-                                            <div className="flex items-center gap-4 bg-gray-50 rounded-full px-2 py-1.5 border border-gray-100">
+                                            <div className="flex items-center gap-3 bg-gray-50 rounded-lg px-2 py-1 border border-gray-100">
                                                 <button
                                                     onClick={() => item.qty > 1 ? updateQty(item.id, item.qty - 1) : removeFromCart(item.id)}
-                                                    className="w-8 h-8 bg-white rounded-full shadow-sm flex items-center justify-center text-gray-600 hover:text-black active:scale-90 transition-all"
+                                                    className="w-6 h-6 bg-white rounded-md shadow-sm flex items-center justify-center text-gray-600 hover:text-black active:scale-95 transition-all outline-none"
                                                 >
-                                                    <Minus size={14} />
+                                                    <Minus size={12} />
                                                 </button>
-                                                <span className="font-semibold text-gray-900 min-w-[1.5rem] text-center">{item.qty}</span>
+                                                <span className="font-semibold text-gray-900 min-w-[1rem] text-center text-sm">{item.qty}</span>
                                                 <button
                                                     onClick={() => updateQty(item.id, item.qty + 1)}
-                                                    className="w-8 h-8 bg-black text-white rounded-full shadow-sm flex items-center justify-center hover:bg-gray-800 active:scale-90 transition-all"
+                                                    className="w-6 h-6 bg-gray-900 text-white rounded-md shadow-sm flex items-center justify-center hover:bg-black active:scale-95 transition-all outline-none"
                                                 >
-                                                    <Plus size={14} />
+                                                    <Plus size={12} />
                                                 </button>
                                             </div>
 
                                             {/* Price */}
                                             <div className="text-right">
-                                                {item.oldPrice && <p className="text-gray-400 text-xs line-through mb-0.5">${(item.oldPrice * item.qty).toFixed(2)}</p>}
-                                                <p className="font-bold text-xl text-gray-900">${(item.price * item.qty).toFixed(2)}</p>
+                                                {item.oldPrice && <p className="text-gray-400 text-[10px] line-through mb-0 text-right">${(item.oldPrice * item.qty).toFixed(2)}</p>}
+                                                <p className="font-bold text-lg text-gray-900">${(item.price * item.qty).toFixed(2)}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -199,48 +197,46 @@ export default function OrderDetails() {
 
                     {/* 📝 Summary Card (Sticky) */}
                     <div className="lg:col-span-4">
-                        <div className="sticky top-28 space-y-6">
+                        <div className="sticky top-28 space-y-4">
                             {/* Address Card (Interactive) */}
                             <div
                                 onClick={openAddressModal}
-                                className="bg-white/60 backdrop-blur-xl rounded-[2rem] p-6 border border-white/50 shadow-sm cursor-pointer hover:shadow-md hover:scale-[1.02] transition-all group"
+                                className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm cursor-pointer hover:border-gray-300 hover:shadow-md transition-all group"
                             >
-                                <div className="flex items-center justify-between mb-4">
-                                    <div className="flex items-center gap-3 text-gray-400 text-xs font-bold uppercase tracking-wider">
-                                        <MapPin size={14} /> Shipping To
+                                <div className="flex items-center justify-between mb-3">
+                                    <div className="flex items-center gap-2 text-gray-400 text-[10px] font-bold uppercase tracking-wider">
+                                        <MapPin size={12} /> Shipping To
                                     </div>
-                                    <span className="text-xs font-bold text-gray-900 bg-gray-100 px-2 py-1 rounded-lg group-hover:bg-[#FFB040] group-hover:text-white transition-colors">EDIT</span>
+                                    <span className="text-[10px] font-bold text-gray-900 bg-gray-100 px-2 py-1 rounded hover:bg-[#FFB040] hover:text-white transition-colors">CHANGE</span>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-500">
-                                            <MapPin size={18} fill="currentColor" />
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 shrink-0">
+                                            <MapPin size={14} fill="currentColor" />
                                         </div>
-                                        <div>
-                                            <p className="font-bold text-gray-900">Home</p>
-                                            <p className="text-gray-500 text-sm truncate max-w-[180px]">{address}</p>
+                                        <div className="overflow-hidden">
+                                            <p className="font-bold text-gray-900 text-sm">Home</p>
+                                            <p className="text-gray-500 text-xs truncate max-w-[150px]">{address}</p>
                                         </div>
                                     </div>
-                                    <ChevronRight size={18} className="text-gray-400 group-hover:translate-x-1 transition-transform" />
+                                    <ChevronRight size={16} className="text-gray-300 group-hover:translate-x-1 transition-transform" />
                                 </div>
                             </div>
 
-
-
                             {/* 🎟️ Voucher Code Input */}
-                            <div className="bg-white/60 backdrop-blur-xl rounded-[2rem] p-6 border border-white/50 shadow-sm">
-                                <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
-                                    <Ticket size={18} className="text-pink-500" />
-                                    Have a Voucher?
+                            <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+                                <h3 className="font-bold text-gray-900 text-sm mb-3 flex items-center gap-2">
+                                    <Ticket size={16} className="text-[#FFB040]" />
+                                    Voucher Code
                                 </h3>
 
                                 {appliedVoucher ? (
-                                    <div className="flex justify-between items-center bg-green-50 text-green-700 px-4 py-3 rounded-xl border border-green-200">
-                                        <span className="font-bold">{appliedVoucher.code}</span>
-                                        <div className="flex items-center gap-3">
-                                            <span className="text-sm">-{appliedVoucher.displayDiscount}</span>
-                                            <button onClick={removeVoucher} className="text-red-500 hover:text-red-700">
-                                                <X size={16} />
+                                    <div className="flex justify-between items-center bg-green-50 text-green-700 px-3 py-2 rounded-xl border border-green-100">
+                                        <span className="font-bold text-sm">{appliedVoucher.code}</span>
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-xs font-medium">-{appliedVoucher.displayDiscount}</span>
+                                            <button onClick={removeVoucher} className="text-red-400 hover:text-red-600">
+                                                <X size={14} />
                                             </button>
                                         </div>
                                     </div>
@@ -250,12 +246,12 @@ export default function OrderDetails() {
                                             type="text"
                                             value={voucherCode}
                                             onChange={(e) => setVoucherCode(e.target.value.toUpperCase())}
-                                            placeholder="Enter Code"
-                                            className="flex-1 bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 font-medium uppercase"
+                                            placeholder="ENTER CODE"
+                                            className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-[#FFB040] font-medium uppercase min-w-0"
                                         />
                                         <button
                                             onClick={handleApplyVoucher}
-                                            className="bg-gray-900 text-white px-5 rounded-xl text-sm font-bold hover:bg-black transition-colors"
+                                            className="bg-gray-900 text-white px-4 rounded-xl text-xs font-bold hover:bg-black transition-colors"
                                         >
                                             Apply
                                         </button>
@@ -264,51 +260,47 @@ export default function OrderDetails() {
                             </div>
 
                             {/* Order Summary */}
-                            <div className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-white/60 shadow-xl">
-                                <h3 className="font-serif text-xl font-bold text-gray-900 mb-6 font-khmer">សង្ខេបការបញ្ជាទិញ</h3>
+                            <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                                <h3 className="font-serif text-lg font-bold text-gray-900 mb-5 font-khmer">សង្ខេបការបញ្ជាទិញ</h3>
 
-                                <div className="space-y-4 mb-6">
+                                <div className="space-y-3 mb-5">
                                     <div className="flex justify-between text-gray-500 text-sm">
-                                        <span className="font-khmer">សរុបបណ្តោះអាសន្ន</span>
+                                        <span className="font-khmer text-xs">សរុបបណ្តោះអាសន្ន</span>
                                         <span className="font-medium text-gray-900">${totalPrice.toFixed(2)}</span>
                                     </div>
                                     {discount > 0 && (
                                         <div className="flex justify-between text-green-600 text-sm font-medium">
-                                            <span className="font-khmer">បញ្ចុះតម្លៃ (Voucher)</span>
+                                            <span className="font-khmer text-xs">បញ្ចុះតម្លៃ (Voucher)</span>
                                             <span>-${discount.toFixed(2)}</span>
                                         </div>
                                     )}
                                     <div className="flex justify-between text-gray-500 text-sm">
-                                        <span className="font-khmer">សេវាដឹកជញ្ជូន</span>
+                                        <span className="font-khmer text-xs">សេវាដឹកជញ្ជូន</span>
                                         <span className="font-medium text-gray-900">${shippingCost.toFixed(2)}</span>
-                                    </div>
-                                    <div className="flex justify-between text-gray-500 text-sm items-center">
-                                        <span className="font-khmer">ពន្ធ</span>
-                                        <span className="text-[10px] bg-gray-100 px-2 py-0.5 rounded text-gray-400 font-khmer">បានបញ្ចូលរួច</span>
                                     </div>
                                 </div>
 
-                                <div className="border-t border-dashed border-gray-200 pt-6 mb-8">
+                                <div className="border-t border-dashed border-gray-100 pt-4 mb-6">
                                     <div className="flex justify-between items-end">
-                                        <span className="text-gray-500 font-medium font-khmer">សរុបរួម</span>
-                                        <span className="text-3xl font-serif font-bold text-gray-900">${finalTotal.toFixed(2)}</span>
+                                        <span className="text-gray-500 font-medium font-khmer text-sm">សរុបរួម</span>
+                                        <span className="text-2xl font-serif font-bold text-gray-900">${finalTotal.toFixed(2)}</span>
                                     </div>
                                 </div>
 
                                 <button
                                     onClick={handleCheckout}
                                     disabled={isLoading}
-                                    className="w-full bg-gray-900 text-white py-4 rounded-2xl font-bold text-lg hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-gray-200"
+                                    className="w-full bg-gray-900 text-white py-3.5 rounded-xl font-bold text-base hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-md"
                                 >
-                                    {isLoading ? <Loader2 className="animate-spin" /> : (
+                                    {isLoading ? <Loader2 className="animate-spin" size={20} /> : (
                                         <>
-                                            <span className="font-khmer">បញ្ជាទិញឥឡូវនេះ</span> <ArrowRight size={20} />
+                                            <span className="font-khmer">បញ្ជាទិញឥឡូវនេះ</span> <ArrowRight size={18} />
                                         </>
                                     )}
                                 </button>
 
-                                <div className="mt-6 flex items-center justify-center gap-2 text-gray-400 text-xs">
-                                    <ShieldCheck size={14} />
+                                <div className="mt-4 flex items-center justify-center gap-1.5 text-gray-400 text-[10px]">
+                                    <ShieldCheck size={12} />
                                     <span className="font-khmer">ការទូទាត់ដែលមានសុវត្ថិភាព</span>
                                 </div>
                             </div>
@@ -326,41 +318,41 @@ export default function OrderDetails() {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setIsEditingAddress(false)}
-                            className="absolute inset-0 bg-black/30 backdrop-blur-md"
+                            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
                         />
                         <motion.div
-                            initial={{ scale: 0.9, opacity: 0, y: 50 }}
+                            initial={{ scale: 0.9, opacity: 0, y: 30 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.9, opacity: 0, y: 50 }}
-                            className="bg-white rounded-[2.5rem] p-8 max-w-md w-full relative z-10 shadow-2xl border border-white/50"
+                            exit={{ scale: 0.9, opacity: 0, y: 30 }}
+                            className="bg-white rounded-3xl p-6 md:p-8 max-w-md w-full relative z-10 shadow-xl"
                         >
                             <div className="flex justify-between items-center mb-6">
-                                <h3 className="text-2xl font-serif font-bold text-gray-900">Delivery Address</h3>
+                                <h3 className="text-xl font-serif font-bold text-gray-900">Delivery Address</h3>
                                 <button
                                     onClick={() => setIsEditingAddress(false)}
-                                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
+                                    className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center hover:bg-gray-100 transition-colors"
                                 >
-                                    <X size={20} className="text-gray-500" />
+                                    <X size={18} className="text-gray-500" />
                                 </button>
                             </div>
 
                             <div className="space-y-4">
                                 <div>
-                                    <label className="block text-sm font-bold text-gray-700 mb-2 ml-1">Street Address</label>
+                                    <label className="block text-xs font-bold text-gray-700 mb-2 ml-1 uppercase tracking-wide">Street Address</label>
                                     <div className="relative">
-                                        <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                                        <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                                         <input
                                             type="text"
                                             value={tempAddress}
                                             onChange={(e) => setTempAddress(e.target.value)}
                                             placeholder="Enter your address..."
-                                            className="w-full bg-gray-50 border border-gray-200 rounded-2xl py-4 pl-12 pr-4 text-gray-900 font-medium focus:outline-none focus:ring-2 focus:ring-[#FFB040] transition-all"
+                                            className="w-full bg-gray-50 border border-gray-200 rounded-xl py-3.5 pl-10 pr-4 text-gray-900 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#FFB040] transition-all"
                                         />
                                     </div>
                                 </div>
 
                                 {/* 🗺️ Live Google Map Preview */}
-                                <div className="rounded-2xl overflow-hidden border border-gray-200 h-48 bg-gray-100 relative">
+                                <div className="rounded-xl overflow-hidden border border-gray-200 h-40 bg-gray-100 relative">
                                     {tempAddress ? (
                                         <iframe
                                             title="Map Preview"
@@ -374,7 +366,7 @@ export default function OrderDetails() {
                                             className="w-full h-full object-cover"
                                         ></iframe>
                                     ) : (
-                                        <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+                                        <div className="flex items-center justify-center h-full text-gray-400 text-xs">
                                             Enter an address to see the map
                                         </div>
                                     )}
@@ -382,7 +374,7 @@ export default function OrderDetails() {
 
                                 <button
                                     onClick={saveAddress}
-                                    className="w-full bg-[#FFB040] text-white font-bold py-4 rounded-2xl shadow-lg shadow-orange-100 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 mt-4"
+                                    className="w-full bg-[#FFB040] text-white font-bold py-3.5 rounded-xl shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 mt-2"
                                 >
                                     Save Address
                                 </button>
@@ -401,19 +393,19 @@ export default function OrderDetails() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="absolute inset-0 bg-black/20 backdrop-blur-md"
+                            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
                         />
                         <motion.div
-                            initial={{ scale: 0.8, opacity: 0, y: 50 }}
+                            initial={{ scale: 0.9, opacity: 0, y: 30 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.8, opacity: 0, y: 50 }}
-                            className="bg-white rounded-[3rem] p-10 max-w-sm w-full relative z-10 text-center shadow-2xl border border-white/50"
+                            exit={{ scale: 0.9, opacity: 0, y: 30 }}
+                            className="bg-white rounded-3xl p-8 max-w-sm w-full relative z-10 text-center shadow-2xl"
                         >
-                            <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 text-green-500 shadow-sm">
-                                <CheckCircle size={48} strokeWidth={1.5} />
+                            <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 text-green-500 shadow-sm">
+                                <CheckCircle size={40} strokeWidth={2} />
                             </div>
-                            <h2 className="text-3xl font-serif font-bold text-gray-900 mb-2">Order Confirmed</h2>
-                            <p className="text-gray-500 mb-8 leading-relaxed">
+                            <h2 className="text-2xl font-serif font-bold text-gray-900 mb-2">Order Confirmed!</h2>
+                            <p className="text-gray-500 mb-8 leading-relaxed text-sm">
                                 Thank you for your purchase! <br /> Your beauty treats are on the way to: <br />
                                 <span className="font-bold text-gray-900">{address}</span>
                             </p>
@@ -421,13 +413,13 @@ export default function OrderDetails() {
                             <div className="space-y-3">
                                 <button
                                     onClick={() => navigate('/home')}
-                                    className="w-full bg-gray-900 text-white font-bold py-4 rounded-2xl shadow-lg hover:scale-105 transition-transform"
+                                    className="w-full bg-gray-900 text-white font-bold py-3.5 rounded-xl shadow-lg hover:scale-105 transition-transform"
                                 >
                                     Back to Home
                                 </button>
                                 <button
                                     onClick={() => navigate('/shop')}
-                                    className="w-full bg-gray-50 text-gray-600 font-bold py-4 rounded-2xl hover:bg-gray-100 transition-colors"
+                                    className="w-full bg-gray-50 text-gray-600 font-bold py-3.5 rounded-xl hover:bg-gray-100 transition-colors"
                                 >
                                     Continue Shopping
                                 </button>
@@ -437,18 +429,18 @@ export default function OrderDetails() {
                 )}
             </AnimatePresence >
             {/* 📱 Mobile Sticky Checkout Bar */}
-            <div className="fixed bottom-0 left-0 right-0 p-4 pb-safe bg-white border-t border-gray-100 md:hidden z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+            <div className="fixed bottom-0 left-0 right-0 p-4 pb-safe bg-white border-t border-gray-100 md:hidden z-50 shadow-[0_-4px_10px_rgba(0,0,0,0.03)]">
                 <div className="flex items-center justify-between gap-4">
                     <div>
-                        <p className="text-gray-500 text-xs font-medium uppercase tracking-wider">Total</p>
-                        <p className="font-serif font-bold text-2xl text-gray-900">${finalTotal.toFixed(2)}</p>
+                        <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Total</p>
+                        <p className="font-serif font-bold text-2xl text-gray-900 leading-none">${finalTotal.toFixed(2)}</p>
                     </div>
                     <button
                         onClick={handleCheckout}
                         disabled={isLoading}
-                        className="flex-1 bg-gray-900 text-white py-3.5 rounded-xl font-bold text-lg shadow-lg hover:bg-black active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="flex-1 bg-gray-900 text-white py-3 rounded-xl font-bold text-base shadow-lg hover:bg-black active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                        {isLoading ? <Loader2 className="animate-spin" /> : (
+                        {isLoading ? <Loader2 className="animate-spin" size={20} /> : (
                             <>
                                 <span>Place Order</span> <ArrowRight size={18} />
                             </>
