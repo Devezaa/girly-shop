@@ -3,6 +3,7 @@ import { Sparkles, ShoppingBag, Heart } from "lucide-react";
 import Background from "../components/Background";
 import Card from "../components/Card";
 import HeroSlider from "../components/HeroSlider";
+import CampaignGrid from "../components/CampaignGrid";
 import { Link } from "react-router-dom";
 
 export default function Home() {
@@ -54,6 +55,11 @@ export default function Home() {
               feel loved, confident, and truly beautiful 💖
             </Card>
           </div>
+        </section>
+
+        {/* Campaign Section */}
+        <section className="mt-20 max-w-6xl w-full">
+          <CampaignGrid />
         </section>
 
         {/* Footer Note */}
