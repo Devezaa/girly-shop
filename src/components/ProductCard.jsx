@@ -51,7 +51,7 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
             e.stopPropagation();
             if (onAdd) onAdd();
           }}
-          className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-sm hover:scale-110 transition-transform active:scale-95"
+          className="absolute top-3 right-3 z-10 bg-white shadow-sm p-2 rounded-full hover:scale-110 transition-transform active:scale-95 md:bg-white/90 md:backdrop-blur-sm"
         >
           <ShoppingBag size={18} className="text-gray-800" />
         </button>
