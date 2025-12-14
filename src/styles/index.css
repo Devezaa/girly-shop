@@ -30,8 +30,13 @@
 
 /* 🩰 Global Base */
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -168,7 +173,8 @@ img:hover {
 
 /* 💎 Card Shadow */
 .card-shadow {
-  box-shadow: 0 8px 20px rgba(236, 72, 153, 0.08);
+  box-shadow: 0 4px 6px rgba(236, 72, 153, 0.05);
+  /* Lighter shadow for mobile performance */
 }
 
 /* 🪞 Responsive Typography */
