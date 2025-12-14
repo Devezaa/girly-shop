@@ -230,8 +230,8 @@ export default function ProductDetails() {
                             </div>
                         )}
 
-                        {/* Desktop Add to Cart (Hidden on Mobile) */}
-                        <div className="hidden md:flex flex-col gap-4 pt-6 border-t border-gray-100">
+                        {/* Add to Cart Section (Visible on all devices) */}
+                        <div className="flex flex-col gap-4 pt-6 border-t border-gray-100 pb-24 md:pb-0">
                             <div className="flex items-center gap-4">
                                 <div className={`flex items-center gap-6 bg-gray-50 rounded-2xl px-5 py-4 ${isOutOfStock ? 'opacity-50 pointer-events-none' : ''}`}>
                                     <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="text-gray-400 hover:text-black">
