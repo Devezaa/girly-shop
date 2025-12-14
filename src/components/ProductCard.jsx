@@ -25,6 +25,7 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
             alt={product.name}
             onError={(e) => { e.target.style.display = 'none'; }}
             className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
           />
         </div>
 

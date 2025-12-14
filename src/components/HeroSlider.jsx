@@ -49,7 +49,7 @@ export default function HeroSlider() {
     if (banners.length === 0) return <div className="h-[50vh] bg-gray-100 animate-pulse rounded-b-3xl" />;
 
     return (
-        <div className="relative h-[28rem] md:h-[32rem] w-full overflow-hidden rounded-b-[3rem] shadow-sm group">
+        <div className="relative h-[28rem] md:h-[32rem] w-full overflow-hidden rounded-b-[3rem] shadow-sm group bg-gray-200">
             <AnimatePresence mode='wait'>
                 <motion.div
                     key={currentIndex}
