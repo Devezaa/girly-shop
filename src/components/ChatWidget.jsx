@@ -209,7 +209,7 @@ export default function ChatWidget() {
                             <div className="flex items-center gap-3">
                                 <div className="relative">
                                     <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center border-2 border-white/50">
-                                        <img src="/user-avatar.jpg" alt="Support" className="w-full h-full object-cover rounded-full opacity-90" onError={(e) => e.target.style.display = 'none'} />
+                                        <img src="https://res.cloudinary.com/daqrcfqrt/image/upload/v1765713212/girly-shop/ui/user-avatar_ve2cpa.jpg" alt="Support" className="w-full h-full object-cover rounded-full opacity-90" onError={(e) => e.target.style.display = 'none'} />
                                     </div>
                                     <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-pink-500 rounded-full"></span>
                                 </div>

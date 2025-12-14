@@ -68,7 +68,7 @@ export default function Register() {
                     transition={{ type: "tween", ease: "linear", duration: 0.2 }}
                 >
                     <img
-                        src="/login-premium-products.png"
+                        src="https://res.cloudinary.com/daqrcfqrt/image/upload/v1765713211/girly-shop/ui/login-premium-products_wuyeda.jpg"
                         alt="Background"
                         className="w-full h-full object-cover opacity-80"
                     />

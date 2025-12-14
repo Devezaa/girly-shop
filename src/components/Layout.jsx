@@ -99,7 +99,7 @@ const Layout = () => {
                     {/* Profile Avatar */}
                     <Link to="/settings">
                         <div className="w-10 h-10 bg-gray-200 rounded-full overflow-hidden border-2 border-white shadow-sm cursor-pointer hover:ring-2 hover:ring-[#FFB040] transition-all">
-                            <img src="/user-avatar.jpg" alt="Profile" className="w-full h-full object-cover" />
+                            <img src="https://res.cloudinary.com/daqrcfqrt/image/upload/v1765713212/girly-shop/ui/user-avatar_ve2cpa.jpg" alt="Profile" className="w-full h-full object-cover" />
                         </div>
                     </Link>
                 </div>
