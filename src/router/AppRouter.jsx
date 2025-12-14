@@ -91,6 +91,7 @@ function AnimatedRoutes() {
           {/* 🎨 Main App Layout */}
           <Route element={<Layout />}>
             <Route path="/home" element={<HomeRedesign />} />
+            <Route path="/cart" element={<OrderDetails />} />
             <Route path="/order-details" element={<OrderDetails />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/about" element={<About />} />
