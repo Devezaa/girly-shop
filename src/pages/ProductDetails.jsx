@@ -233,28 +233,28 @@ export default function ProductDetails() {
                         {/* Add to Cart Section (Visible on all devices) */}
                         <div className="flex flex-col gap-6 pt-8 border-t border-gray-100 pb-24 md:pb-0">
                             {/* Desktop & Mobile Unified Action Row */}
-                            <div className="flex items-center gap-3 md:gap-4">
+                            <div className="flex items-center gap-3 md:gap-4 w-full">
                                 {/* Compact Qty Stepper */}
-                                <div className={`flex items-center gap-3 bg-white rounded-full px-2 py-2 border border-gray-200 shadow-sm h-[56px] ${isOutOfStock ? 'opacity-50 pointer-events-none' : ''}`}>
-                                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 flex items-center justify-center bg-gray-50 rounded-full hover:bg-gray-100 text-gray-600 transition-colors">
+                                <div className={`flex items-center gap-3 bg-white rounded-full px-2 py-2 border border-gray-200 shadow-sm h-[56px] flex-shrink-0 ${isOutOfStock ? 'opacity-50 pointer-events-none' : ''}`}>
+                                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 flex items-center justify-center bg-gray-50 rounded-full hover:bg-gray-100 text-gray-600 transition-colors focus:outline-none focus:ring-0 active:bg-gray-200">
                                         <Minus size={18} />
                                     </button>
-                                    <span className="font-bold text-gray-900 text-lg w-8 text-center">{quantity}</span>
-                                    <button onClick={() => setQuantity(Math.min(stock, quantity + 1))} className={`w-10 h-10 flex items-center justify-center bg-gray-50 rounded-full hover:bg-gray-100 text-gray-600 transition-colors ${quantity >= stock ? 'opacity-30 cursor-not-allowed' : ''}`}>
+                                    <span className="font-bold text-gray-900 text-lg w-8 text-center tabular-nums">{quantity}</span>
+                                    <button onClick={() => setQuantity(Math.min(stock, quantity + 1))} className={`w-10 h-10 flex items-center justify-center bg-gray-50 rounded-full hover:bg-gray-100 text-gray-600 transition-colors focus:outline-none focus:ring-0 active:bg-gray-200 ${quantity >= stock ? 'opacity-30 cursor-not-allowed' : ''}`}>
                                         <Plus size={18} />
                                     </button>
                                 </div>
 
-                                <div className="flex-1 flex flex-col gap-2">
+                                <div className="flex-1 min-w-0">
                                     <button
                                         onClick={handleAddToCart}
                                         disabled={isOutOfStock}
-                                        className={`w-full h-[56px] rounded-full font-bold text-base md:text-lg flex items-center justify-center gap-2 transition-all active:scale-[0.98] hover:shadow-xl
+                                        className={`w-full h-[56px] rounded-full font-bold text-base md:text-lg flex items-center justify-center gap-2 transition-transform active:scale-[0.98] shadow-lg
                                             ${isOutOfStock
-                                                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                                                ? 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
                                                 : isLowStock
-                                                    ? 'bg-orange-500 text-white shadow-lg shadow-orange-200'
-                                                    : 'bg-gray-900 text-white shadow-lg shadow-gray-200'}`}
+                                                    ? 'bg-orange-500 text-white shadow-orange-200 hover:shadow-xl'
+                                                    : 'bg-gray-900 text-white shadow-gray-200 hover:shadow-xl'}`}
                                     >
                                         {isOutOfStock ? "Out of Stock" : (
                                             <>
