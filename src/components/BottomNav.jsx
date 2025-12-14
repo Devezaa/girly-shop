@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, Search, Heart, ShoppingBag, User } from 'lucide-react';
+import { Home, Search, Heart, ShoppingBag, User, Sparkles } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 
@@ -11,6 +11,7 @@ export default function BottomNav() {
     const navItems = [
         { to: "/home", icon: <Home size={24} />, label: "Home" },
         { to: "/shop", icon: <Search size={24} />, label: "Shop" },
+        { to: "/promotions", icon: <Sparkles size={24} />, label: "Promos" },
         {
             to: "/cart",
             icon: <ShoppingBag size={24} />,

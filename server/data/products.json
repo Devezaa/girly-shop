@@ -523,5 +523,538 @@
     "reviews": 0,
     "isNew": true,
     "stock": 50
+  },
+  {
+    "id": 122,
+    "name": "Peptide 3R Derma Eye Serum",
+    "price": 25,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765705084/girly-shop/products/peptide-3r-derma-eye-serum.png",
+    "category": "Treat",
+    "rating": 5,
+    "reviews": 0,
+    "isNew": true,
+    "stock": 50,
+    "brand": "Eyenlip Beauty",
+    "volume": "25ml",
+    "description": "A premium wrinkle-care eye serum formulated with peptides to rejuvenate and firm the delicate skin around your eyes.",
+    "howToUse": [
+      "Apply a small amount around the eye area.",
+      "Gently tap with fingertips until absorbed.",
+      "Use morning and night for best results."
+    ],
+    "ingredients": "Water, Glycerin, Butylene Glycol, Peptide Complex, Adenosine, Niacinamide...",
+    "highlights": [
+      "Anti-Wrinkle",
+      "Hydrating",
+      "Firming",
+      "Peptide Complex"
+    ]
+  },
+  {
+    "id": 123,
+    "name": "Luminous Damage Repair Treatment",
+    "price": 18,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765705413/girly-shop/products/luminous-damage-repair-treatment.png",
+    "category": "Treat",
+    "rating": 5,
+    "reviews": 0,
+    "isNew": true,
+    "stock": 50,
+    "brand": "Eyenlip",
+    "volume": "Standard",
+    "description": "Intensive hair treatment that restores shine and smoothness to damaged hair.",
+    "howToUse": [
+      "Apply as directed on packaging.",
+      "Suitable for daily use."
+    ],
+    "ingredients": "Silky Protein, Argan Oil, Keratin...",
+    "highlights": [
+      "Damage Repair",
+      "Smooth & Shiny",
+      "Protein Rich"
+    ]
+  },
+  {
+    "id": 124,
+    "name": "Ceramide Repair Foot Cream",
+    "price": 12,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765705414/girly-shop/products/ceramide-repair-foot-cream.png",
+    "category": "Moisturize",
+    "rating": 5,
+    "reviews": 0,
+    "isNew": true,
+    "stock": 50,
+    "brand": "Eyenlip",
+    "volume": "Standard",
+    "description": "Rich foot cream with ceramides to heal and soften dry, cracked heels.",
+    "howToUse": [
+      "Apply as directed on packaging.",
+      "Suitable for daily use."
+    ],
+    "ingredients": "Ceramide NP, Shea Butter, Urea...",
+    "highlights": [
+      "Deep Moisture",
+      "Heal Cracks",
+      "Ceramide Infused"
+    ]
+  },
+  {
+    "id": 125,
+    "name": "Rice Glow pH Balance Toner",
+    "price": 22,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765705415/girly-shop/products/rice-glow-ph-toner.png",
+    "category": "Treat",
+    "rating": 5,
+    "reviews": 0,
+    "isNew": true,
+    "stock": 50,
+    "brand": "FABYOU",
+    "volume": "Standard",
+    "description": "Balancing toner enriched with rice extract to brighten and refine skin texture.",
+    "howToUse": [
+      "Apply as directed on packaging.",
+      "Suitable for daily use."
+    ],
+    "ingredients": "Rice Extract, Niacinamide, Centella Asiatica...",
+    "highlights": [
+      "Brightening",
+      "pH Balance",
+      "Pore Care"
+    ]
+  },
+  {
+    "id": 126,
+    "name": "Stem Cell Peptide Retinol Night Cream",
+    "price": 35,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765705416/girly-shop/products/stem-cell-peptide-night-cream.png",
+    "category": "Moisturize",
+    "rating": 5,
+    "reviews": 0,
+    "isNew": true,
+    "stock": 50,
+    "brand": "FABYOU",
+    "volume": "Standard",
+    "description": "Advanced night cream combining stem cells, peptides, and retinol for total anti-aging care.",
+    "howToUse": [
+      "Apply as directed on packaging.",
+      "Suitable for daily use."
+    ],
+    "ingredients": "Stem Cell Culture, Retinol, Peptide Complex...",
+    "highlights": [
+      "Anti-Aging",
+      "Retinol & Peptides",
+      "Night Repair"
+    ]
+  },
+  {
+    "id": 127,
+    "name": "Rice Pore Control Cleansing Oil",
+    "price": 24,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765705417/girly-shop/products/rice-pore-control-cleansing-oil.png",
+    "category": "Cleanse",
+    "rating": 5,
+    "reviews": 0,
+    "isNew": true,
+    "stock": 50,
+    "brand": "FABYOU",
+    "volume": "Standard",
+    "description": "Lightweight cleansing oil that melts away makeup and impurities while managing pores.",
+    "howToUse": [
+      "Apply as directed on packaging.",
+      "Suitable for daily use."
+    ],
+    "ingredients": "Rice Bran Oil, Olive Oil, Jojoba Oil...",
+    "highlights": [
+      "Deep Cleansing",
+      "Pore Control",
+      "Non-Greasy"
+    ]
+  },
+  {
+    "id": 128,
+    "name": "Naturie Hatomugi Skin Conditioner",
+    "price": 13.4,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765705750/girly-shop/products/naturie-hatomugi-skin-conditioner.png",
+    "category": "Treat",
+    "rating": 4.8,
+    "reviews": 22,
+    "isNew": true,
+    "stock": 50,
+    "brand": "Naturie",
+    "volume": "500ml",
+    "description": "This mild Naturie Hatomugi Skin Conditioner contains coix seed extract derived from natural plants to moisture, brighten and smoothen your skin. It prepares your skin to better absorb skincare products layered on after.",
+    "howToUse": [
+      "Apply a generous amount onto your skin.",
+      "Gently blend it in with your hands until fully absorbed.",
+      "Can also be used as a face mask or body care."
+    ],
+    "ingredients": "Water, DPG, BG, Glycerin, Glycyrrhizic acid 2K, Hatomugi extract (Coix Seed), (Styrene/Acrylate) copolymer, Ethanol, Citric acid...",
+    "highlights": [
+      "Deep Penetration",
+      "Highly Moisturising",
+      "Fragrance-free",
+      "Start for Daily Use",
+      "Hypoallergenic"
+    ]
+  },
+  {
+    "id": 129,
+    "name": "Anessa Perfect UV Sunscreen Skincare Milk",
+    "price": 13.49,
+    "oldPrice": 14.98,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765706066/girly-shop/products/anessa-perfect-uv-sunscreen.png",
+    "category": "Protect",
+    "rating": 4.9,
+    "reviews": 15,
+    "isNew": true,
+    "stock": 50,
+    "brand": "Anessa",
+    "volume": "60ml",
+    "description": "The gold standard of sun protection. Anessa Perfect UV Sunscreen Skincare Milk offers the strongest UV protection with a smooth, non-sticky milky texture. Features Aqua Booster EX Technology which gets stronger coming into contact with sweat or water.",
+    "howToUse": [
+      "Shake well before use.",
+      "Apply generously to face and neck as the last step of skincare.",
+      "Reapply fast after sweating or swimming."
+    ],
+    "ingredients": "Water, Dimethicone, Zinc Oxide, Ethylhexyl Methoxycinnamate, Alcohol, Cyclopentasiloxane...",
+    "highlights": [
+      "SPF50+ PA++++",
+      "Water Resistant (80 mins)",
+      "Non-Sticky Milk Texture",
+      "Skincare Ingredients (50%)",
+      "Aqua Booster Technology"
+    ]
+  },
+  {
+    "id": 130,
+    "name": "Skin Aqua Super Moisture Gel Pump Type SPF50+/PA++++",
+    "price": 10.92,
+    "oldPrice": 12.14,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765706171/girly-shop/products/skin-aqua-super-moisture-gel-pump.jpg",
+    "category": "Protect",
+    "rating": 4.8,
+    "reviews": 17,
+    "isNew": true,
+    "stock": 50,
+    "brand": "Skin Aqua (Rohto)",
+    "volume": "140g",
+    "description": "A fresh, water-like sensation sunscreen gel. Skin Aqua Super Moisture Gel contains 4 moisturizing ingredients including Super Hyaluronic Acid and Collagen to keep skin hydrated while providing strong UV protection.",
+    "howToUse": [
+      "Apply evenly to the skin.",
+      "Recommended to reapply frequently to maintain protection.",
+      "Can be removed with soap."
+    ],
+    "ingredients": "Water, Ethanol, Ethylhexyl Methoxycinnamate, BG, Diphenylsiloxy Phenyl Trimethicone, Sodium Hyaluronate...",
+    "highlights": [
+      "SPF50+ PA++++",
+      "Water-like Texture",
+      "Sweat & Water Resistant",
+      "Large Pump Bottle (140g)",
+      "Fragrance-free"
+    ]
+  },
+  {
+    "id": 131,
+    "name": "Naturie Hatomugi Skin Conditioning Gel",
+    "price": 11.81,
+    "oldPrice": 13.13,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765706337/girly-shop/products/naturie-hatomugi-skin-conditioning-gel.png",
+    "category": "Moisturize",
+    "rating": 4.7,
+    "reviews": 10,
+    "isNew": true,
+    "stock": 50,
+    "brand": "Naturie",
+    "volume": "180g",
+    "description": "A lightweight, non-sticky moisturizing gel containing Job's Tears (Hatomugi) extract. Deeply hydrates skin and locks in moisture without feeling heavy. Can be used on face and body.",
+    "howToUse": [
+      "Use as a moisturizer after lotion.",
+      "Can be used as a moisturizing pack by applying a thick layer.",
+      "Suitable for face and body."
+    ],
+    "ingredients": "Water, Glycerin, DPG, Dimethicone, Ascorbyl Tetraisopalmitate, Sodium Tocopheryl Phosphate, Coix Lacryma-Jobi Ma-yuen Seed Extract...",
+    "highlights": [
+      "Non-Sticky Formula",
+      "Deep Hydration",
+      "Alcohol-Free",
+      "Colorant-Free",
+      "Fragrance-Free"
+    ]
+  },
+  {
+    "id": 132,
+    "name": "Black Sheep Booster Whitening Body Cream",
+    "price": 15,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765706630/girly-shop/products/black-sheep-booster-whitening-body-cream.png",
+    "category": "Treat",
+    "rating": 5,
+    "reviews": 0,
+    "isNew": true,
+    "stock": 50,
+    "brand": "Black Sheep",
+    "volume": "Standard",
+    "description": "A premium whitening body booster cream. Helps to brighten skin tone and reduce dark spots effectively.",
+    "howToUse": [
+      "Apply daily to body after shower.",
+      "Focus on dark areas or spots."
+    ],
+    "ingredients": "Niacinamide, Alpha Arbutin, Collagen...",
+    "highlights": [
+      "Whitening Booster",
+      "Body Care",
+      "Brightening"
+    ]
+  },
+  {
+    "id": 133,
+    "name": "Justeen Miracle Massaya Whitening Set",
+    "price": 28,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765706824/girly-shop/products/justeen-miracle-massaya-set.png",
+    "category": "Treat",
+    "rating": 5,
+    "reviews": 0,
+    "isNew": true,
+    "stock": 30,
+    "brand": "Justeen Miracle",
+    "volume": "Set",
+    "description": "A complete 3-in-1 body whitening set containing: Booster Whitening Cream (100g), Whitening Body Lotion (500g), and Vitamin Body Serum (300ml).",
+    "howToUse": [
+      "Mix the serum and lotion together for best results.",
+      "Apply the booster cream on dark spots.",
+      "Use daily after shower."
+    ],
+    "ingredients": "Vitamin C, Alpha Arbutin, Glutathione, Collagen, Hyaluronic Acid...",
+    "highlights": [
+      "Complete Body Care Set",
+      "Whitening & Brightening",
+      "Deep Moisture",
+      "Vitamin Enriched"
+    ]
+  },
+  {
+    "id": 134,
+    "name": "Hada Labo Koi-Gokujyun UV White Gel SPF50+ PA++++",
+    "price": 14.5,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765707052/girly-shop/products/hada-labo-uv-white-gel.png",
+    "category": "Protect",
+    "rating": 4.8,
+    "reviews": 24,
+    "isNew": true,
+    "stock": 50,
+    "brand": "Hada Labo",
+    "volume": "90g",
+    "description": "A multi-functional UV gel that acts as a lotion, beauty serum, emulsion, cream, and mask. Provides strong SPF50+ protection while hydrating the skin with Hyaluronic Acid and Vitamin C.",
+    "howToUse": [
+      "Apply as directed.",
+      "Suitable for daily use."
+    ],
+    "ingredients": "",
+    "highlights": [
+      "All-in-One Gel",
+      "SPF50+ PA++++",
+      "Lightweight",
+      "Vitamin C Infused"
+    ]
+  },
+  {
+    "id": 135,
+    "name": "Hada Labo Gokujyun Premium Hydrating Lotion",
+    "price": 13.8,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765707054/girly-shop/products/hada-labo-premium-lotion.png",
+    "category": "Treat",
+    "rating": 4.9,
+    "reviews": 45,
+    "isNew": true,
+    "stock": 50,
+    "brand": "Hada Labo",
+    "volume": "170ml",
+    "description": "A rich, essence-like toner containing 5 types of Hyaluronic Acid to deliver intense moisture to the skin. Perfect for dry skin, leaving it supple and soft.",
+    "howToUse": [
+      "Apply as directed.",
+      "Suitable for daily use."
+    ],
+    "ingredients": "",
+    "highlights": [
+      "5 Types of Hyaluronic Acid",
+      "Intense Hydration",
+      "Alcohol-Free",
+      "Fragrance-Free"
+    ]
+  },
+  {
+    "id": 136,
+    "name": "Biore UV Aqua Rich Watery Essence SPF50+ PA++++",
+    "price": 10.5,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765707055/girly-shop/products/biore-uv-aqua-rich-essence.png",
+    "category": "Protect",
+    "rating": 4.8,
+    "reviews": 120,
+    "isNew": true,
+    "stock": 50,
+    "brand": "Biore",
+    "volume": "50g",
+    "description": "Water-based sunscreen that applies effortlessly like a serum. Features Micro Defense formula to cover uneven skin surfaces. Water resistant yet washes off with soap.",
+    "howToUse": [
+      "Apply as directed.",
+      "Suitable for daily use."
+    ],
+    "ingredients": "",
+    "highlights": [
+      "Micro Defense Formula",
+      "Watery Texture",
+      "No White Cast",
+      "Hyaluronic Acid"
+    ]
+  },
+  {
+    "id": 137,
+    "name": "Care:nel Sleeping Lip Care Lime Night Mask",
+    "price": 8,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765707056/girly-shop/products/carenel-lime-lip-mask.png",
+    "category": "Treat",
+    "rating": 4.7,
+    "reviews": 15,
+    "isNew": true,
+    "stock": 50,
+    "brand": "Care:nel",
+    "volume": "5g",
+    "description": "A sleeping mask for dry, chapped lips. Enriched with Lime and Vitamin C to gently exfoliate and deeply moisturize lips overnight.",
+    "howToUse": [
+      "Apply as directed.",
+      "Suitable for daily use."
+    ],
+    "ingredients": "",
+    "highlights": [
+      "Overnight Lip Repair",
+      "Vitamin C Rich",
+      "Fresh Lime Scent",
+      "Melt-in Texture"
+    ]
+  },
+  {
+    "id": 138,
+    "name": "KLEN Herbal Hair Shampoo & Conditioner",
+    "price": 8.5,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765707510/girly-shop/products/klen-herbal-shampoo-conditioner.png",
+    "category": "Treat",
+    "rating": 4.8,
+    "reviews": 0,
+    "isNew": true,
+    "stock": 50,
+    "brand": "KLEN",
+    "volume": "Standard",
+    "description": "Advanced Korean herbal formula hair care range. Available for different hair needs: Anti-Dandruff (Men/Women), Hair Fall Control, Damaged Hair Repair, and Normal Hair maintenance.",
+    "howToUse": [
+      "Apply to wet hair and massage into scalp.",
+      "Rinse thoroughly.",
+      "Follow with KLEN Conditioner for best results."
+    ],
+    "ingredients": "Korean Ginseng, Herbal Extracts, Keratin, Zinc Pyrithione...",
+    "highlights": [
+      "Korean Herbal Formula",
+      "Anti-Dandruff Expert",
+      "Hair Fall Control",
+      "Scalp Care"
+    ]
+  },
+  {
+    "id": 139,
+    "name": "Kate Somerville Goat Milk Moisturizing Cleanser",
+    "price": 44,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765707930/girly-shop/products/kate-somerville-goat-milk-cleanser.png",
+    "category": "Cleanse",
+    "rating": 4.8,
+    "reviews": 320,
+    "isNew": true,
+    "stock": 50,
+    "brand": "Kate Somerville",
+    "volume": "120ml",
+    "description": "A gentle, daily foaming cleanser that deeply cleanses without stripping skin. Formulated with Goat Milk to soothe and moisturize dry, sensitive skin.",
+    "howToUse": [
+      "Apply as directed.",
+      "Suitable for daily use."
+    ],
+    "ingredients": "",
+    "highlights": [
+      "Sulfate-Free",
+      "Goat Milk Soothing",
+      "Manuka Honey",
+      "For Sensitive Skin"
+    ]
+  },
+  {
+    "id": 140,
+    "name": "KLEN Anti-Hairfall Shampoo",
+    "price": 8.5,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765707931/girly-shop/products/klen-anti-hairfall-shampoo.png",
+    "category": "Treat",
+    "rating": 4.7,
+    "reviews": 12,
+    "isNew": true,
+    "stock": 50,
+    "brand": "KLEN",
+    "volume": "Standard",
+    "description": "Specialized formula to reduce hair fall and strengthen hair roots. Enriched with herbal extracts to promote healthy hair growth.",
+    "howToUse": [
+      "Apply as directed.",
+      "Suitable for daily use."
+    ],
+    "ingredients": "",
+    "highlights": [
+      "Reduces Hair Fall",
+      "Strengthens Roots",
+      "Herbal Formula",
+      "Daily Use"
+    ]
+  },
+  {
+    "id": 141,
+    "name": "KLEN Sport Cool Men Anti-Dandruff Shampoo",
+    "price": 8.5,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765707932/girly-shop/products/klen-sport-cool-men-shampoo.png",
+    "category": "Treat",
+    "rating": 4.9,
+    "reviews": 25,
+    "isNew": true,
+    "stock": 50,
+    "brand": "KLEN",
+    "volume": "Standard",
+    "description": "Refreshing cool menthol shampoo designed for men. effectively fights dandruff while providing an icy cool sensation for the scalp.",
+    "howToUse": [
+      "Apply as directed.",
+      "Suitable for daily use."
+    ],
+    "ingredients": "",
+    "highlights": [
+      "Anti-Dandruff",
+      "Icy Cool Menthol",
+      "Scalp Care",
+      "For Men"
+    ]
+  },
+  {
+    "id": 142,
+    "name": "Fresh Rose Face Mask",
+    "price": 64,
+    "image": "https://res.cloudinary.com/daqrcfqrt/image/upload/v1765707932/girly-shop/products/fresh-rose-face-mask.png",
+    "category": "Treat",
+    "rating": 4.9,
+    "reviews": 580,
+    "isNew": true,
+    "stock": 50,
+    "brand": "Fresh",
+    "volume": "100ml",
+    "description": "An instant hydrating mask with real rose petals suspended in a silky gel that gently soothes and tones by plumping the skin with hydration.",
+    "howToUse": [
+      "Apply as directed.",
+      "Suitable for daily use."
+    ],
+    "ingredients": "",
+    "highlights": [
+      "Real Rose Petals",
+      "Hydrates & Tones",
+      "Cucumber & Aloe",
+      "All Skin Types"
+    ]
   }
 ]

@@ -6,6 +6,7 @@ const { Server } = require('socket.io');
 const db = require('./db'); // Import DB connection
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -461,6 +462,7 @@ app.post('/api/banners', async (req, res) => {
     }
 });
 
+
 // 🎟️ GET Vouchers
 app.get('/api/vouchers', async (req, res) => {
     try {
@@ -484,6 +486,23 @@ app.get('/api/vouchers', async (req, res) => {
         res.status(500).json({ message: "Error fetching vouchers" });
     }
 });
+
+// 🌟 GET Promotions
+app.get('/api/promotions', (req, res) => {
+    try {
+        const promoPath = path.join(__dirname, 'data/promotions.json');
+        if (fs.existsSync(promoPath)) {
+            const data = fs.readFileSync(promoPath, 'utf8');
+            res.json(JSON.parse(data));
+        } else {
+            res.json([]);
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Error fetching promotions" });
+    }
+});
+
 
 // 🎟️ POST Update Vouchers
 app.post('/api/vouchers', async (req, res) => {

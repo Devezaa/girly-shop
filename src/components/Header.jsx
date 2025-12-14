@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { ShoppingBag, Heart, Sparkles, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -37,12 +38,15 @@ export default function Header({ cartCount = 0 }) {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <a href="#home" className="hover:text-pink-600 transition">
+          <Link to="/home" className="hover:text-pink-600 transition">
             Home
-          </a>
-          <a href="#shop" className="hover:text-pink-600 transition">
+          </Link>
+          <Link to="/shop" className="hover:text-pink-600 transition">
             Shop
-          </a>
+          </Link>
+          <Link to="/promotions" className="hover:text-pink-600 transition">
+            Campaigns
+          </Link>
           <a href="#about" className="hover:text-pink-600 transition">
             About
           </a>
