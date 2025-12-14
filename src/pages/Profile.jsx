@@ -135,7 +135,7 @@ export default function Profile() {
                                 <span className="text-pink-400 font-bold">{username?.charAt(0).toUpperCase()}</span>
                             )}
                         </div>
-                        <button className="absolute bottom-0 right-0 bg-pink-500 text-white p-2.5 rounded-full shadow-lg hover:bg-pink-600 transition-transform active:scale-95">
+                        <button className="absolute bottom-0 right-0 bg-gray-900 text-white p-2.5 rounded-full shadow-lg hover:bg-black transition-transform active:scale-95">
                             <Camera size={18} />
                         </button>
                     </div>
@@ -146,7 +146,7 @@ export default function Profile() {
                 <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 space-y-6">
                     <div className="space-y-2">
                         <label className="text-sm font-bold text-gray-700 ml-1">Username</label>
-                        <div className="flex items-center gap-3 bg-gray-50 px-4 py-3.5 rounded-2xl border-2 border-transparent focus-within:border-pink-500/20 focus-within:bg-pink-50/30 transition-all">
+                        <div className="flex items-center gap-3 bg-gray-50 px-4 py-3.5 rounded-2xl border-2 border-transparent focus-within:border-gray-900/10 focus-within:bg-white transition-all">
                             <User size={20} className="text-gray-400" />
                             <input
                                 type="text"
@@ -160,7 +160,7 @@ export default function Profile() {
 
                     <div className="space-y-2">
                         <label className="text-sm font-bold text-gray-700 ml-1">Email Address</label>
-                        <div className="flex items-center gap-3 bg-gray-50 px-4 py-3.5 rounded-2xl border-2 border-transparent focus-within:border-pink-500/20 focus-within:bg-pink-50/30 transition-all">
+                        <div className="flex items-center gap-3 bg-gray-50 px-4 py-3.5 rounded-2xl border-2 border-transparent focus-within:border-gray-900/10 focus-within:bg-white transition-all">
                             <Mail size={20} className="text-gray-400" />
                             <input
                                 type="email"
@@ -178,7 +178,7 @@ export default function Profile() {
                     whileTap={{ scale: 0.98 }}
                     onClick={handleSave}
                     disabled={isSaving}
-                    className={`w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold py-4 rounded-2xl shadow-lg shadow-pink-500/25 flex items-center justify-center gap-2 hover:opacity-90 transition-opacity ${isSaving ? 'opacity-70 cursor-not-allowed' : ''}`}
+                    className={`w-full bg-gray-900 text-white font-bold h-[56px] rounded-full shadow-lg shadow-gray-200 flex items-center justify-center gap-2 hover:bg-black transition-all ${isSaving ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
                     <Save size={20} />
                     {isSaving ? "Saving..." : "Save Text Changes"}

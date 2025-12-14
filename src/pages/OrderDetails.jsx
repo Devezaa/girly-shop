@@ -283,14 +283,14 @@ export default function OrderDetails() {
                                 <div className="border-t border-dashed border-gray-100 pt-4 mb-6">
                                     <div className="flex justify-between items-end">
                                         <span className="text-gray-500 font-bold text-sm uppercase tracking-wide">Total</span>
-                                        <span className="text-3xl font-serif font-bold text-gray-900">${finalTotal.toFixed(2)}</span>
+                                        <span className="text-3xl font-bold text-gray-900">${finalTotal.toFixed(2)}</span>
                                     </div>
                                 </div>
 
                                 <button
                                     onClick={handleCheckout}
                                     disabled={isLoading}
-                                    className="w-full bg-gray-900 text-white py-4 rounded-xl font-bold text-base hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed shadow-xl shadow-gray-200"
+                                    className="w-full bg-gray-900 text-white h-[56px] rounded-full font-bold text-base hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed shadow-xl shadow-gray-200"
                                 >
                                     {isLoading ? <Loader2 className="animate-spin" size={20} /> : (
                                         <>
@@ -433,12 +433,12 @@ export default function OrderDetails() {
                 <div className="flex items-center justify-between gap-4">
                     <div>
                         <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Total</p>
-                        <p className="font-serif font-bold text-2xl text-gray-900 leading-none">${finalTotal.toFixed(2)}</p>
+                        <p className="font-bold text-2xl text-gray-900 leading-none">${finalTotal.toFixed(2)}</p>
                     </div>
                     <button
                         onClick={handleCheckout}
                         disabled={isLoading}
-                        className="flex-1 bg-gray-900 text-white py-4 rounded-xl font-bold text-base shadow-xl shadow-gray-200 hover:bg-black active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="flex-1 bg-gray-900 text-white h-[56px] rounded-full font-bold text-base shadow-xl shadow-gray-200 hover:bg-black active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         {isLoading ? <Loader2 className="animate-spin" size={20} /> : (
                             <>
