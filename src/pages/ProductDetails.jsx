@@ -106,14 +106,14 @@ export default function ProductDetails() {
                 <span className="text-gray-900 font-medium truncate max-w-[200px]">{product.name}</span>
             </div>
 
-            <main className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-8 grid grid-cols-[38%_58%] md:grid-cols-1 lg:grid-cols-12 gap-3 md:gap-0 lg:gap-16 items-start">
+            <main className="max-w-7xl mx-auto px-0 md:px-6 py-0 md:py-12 grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-16">
 
-                {/* 🖼️ Gallery Section (Left) */}
-                <div className="lg:col-span-7 bg-transparent md:bg-transparent px-0">
-                    <div className="sticky top-24 space-y-2 md:space-y-6">
+                {/* 🖼️ Gallery Section (Left - 7 cols) */}
+                <div className="lg:col-span-7 bg-gray-50 md:bg-transparent pt-8 pb-12 md:py-0 px-0 md:px-0">
+                    <div className="sticky top-24 space-y-6">
                         <motion.div
                             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                            className="aspect-[4/5] md:aspect-square lg:aspect-[4/3] bg-gray-50 md:bg-gray-50 rounded-2xl md:rounded-[2.5rem] p-0 md:p-12 flex items-center justify-center relative overflow-hidden shadow-sm md:shadow-none md:border border-gray-100"
+                            className="aspect-[4/5] md:aspect-square lg:aspect-[4/3] bg-white md:bg-gray-50 rounded-[0] md:rounded-[2.5rem] p-8 md:p-12 flex items-center justify-center relative overflow-hidden shadow-none md:border border-gray-100"
                         >
                             <motion.img
                                 key={activeImage}
@@ -122,10 +122,10 @@ export default function ProductDetails() {
                                 transition={{ duration: 0.4 }}
                                 src={getOptimizedImageUrl(activeImage, 1200)}
                                 alt={product.name}
-                                className="w-full h-full object-cover md:object-contain mix-blend-multiply md:hover:scale-105 transition-transform duration-700"
+                                className="w-full h-full object-contain mix-blend-multiply hover:scale-105 transition-transform duration-700 cursor-zoom-in"
                             />
                             {discount > 0 && (
-                                <div className="absolute top-2 left-2 md:top-6 md:left-6 bg-red-500 md:bg-gray-900 text-white font-bold text-[10px] md:text-xs px-2 py-1 md:px-3 md:py-1.5 rounded-full shadow-lg">
+                                <div className="absolute top-6 left-6 bg-gray-900 text-white font-bold text-xs px-3 py-1.5 rounded-full shadow-lg">
                                     -{discount}%
                                 </div>
                             )}
@@ -163,33 +163,33 @@ export default function ProductDetails() {
                     </div>
                 </div>
 
-                {/* 📝 Info Section (Right) */}
-                <div className="lg:col-span-5 px-0 md:px-0 pt-0 md:pt-0 relative">
-                    <div className="lg:sticky lg:top-28 space-y-4 md:space-y-10">
+                {/* 📝 Info Section (Right - 5 cols) - Sticky on Desktop */}
+                <div className="lg:col-span-5 px-6 md:px-0 pt-6 md:pt-0 relative">
+                    <div className="lg:sticky lg:top-28 space-y-8 md:space-y-10">
 
                         {/* Title Header */}
-                        <div className="space-y-2 md:space-y-4">
-                            <div className="flex flex-wrap items-center justify-between gap-2">
+                        <div className="space-y-4">
+                            <div className="flex items-center justify-between">
                                 {product.brand ? (
-                                    <span className="font-bold text-gray-400 text-[10px] md:text-xs uppercase tracking-[0.2em]">
+                                    <span className="font-bold text-gray-400 text-xs uppercase tracking-[0.2em]">
                                         {product.brand}
                                     </span>
                                 ) : <span className="w-2" />}
-                                <div className="flex items-center gap-1 text-gray-900 bg-gray-50 px-1.5 py-0.5 rounded-md">
-                                    <Star size={10} className="fill-gray-900" />
-                                    <span className="font-bold text-[10px] md:text-xs">{product.rating || 5.0}</span>
-                                    <span className="text-gray-400 text-[10px] uppercase tracking-wide decoration-0">({product.reviews || 12})</span>
+                                <div className="flex items-center gap-1.5 text-gray-900 bg-gray-50 px-2 py-1 rounded-md">
+                                    <Star size={14} className="fill-gray-900" />
+                                    <span className="font-bold text-xs">{product.rating || 5.0}</span>
+                                    <span className="text-gray-400 text-[10px] uppercase tracking-wide decoration-0">({product.reviews || 12} reviews)</span>
                                 </div>
                             </div>
 
-                            <h1 className="text-lg md:text-5xl lg:text-5xl font-serif font-medium text-gray-900 leading-tight md:leading-[1.1] tracking-tight">
+                            <h1 className="text-3xl md:text-5xl lg:text-5xl font-serif font-medium text-gray-900 leading-[1.1] tracking-tight">
                                 {product.name}
                             </h1>
 
-                            <div className="flex items-baseline gap-2 md:gap-4 border-b border-gray-100 pb-2 md:pb-6">
-                                <span className="text-xl md:text-4xl font-light text-gray-900 tracking-tight">${product.price.toFixed(2)}</span>
+                            <div className="flex items-baseline gap-4 border-b border-gray-100 pb-6">
+                                <span className="text-4xl font-light text-gray-900 tracking-tight">${product.price.toFixed(2)}</span>
                                 {product.oldPrice && (
-                                    <span className="text-sm md:text-xl text-gray-300 line-through decoration-1">${product.oldPrice.toFixed(2)}</span>
+                                    <span className="text-xl text-gray-300 line-through decoration-1">${product.oldPrice.toFixed(2)}</span>
                                 )}
                             </div>
                         </div>
@@ -275,80 +275,59 @@ export default function ProductDetails() {
                             </div>
                         </div>
 
-                        {/* Accordion Tabs */}
-                        <div className="divide-y divide-gray-100 border-t border-b border-gray-100">
-                            {['usage', 'ingredients', 'reviews'].map((tab) => (
-                                <div key={tab}>
-                                    <button
-                                        onClick={() => setActiveTab(activeTab === tab ? '' : tab)}
-                                        className="w-full py-4 flex items-center justify-between group"
-                                    >
-                                        <span className="font-bold text-sm uppercase tracking-widest text-gray-900">{tab}es</span>
-                                        <Plus size={16} className={`text-gray-400 transition-transform duration-300 ${activeTab === tab ? 'rotate-45 text-gray-900' : 'group-hover:text-gray-600'}`} />
-                                    </button>
+                        {/* Expanded Sections (Scroll-to-read) */}
+                        <div className="space-y-12 pt-8 border-t border-gray-100">
 
-                                    <AnimatePresence>
-                                        {activeTab === tab && (
-                                            <motion.div
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: 'auto', opacity: 1 }}
-                                                exit={{ height: 0, opacity: 0 }}
-                                                className="overflow-hidden"
-                                            >
-                                                <div className="pb-6 text-sm text-gray-500 leading-relaxed">
-                                                    {tab === 'usage' && (
-                                                        product.howToUse ? <ul className="list-disc pl-5 space-y-1">{product.howToUse.map((s, i) => <li key={i}>{s}</li>)}</ul> : "Apply as needed."
-                                                    )}
-                                                    {tab === 'ingredients' && (
-                                                        <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                                                            <p className="font-mono text-xs leading-6">{product.ingredients || "Water, Glycerin, Niacinamide, Fragrance, ..."}</p>
-                                                        </div>
-                                                    )}
-                                                    {tab === 'reviews' && (
-                                                        <div className="space-y-4">
-                                                            <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                                                                <div className="flex justify-between items-start mb-2">
-                                                                    <div className="flex items-center gap-2">
-                                                                        <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
-                                                                            <User size={16} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <h4 className="font-bold text-gray-900 text-xs">Sarah J.</h4>
-                                                                            <div className="flex text-[#FFB040]">
-                                                                                {[...Array(5)].map((_, i) => <Star key={i} size={10} className="fill-current" />)}
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <span className="text-[10px] text-gray-400">2 days ago</span>
-                                                                </div>
-                                                                <p className="text-gray-600 italic text-xs">"Absolutely love this! My skin feels so soft and hydrated. 😍"</p>
-                                                            </div>
-                                                            <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                                                                <div className="flex justify-between items-start mb-2">
-                                                                    <div className="flex items-center gap-2">
-                                                                        <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
-                                                                            <User size={16} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <h4 className="font-bold text-gray-900 text-xs">Emily R.</h4>
-                                                                            <div className="flex text-[#FFB040]">
-                                                                                {[...Array(5)].map((_, i) => <Star key={i} size={10} className="fill-current" />)}
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <span className="text-[10px] text-gray-400">1 week ago</span>
-                                                                </div>
-                                                                <p className="text-gray-600 italic text-xs">"Best purchase I've made this year. Highly recommend!"</p>
-                                                            </div>
-                                                            <button className="w-full text-center text-xs font-bold text-gray-900 hover:underline pt-2">View All Reviews</button>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
+                            {/* Usage */}
+                            <div className="space-y-4">
+                                <h3 className="font-bold text-sm uppercase tracking-widest text-gray-900 border-l-4 border-gray-900 pl-3">How To Use</h3>
+                                <div className="text-sm text-gray-500 leading-relaxed pl-4">
+                                    {product.howToUse ? <ul className="list-disc pl-5 space-y-2">{product.howToUse.map((s, i) => <li key={i}>{s}</li>)}</ul> : <p>Apply daily for best results.</p>}
                                 </div>
-                            ))}
+                            </div>
+
+                            {/* Ingredients */}
+                            <div className="space-y-4">
+                                <h3 className="font-bold text-sm uppercase tracking-widest text-gray-900 border-l-4 border-gray-900 pl-3">Ingredients</h3>
+                                <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                                    <p className="font-mono text-xs leading-7 text-gray-600">
+                                        {product.ingredients || "Water, Glycerin, Niacinamide, Fragrance, Vitamin C, ..."}
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Reviews */}
+                            <div className="space-y-6">
+                                <div className="flex items-center justify-between">
+                                    <h3 className="font-bold text-sm uppercase tracking-widest text-gray-900 border-l-4 border-gray-900 pl-3">Customer Reviews</h3>
+                                    <span className="text-xs font-bold underline cursor-pointer">View All</span>
+                                </div>
+                                <div className="space-y-4">
+                                    {[
+                                        { user: "Sarah J.", rating: 5, date: "2 days ago", comment: "Absolutely love this! My skin feels so soft and hydrated. 😍" },
+                                        { user: "Emily R.", rating: 5, date: "1 week ago", comment: "Best purchase I've made this year. Highly recommend!" }
+                                    ].map((review, idx) => (
+                                        <div key={idx} className="bg-gray-50 p-5 rounded-2xl border border-gray-100">
+                                            <div className="flex justify-between items-start mb-3">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400">
+                                                        <User size={14} />
+                                                    </div>
+                                                    <div>
+                                                        <h4 className="font-bold text-gray-900 text-sm">{review.user}</h4>
+                                                        <div className="flex text-[#FFB040] gap-0.5 mt-0.5">
+                                                            {[...Array(review.rating)].map((_, i) => <Star key={i} size={10} className="fill-current" />)}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span className="text-[10px] font-medium text-gray-400 uppercase tracking-wide">{review.date}</span>
+                                            </div>
+                                            <p className="text-gray-600 text-sm leading-6">"{review.comment}"</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
