@@ -106,14 +106,14 @@ export default function ProductDetails() {
                 <span className="text-gray-900 font-medium truncate max-w-[200px]">{product.name}</span>
             </div>
 
-            <main className="max-w-7xl mx-auto px-0 md:px-6 py-0 md:py-8 grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-16">
+            <main className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-8 grid grid-cols-[38%_58%] md:grid-cols-1 lg:grid-cols-12 gap-3 md:gap-0 lg:gap-16 items-start">
 
-                {/* 🖼️ Gallery Section (Left - 7 cols) */}
-                <div className="lg:col-span-7 bg-gray-50 md:bg-transparent pt-8 pb-12 md:py-0 px-0 md:px-0">
-                    <div className="sticky top-24 space-y-6">
+                {/* 🖼️ Gallery Section (Left) */}
+                <div className="lg:col-span-7 bg-transparent md:bg-transparent px-0">
+                    <div className="sticky top-24 space-y-2 md:space-y-6">
                         <motion.div
                             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                            className="aspect-[4/5] md:aspect-square lg:aspect-[4/3] bg-white md:bg-gray-50 rounded-[0] md:rounded-[2.5rem] p-8 md:p-12 flex items-center justify-center relative overflow-hidden shadow-none md:border border-gray-100"
+                            className="aspect-[4/5] md:aspect-square lg:aspect-[4/3] bg-gray-50 md:bg-gray-50 rounded-2xl md:rounded-[2.5rem] p-0 md:p-12 flex items-center justify-center relative overflow-hidden shadow-sm md:shadow-none md:border border-gray-100"
                         >
                             <motion.img
                                 key={activeImage}
@@ -122,10 +122,10 @@ export default function ProductDetails() {
                                 transition={{ duration: 0.4 }}
                                 src={getOptimizedImageUrl(activeImage, 1200)}
                                 alt={product.name}
-                                className="w-full h-full object-contain mix-blend-multiply hover:scale-105 transition-transform duration-700 cursor-zoom-in"
+                                className="w-full h-full object-cover md:object-contain mix-blend-multiply md:hover:scale-105 transition-transform duration-700"
                             />
                             {discount > 0 && (
-                                <div className="absolute top-6 left-6 bg-gray-900 text-white font-bold text-xs px-3 py-1.5 rounded-full shadow-lg">
+                                <div className="absolute top-2 left-2 md:top-6 md:left-6 bg-red-500 md:bg-gray-900 text-white font-bold text-[10px] md:text-xs px-2 py-1 md:px-3 md:py-1.5 rounded-full shadow-lg">
                                     -{discount}%
                                 </div>
                             )}
@@ -163,33 +163,33 @@ export default function ProductDetails() {
                     </div>
                 </div>
 
-                {/* 📝 Info Section (Right - 5 cols) - Sticky on Desktop */}
-                <div className="lg:col-span-5 px-6 md:px-0 pt-6 md:pt-0 relative">
-                    <div className="lg:sticky lg:top-28 space-y-8 md:space-y-10">
+                {/* 📝 Info Section (Right) */}
+                <div className="lg:col-span-5 px-0 md:px-0 pt-0 md:pt-0 relative">
+                    <div className="lg:sticky lg:top-28 space-y-4 md:space-y-10">
 
                         {/* Title Header */}
-                        <div className="space-y-4">
-                            <div className="flex items-center justify-between">
+                        <div className="space-y-2 md:space-y-4">
+                            <div className="flex flex-wrap items-center justify-between gap-2">
                                 {product.brand ? (
-                                    <span className="font-bold text-gray-400 text-xs uppercase tracking-[0.2em]">
+                                    <span className="font-bold text-gray-400 text-[10px] md:text-xs uppercase tracking-[0.2em]">
                                         {product.brand}
                                     </span>
                                 ) : <span className="w-2" />}
-                                <div className="flex items-center gap-1.5 text-gray-900 bg-gray-50 px-2 py-1 rounded-md">
-                                    <Star size={14} className="fill-gray-900" />
-                                    <span className="font-bold text-xs">{product.rating || 5.0}</span>
-                                    <span className="text-gray-400 text-[10px] uppercase tracking-wide decoration-0">({product.reviews || 12} reviews)</span>
+                                <div className="flex items-center gap-1 text-gray-900 bg-gray-50 px-1.5 py-0.5 rounded-md">
+                                    <Star size={10} className="fill-gray-900" />
+                                    <span className="font-bold text-[10px] md:text-xs">{product.rating || 5.0}</span>
+                                    <span className="text-gray-400 text-[10px] uppercase tracking-wide decoration-0">({product.reviews || 12})</span>
                                 </div>
                             </div>
 
-                            <h1 className="text-3xl md:text-5xl lg:text-5xl font-serif font-medium text-gray-900 leading-[1.1] tracking-tight">
+                            <h1 className="text-lg md:text-5xl lg:text-5xl font-serif font-medium text-gray-900 leading-tight md:leading-[1.1] tracking-tight">
                                 {product.name}
                             </h1>
 
-                            <div className="flex items-baseline gap-4 border-b border-gray-100 pb-6">
-                                <span className="text-4xl font-light text-gray-900 tracking-tight">${product.price.toFixed(2)}</span>
+                            <div className="flex items-baseline gap-2 md:gap-4 border-b border-gray-100 pb-2 md:pb-6">
+                                <span className="text-xl md:text-4xl font-light text-gray-900 tracking-tight">${product.price.toFixed(2)}</span>
                                 {product.oldPrice && (
-                                    <span className="text-xl text-gray-300 line-through decoration-1">${product.oldPrice.toFixed(2)}</span>
+                                    <span className="text-sm md:text-xl text-gray-300 line-through decoration-1">${product.oldPrice.toFixed(2)}</span>
                                 )}
                             </div>
                         </div>
