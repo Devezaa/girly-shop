@@ -122,7 +122,7 @@ export default function HomeRedesign() {
 
                 {/* 🏷️ Auto-Play Banners (Hero Section) */}
                 <div className="mt-4 px-5">
-                    <div className="relative w-full h-[380px] md:h-[500px] rounded-2xl overflow-hidden shadow-lg bg-gray-100 group">
+                    <div className="relative w-full h-[320px] md:h-[500px] rounded-2xl overflow-hidden shadow-lg bg-gray-100 group">
                         {/* Slides Container */}
                         <div
                             className="flex transition-transform duration-700 ease-in-out h-full"
