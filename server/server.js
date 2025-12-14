@@ -19,6 +19,7 @@ const io = new Server(server, {
             "http://localhost:5174",
             "http://localhost:5175",
             "https://girly-shop-rlga1zpx5-devezaas-projects.vercel.app",
+            "https://girly-shop-eta.vercel.app",
             process.env.CLIENT_URL
         ].filter(Boolean),
         methods: ["GET", "POST"]
