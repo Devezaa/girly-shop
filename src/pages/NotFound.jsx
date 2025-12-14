@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { SearchX } from "lucide-react";
 import Background from "../components/Background";
 
 export default function NotFound() {
+  const location = useLocation();
   return (
     <div className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center text-center px-6">
       {/* Animated Background */}
@@ -22,6 +23,9 @@ export default function NotFound() {
         <h1 className="text-6xl font-extrabold text-pink-600 mb-2">404</h1>
         <h2 className="text-xl font-semibold text-gray-700">
           Oops! Page not found 💔
+          <span className="block text-sm text-gray-400 mt-2 font-mono bg-gray-100 py-1 px-3 rounded-full">
+            Path: {location.pathname}
+          </span>
         </h2>
       </motion.div>
 
