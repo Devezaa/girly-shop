@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { API_BASE_URL } from '../config';
 import { getOptimizedImageUrl } from '../utils/imageOptimizer';
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Heart, Star, Minus, Plus, ShoppingBag, ShieldCheck, Truck, Award, Check, Package, Droplet, Share2 } from "lucide-react";
+import { ArrowLeft, Heart, Star, Minus, Plus, ShoppingBag, ShieldCheck, Truck, Award, Check, Share2, ChevronRight, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
 import ProductCard from "../components/ProductCard";
+import { Link } from "react-router-dom"; // Add Link import
 
 export default function ProductDetails() {
     const { id } = useParams();
@@ -96,7 +97,16 @@ export default function ProductDetails() {
                 </div>
             </div>
 
-            <main className="max-w-7xl mx-auto px-0 md:px-6 py-0 md:py-12 grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-16">
+            {/* 🍞 Breadcrumbs (Desktop) */}
+            <div className="hidden md:flex max-w-7xl mx-auto px-6 py-4 items-center gap-2 text-sm text-gray-500">
+                <Link to="/home" className="hover:text-gray-900 transition-colors">Home</Link>
+                <ChevronRight size={14} />
+                <Link to="/shop" className="hover:text-gray-900 transition-colors">Shop</Link>
+                <ChevronRight size={14} />
+                <span className="text-gray-900 font-medium truncate max-w-[200px]">{product.name}</span>
+            </div>
+
+            <main className="max-w-7xl mx-auto px-0 md:px-6 py-0 md:py-8 grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-16">
 
                 {/* 🖼️ Gallery Section (Left - 7 cols) */}
                 <div className="lg:col-span-7 bg-gray-50 md:bg-transparent pt-8 pb-12 md:py-0 px-0 md:px-0">
@@ -267,33 +277,78 @@ export default function ProductDetails() {
 
                         {/* Accordion Tabs */}
                         <div className="divide-y divide-gray-100 border-t border-b border-gray-100">
-                            {['usage', 'ingredients'].map((tab) => (
-                                <button
-                                    key={tab}
-                                    onClick={() => setActiveTab(activeTab === tab ? '' : tab)}
-                                    className="w-full py-4 flex items-center justify-between group"
-                                >
-                                    <span className="font-bold text-sm uppercase tracking-widest text-gray-900">{tab}</span>
-                                    <Plus size={16} className={`text-gray-400 transition-transform duration-300 ${activeTab === tab ? 'rotate-45 text-gray-900' : 'group-hover:text-gray-600'}`} />
-                                </button>
+                            {['usage', 'ingredients', 'reviews'].map((tab) => (
+                                <div key={tab}>
+                                    <button
+                                        onClick={() => setActiveTab(activeTab === tab ? '' : tab)}
+                                        className="w-full py-4 flex items-center justify-between group"
+                                    >
+                                        <span className="font-bold text-sm uppercase tracking-widest text-gray-900">{tab}es</span>
+                                        <Plus size={16} className={`text-gray-400 transition-transform duration-300 ${activeTab === tab ? 'rotate-45 text-gray-900' : 'group-hover:text-gray-600'}`} />
+                                    </button>
+
+                                    <AnimatePresence>
+                                        {activeTab === tab && (
+                                            <motion.div
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: 'auto', opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                className="overflow-hidden"
+                                            >
+                                                <div className="pb-6 text-sm text-gray-500 leading-relaxed">
+                                                    {tab === 'usage' && (
+                                                        product.howToUse ? <ul className="list-disc pl-5 space-y-1">{product.howToUse.map((s, i) => <li key={i}>{s}</li>)}</ul> : "Apply as needed."
+                                                    )}
+                                                    {tab === 'ingredients' && (
+                                                        <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                                                            <p className="font-mono text-xs leading-6">{product.ingredients || "Water, Glycerin, Niacinamide, Fragrance, ..."}</p>
+                                                        </div>
+                                                    )}
+                                                    {tab === 'reviews' && (
+                                                        <div className="space-y-4">
+                                                            <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                                                                <div className="flex justify-between items-start mb-2">
+                                                                    <div className="flex items-center gap-2">
+                                                                        <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
+                                                                            <User size={16} />
+                                                                        </div>
+                                                                        <div>
+                                                                            <h4 className="font-bold text-gray-900 text-xs">Sarah J.</h4>
+                                                                            <div className="flex text-[#FFB040]">
+                                                                                {[...Array(5)].map((_, i) => <Star key={i} size={10} className="fill-current" />)}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <span className="text-[10px] text-gray-400">2 days ago</span>
+                                                                </div>
+                                                                <p className="text-gray-600 italic text-xs">"Absolutely love this! My skin feels so soft and hydrated. 😍"</p>
+                                                            </div>
+                                                            <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                                                                <div className="flex justify-between items-start mb-2">
+                                                                    <div className="flex items-center gap-2">
+                                                                        <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
+                                                                            <User size={16} />
+                                                                        </div>
+                                                                        <div>
+                                                                            <h4 className="font-bold text-gray-900 text-xs">Emily R.</h4>
+                                                                            <div className="flex text-[#FFB040]">
+                                                                                {[...Array(5)].map((_, i) => <Star key={i} size={10} className="fill-current" />)}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <span className="text-[10px] text-gray-400">1 week ago</span>
+                                                                </div>
+                                                                <p className="text-gray-600 italic text-xs">"Best purchase I've made this year. Highly recommend!"</p>
+                                                            </div>
+                                                            <button className="w-full text-center text-xs font-bold text-gray-900 hover:underline pt-2">View All Reviews</button>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
                             ))}
-                            {/* Accordion Content (Simplified for this view, rendered conditionally below just for effect or keep separate) */}
-                            <AnimatePresence>
-                                {activeTab === 'usage' && (
-                                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                                        <div className="pb-6 text-sm text-gray-500 leading-relaxed">
-                                            {product.howToUse ? <ul className="list-disc pl-5 space-y-1">{product.howToUse.map((s, i) => <li key={i}>{s}</li>)}</ul> : "Apply as needed."}
-                                        </div>
-                                    </motion.div>
-                                )}
-                                {activeTab === 'ingredients' && (
-                                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                                        <div className="pb-6 text-xs font-mono text-gray-500 leading-relaxed">
-                                            {product.ingredients || "Ingredients not listed."}
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
                         </div>
 
                     </div>
