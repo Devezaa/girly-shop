@@ -232,20 +232,29 @@ export default function ProductDetails() {
                                         <Plus size={20} />
                                     </button>
                                 </div>
-                                <button
-                                    onClick={handleAddToCart}
-                                    disabled={isOutOfStock}
-                                    className={`flex-1 min-w-[200px] h-[60px] rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all hover:-translate-y-1 hover:shadow-xl
-                                        ${isOutOfStock
-                                            ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                                            : 'bg-gray-900 text-white shadow-lg shadow-gray-200'}`}
-                                >
-                                    {isOutOfStock ? "Out of Stock" : (
-                                        <>
-                                            <ShoppingBag size={20} /> Add to Cart — ${(product.price * quantity).toFixed(2)}
-                                        </>
+                                <div className="flex-1 flex flex-col gap-2">
+                                    <button
+                                        onClick={handleAddToCart}
+                                        disabled={isOutOfStock}
+                                        className={`w-full min-w-[200px] h-[60px] rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all hover:-translate-y-1 hover:shadow-xl
+                                            ${isOutOfStock
+                                                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                                                : isLowStock
+                                                    ? 'bg-orange-500 text-white shadow-lg shadow-orange-200'
+                                                    : 'bg-gray-900 text-white shadow-lg shadow-gray-200'}`}
+                                    >
+                                        {isOutOfStock ? "Out of Stock" : (
+                                            <>
+                                                <ShoppingBag size={20} /> {isLowStock ? `Order Now - Only ${stock} Left!` : `Add to Cart — $${(product.price * quantity).toFixed(2)}`}
+                                            </>
+                                        )}
+                                    </button>
+                                    {isLowStock && !isOutOfStock && (
+                                        <span className="text-xs text-orange-600 font-bold text-center animate-pulse">
+                                            🔥 High demand! Only {stock} items remaining.
+                                        </span>
                                     )}
-                                </button>
+                                </div>
                             </div>
 
                             {/* Features */}
@@ -321,16 +330,22 @@ export default function ProductDetails() {
                     <button
                         onClick={handleAddToCart}
                         disabled={isOutOfStock}
-                        className={`flex-1 h-[52px] rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98]
+                        className={`flex-1 h-[52px] rounded-xl font-bold text-sm flex flex-col items-center justify-center gap-0.5 transition-all active:scale-[0.98]
                             ${isOutOfStock
                                 ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                                : 'bg-gray-900 text-white'}`}
+                                : isLowStock
+                                    ? 'bg-orange-500 text-white shadow-lg shadow-orange-200'
+                                    : 'bg-gray-900 text-white'}`}
                     >
                         {isOutOfStock ? (
                             <>Out of Stock</>
                         ) : (
                             <>
-                                <ShoppingBag size={18} /> Add to Cart • ${(product.price * quantity).toFixed(2)}
+                                <div className="flex items-center gap-2">
+                                    <ShoppingBag size={18} />
+                                    <span>Add to Cart • ${(product.price * quantity).toFixed(2)}</span>
+                                </div>
+                                {isLowStock && <span className="text-[10px] opacity-90 font-medium">Only {stock} Left - Buy Now!</span>}
                             </>
                         )}
                     </button>
