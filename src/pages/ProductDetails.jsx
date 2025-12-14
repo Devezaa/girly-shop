@@ -274,59 +274,72 @@ export default function ProductDetails() {
                             </div>
                         </div>
 
-                        {/* Expanded Sections (Scroll-to-read) */}
-                        <div className="space-y-12 pt-8 border-t border-gray-100">
+                    </div>
+                </div>
 
+                {/* 📝 Expanded Details Section (Moved to Bottom - Full Width) */}
+                <div className="lg:col-span-12 pt-12 border-t border-gray-100 mt-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+
+                        {/* Left Column: Usage & Ingredients */}
+                        <div className="space-y-12">
                             {/* Usage */}
-                            <div className="space-y-4">
-                                <h3 className="font-bold text-sm uppercase tracking-widest text-gray-900 border-l-4 border-gray-900 pl-3">How To Use</h3>
-                                <div className="text-sm text-gray-500 leading-relaxed pl-4">
-                                    {product.howToUse ? <ul className="list-disc pl-5 space-y-2">{product.howToUse.map((s, i) => <li key={i}>{s}</li>)}</ul> : <p>Apply daily for best results.</p>}
+                            <div className="space-y-6">
+                                <h3 className="font-serif font-bold text-xl text-gray-900 border-l-4 border-gray-900 pl-4">How To Use</h3>
+                                <div className="text-gray-600 leading-relaxed pl-5 space-y-2">
+                                    {product.howToUse ? (
+                                        <ul className="list-disc pl-4 space-y-2 marker:text-gray-300">
+                                            {product.howToUse.map((s, i) => <li key={i}>{s}</li>)}
+                                        </ul>
+                                    ) : (
+                                        <p>Apply generously to clean skin. Massacre gently until absorbed. Use daily for best results.</p>
+                                    )}
                                 </div>
                             </div>
 
                             {/* Ingredients */}
-                            <div className="space-y-4">
-                                <h3 className="font-bold text-sm uppercase tracking-widest text-gray-900 border-l-4 border-gray-900 pl-3">Ingredients</h3>
-                                <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                                    <p className="font-mono text-xs leading-7 text-gray-600">
-                                        {product.ingredients || "Water, Glycerin, Niacinamide, Fragrance, Vitamin C, ..."}
+                            <div className="space-y-6">
+                                <h3 className="font-serif font-bold text-xl text-gray-900 border-l-4 border-gray-900 pl-4">Ingredients</h3>
+                                <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100">
+                                    <p className="font-mono text-xs leading-8 text-gray-600 tracking-wide">
+                                        {product.ingredients || "Water (Aqua), Glycerin, Niacinamide, Fragrance (Parfum), Ascorbic Acid (Vitamin C), Sodium Hyaluronate, Tocopherol, ..."}
                                     </p>
                                 </div>
                             </div>
+                        </div>
 
-                            {/* Reviews */}
-                            <div className="space-y-6">
-                                <div className="flex items-center justify-between">
-                                    <h3 className="font-bold text-sm uppercase tracking-widest text-gray-900 border-l-4 border-gray-900 pl-3">Customer Reviews</h3>
-                                    <span className="text-xs font-bold underline cursor-pointer">View All</span>
-                                </div>
-                                <div className="space-y-4">
-                                    {[
-                                        { user: "Sarah J.", rating: 5, date: "2 days ago", comment: "Absolutely love this! My skin feels so soft and hydrated. 😍" },
-                                        { user: "Emily R.", rating: 5, date: "1 week ago", comment: "Best purchase I've made this year. Highly recommend!" }
-                                    ].map((review, idx) => (
-                                        <div key={idx} className="bg-gray-50 p-5 rounded-2xl border border-gray-100">
-                                            <div className="flex justify-between items-start mb-3">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400">
-                                                        <User size={14} />
-                                                    </div>
-                                                    <div>
-                                                        <h4 className="font-bold text-gray-900 text-sm">{review.user}</h4>
-                                                        <div className="flex text-[#FFB040] gap-0.5 mt-0.5">
-                                                            {[...Array(review.rating)].map((_, i) => <Star key={i} size={10} className="fill-current" />)}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <span className="text-[10px] font-medium text-gray-400 uppercase tracking-wide">{review.date}</span>
-                                            </div>
-                                            <p className="text-gray-600 text-sm leading-6">"{review.comment}"</p>
-                                        </div>
-                                    ))}
-                                </div>
+                        {/* Right Column: Reviews */}
+                        <div className="space-y-8">
+                            <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+                                <h3 className="font-serif font-bold text-xl text-gray-900">Customer Reviews</h3>
+                                <button className="text-sm font-bold underline decoration-2 decoration-gray-900 underline-offset-4 hover:text-gray-600 transition-colors">View All Reviews</button>
                             </div>
 
+                            <div className="space-y-6">
+                                {[
+                                    { user: "Sarah J.", rating: 5, date: "2 days ago", comment: "Absolutely love this! My skin feels so soft and hydrated. The texture is amazing and it smells divine! 😍" },
+                                    { user: "Emily R.", rating: 5, date: "1 week ago", comment: "Best purchase I've made this year. Highly recommend! The packaging is beautiful and the product itself works wonders." },
+                                    { user: "Jessica M.", rating: 4, date: "3 weeks ago", comment: "Really good quality, saw results in just a few days. Will definitely buy again." }
+                                ].map((review, idx) => (
+                                    <div key={idx} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                        <div className="flex justify-between items-start mb-4">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 font-bold">
+                                                    {review.user.charAt(0)}
+                                                </div>
+                                                <div>
+                                                    <h4 className="font-bold text-gray-900 text-sm">{review.user}</h4>
+                                                    <div className="flex text-[#FFB040] gap-0.5 mt-0.5">
+                                                        {[...Array(review.rating)].map((_, i) => <Star key={i} size={12} className="fill-current" />)}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wide">{review.date}</span>
+                                        </div>
+                                        <p className="text-gray-600 text-sm leading-6">"{review.comment}"</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
 
                     </div>
