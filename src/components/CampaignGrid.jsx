@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 
 const CampaignGrid = ({ showTitle = true }) => {
     const [promotions, setPromotions] = useState([]);
@@ -10,9 +11,7 @@ const CampaignGrid = ({ showTitle = true }) => {
     useEffect(() => {
         const fetchPromos = async () => {
             try {
-                // Determine API URL based on environment
-                const apiUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001';
-                const response = await fetch(`${apiUrl}/api/promotions`);
+                const response = await fetch(`${API_BASE_URL}/api/promotions`);
                 if (response.ok) {
                     const data = await response.json();
                     setPromotions(data);
