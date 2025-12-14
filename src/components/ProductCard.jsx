@@ -58,11 +58,11 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
 
         {/* 📝 Content Overlay - Floating White Card */}
         <div className="relative z-10 mt-auto bg-white rounded-2xl p-3 shadow-sm text-center mx-1 mb-1">
-          <h3 className="font-serif font-medium text-gray-700 text-sm leading-tight mb-1 truncate">
+          <h3 className="font-serif font-medium text-gray-900 text-sm leading-tight mb-2 line-clamp-2 min-h-[2.5em]">
             {product.name}
           </h3>
           <div className="flex items-center justify-center">
-            <span className="font-bold text-gray-900 text-sm">${price.toFixed(2)}</span>
+            <span className="font-extrabold text-gray-900 text-lg">${price.toFixed(2)}</span>
           </div>
         </div>
       </div>
