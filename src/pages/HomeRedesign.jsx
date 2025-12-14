@@ -204,7 +204,7 @@ export default function HomeRedesign() {
                             <motion.button
                                 key={idx}
                                 onClick={() => setSelectedCategory(cat.name)}
-                                className={`flex flex-col items-center gap-2 min-w-[80px] p-3 rounded-2xl border transition-all duration-300 group snap-center
+                                className={`flex flex-col items-center gap-1.5 min-w-[72px] p-2 rounded-2xl border transition-all duration-300 group snap-center
                                     ${selectedCategory === cat.name
                                         ? cat.color + ' border-transparent shadow-md ring-1 ring-offset-1 ring-gray-200'
                                         : 'bg-white text-gray-400 border-gray-100 hover:border-gray-200 hover:shadow-sm'
@@ -212,10 +212,10 @@ export default function HomeRedesign() {
                                 whileHover={{ y: -5 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${selectedCategory === cat.name ? 'bg-white/20' : 'bg-' + cat.color.split(' ')[0].replace('bg-', '') + '/10 group-hover:bg-' + cat.color.split(' ')[0].replace('bg-', '') + '/20'}`}>
-                                    <cat.icon size={18} strokeWidth={1.5} className={selectedCategory === cat.name ? 'text-current' : 'text-gray-400 group-hover:text-gray-600'} />
+                                <div className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${selectedCategory === cat.name ? 'bg-white/20' : 'bg-' + cat.color.split(' ')[0].replace('bg-', '') + '/10 group-hover:bg-' + cat.color.split(' ')[0].replace('bg-', '') + '/20'}`}>
+                                    <cat.icon size={16} strokeWidth={1.5} className={selectedCategory === cat.name ? 'text-current' : 'text-gray-400 group-hover:text-gray-600'} />
                                 </div>
-                                <span className={`text-xs font-medium ${selectedCategory === cat.name ? 'text-current' : 'text-gray-500 group-hover:text-gray-800'}`}>{cat.name}</span>
+                                <span className={`text-[10px] font-medium ${selectedCategory === cat.name ? 'text-current' : 'text-gray-500 group-hover:text-gray-800'}`}>{cat.name}</span>
                             </motion.button>
                         ))}
                     </div>
