@@ -295,213 +295,220 @@ export default function HomeRedesign() {
 
                 {/* ❤️ Best Sellers (Favorites) */}
                 {/* ❤️ Best Sellers (Favorites) - Revamped */}
+                {/* ❤️ Best Sellers (Favorites) - Revamped */}
                 {bestSellers.length > 0 && !searchQuery && (
                     <div className="w-full bg-gradient-to-r from-pink-50 via-rose-50 to-pink-50 py-12 mt-8 -mx-5 px-5 md:px-0">
                         <div className="max-w-7xl mx-auto px-5">
-                            <div className="flex items-center justify-between mb-8">
-                                <div className="flex items-center justify-between mb-6">
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm text-pink-500">
-                                            <Heart fill="currentColor" size={16} />
-                                        </div>
-                                        <div>
-                                            <h3 className="font-serif font-bold text-gray-900 text-lg tracking-tight">Best Sellers</h3>
-                                            <p className="text-pink-400 text-[10px] font-medium uppercase tracking-widest">Favorites</p>
+                            <div className="flex items-center justify-between mb-6">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm text-pink-500">
+                                        <Heart fill="currentColor" size={16} />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-serif font-bold text-gray-900 text-lg tracking-tight">Best Sellers</h3>
+                                        <p className="text-pink-400 text-[10px] font-medium uppercase tracking-widest">Favorites</p>
+                                    </div>
+                                </div>
+                                <Link
+                                    to="/shop"
+                                    className="px-3 py-1 bg-white text-pink-500 text-xs font-semibold rounded-full shadow-sm hover:bg-pink-500 hover:text-white transition-all"
+                                >
+                                    View All
+                                </Link>
+                            </div>
+
+                            <div className="flex gap-4 overflow-x-auto no-scrollbar pb-6 pt-2 -mx-5 px-5 snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 lg:grid-cols-5 md:mx-0 md:px-0 md:pt-0 md:overflow-visible">
+                                {bestSellers.map((p, idx) => (
+                                    <div key={p.id} className="min-w-[150px] w-[150px] md:w-auto relative group snap-center">
+                                        {/* 👑 Crown for #1 */}
+                                        {idx === 0 && (
+                                            <div className="absolute -top-3 -left-2 z-20 bg-yellow-400 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-md flex items-center gap-1">
+                                                <span>👑</span> #1 Top Pick
+                                            </div>
+                                        )}
+                                        <div className="transform transition-transform duration-300 group-hover:-translate-y-2">
+                                            <ProductCard
+                                                product={p}
+                                                onAdd={() => addToCart(p)}
+                                                onWish={() => toggleWishlist(p)}
+                                                wished={isWished(p.id)}
+                                            />
                                         </div>
                                     </div>
-                                    <Link
-                                        to="/shop"
-                                        className="px-3 py-1 bg-white text-pink-500 text-xs font-semibold rounded-full shadow-sm hover:bg-pink-500 hover:text-white transition-all"
-                                    >
-                                        View All
-                                    </Link>
-                                </div>
-
-                                <div className="flex gap-4 overflow-x-auto no-scrollbar pb-6 pt-2 -mx-5 px-5 snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 lg:grid-cols-5 md:mx-0 md:px-0 md:pt-0 md:overflow-visible">
-                                    {bestSellers.map((p, idx) => (
-                                        <div key={p.id} className="min-w-[150px] w-[150px] md:w-auto relative group snap-center">
-                                            {/* 👑 Crown for #1 */}
-                                            {idx === 0 && (
-                                                <div className="absolute -top-3 -left-2 z-20 bg-yellow-400 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-md flex items-center gap-1">
-                                                    <span>👑</span> #1 Top Pick
-                                                </div>
-                                            )}
-                                            <div className="transform transition-transform duration-300 group-hover:-translate-y-2">
-                                                <ProductCard
-                                                    product={p}
-                                                    onAdd={() => addToCart(p)}
-                                                    onWish={() => toggleWishlist(p)}
-                                                    wished={isWished(p.id)}
-                                                />
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
+                                ))}
                             </div>
                         </div>
+                    </div>
                 )}
 
-                        {/* ✨ New Arrivals Section */}
-                        {/* ✨ New Arrivals Section - Revamped */}
-                        {newArrivals.length > 0 && !searchQuery && (
-                            <div className="w-full bg-[#F0F9FF] py-12 mt-8 -mx-5 px-5 md:px-0 border-y border-blue-50">
-                                <div className="max-w-7xl mx-auto px-5">
-                                    <div className="flex items-center justify-between mb-8">
-                                        <div className="flex items-center justify-between mb-6">
-                                            <div className="flex items-center gap-2">
-                                                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm text-blue-500">
-                                                    <Sparkles fill="currentColor" size={16} />
-                                                </div>
-                                                <div>
-                                                    <h3 className="font-serif font-bold text-gray-900 text-lg tracking-tight">New Arrivals</h3>
-                                                    <p className="text-blue-400 text-[10px] font-medium uppercase tracking-widest">Just Dropped</p>
-                                                </div>
-                                            </div>
-                                            <Link
-                                                to="/shop"
-                                                className="px-3 py-1 bg-white text-blue-500 text-xs font-semibold rounded-full shadow-sm hover:bg-blue-500 hover:text-white transition-all"
-                                            >
-                                                View All
-                                            </Link>
-                                        </div>
-
-                                        <div className="flex gap-4 overflow-x-auto no-scrollbar pb-6 pt-2 -mx-5 px-5 snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 lg:grid-cols-5 md:mx-0 md:px-0 md:pt-0 md:overflow-visible">
-                                            {newArrivals.map((p, idx) => (
-                                                <div key={p.id} className="min-w-[150px] w-[150px] md:w-auto relative group snap-center">
-                                                    {/* 🆕 New Badge */}
-                                                    <div className="absolute -top-3 -right-2 z-20 bg-blue-500 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md">
-                                                        NEW
-                                                    </div>
-
-                                                    <div className="transform transition-transform duration-300 group-hover:-translate-y-2">
-                                                        <ProductCard
-                                                            product={p}
-                                                            onAdd={() => addToCart(p)}
-                                                            onWish={() => toggleWishlist(p)}
-                                                            wished={isWished(p.id)}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
+                {/* ✨ New Arrivals Section */}
+                {/* ✨ New Arrivals Section - Revamped */}
+                {/* ✨ New Arrivals Section - Revamped */}
+                {newArrivals.length > 0 && !searchQuery && (
+                    <div className="w-full bg-[#F0F9FF] py-12 mt-8 -mx-5 px-5 md:px-0 border-y border-blue-50">
+                        <div className="max-w-7xl mx-auto px-5">
+                            <div className="flex items-center justify-between mb-6">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm text-blue-500">
+                                        <Sparkles fill="currentColor" size={16} />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-serif font-bold text-gray-900 text-lg tracking-tight">New Arrivals</h3>
+                                        <p className="text-blue-400 text-[10px] font-medium uppercase tracking-widest">Just Dropped</p>
                                     </div>
                                 </div>
-                )}
-
-                                {/* 🏆 Brands We Love */}
-                                {!searchQuery && (
-                                    <div className="mt-8 px-5">
-                                        <div className="flex items-center justify-between mb-4">
-                                            <h3 className="font-bold text-gray-900 text-lg tracking-tight">Brands We Love</h3>
-                                            <Link to="/shop" className="text-gray-400 text-sm hover:text-[#FFB040] transition-colors">View All</Link>
-                                        </div>
-
-                                        <div className="flex gap-3 overflow-x-auto no-scrollbar pb-6 -mx-5 px-5 snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-6 md:mx-0 md:px-0 md:overflow-visible">
-                                            {brands.map((brand, idx) => (
-                                                <motion.div
-                                                    key={idx}
-                                                    whileTap={{ scale: 0.95 }}
-                                                    className="min-w-[80px] h-[80px] bg-white rounded-2xl border border-gray-50 flex flex-col items-center justify-center gap-2 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-md transition-all cursor-pointer snap-center"
-                                                >
-                                                    <div className="w-12 h-12 flex items-center justify-center">
-                                                        <img
-                                                            src={brand.logo}
-                                                            alt={brand.name}
-                                                            className="w-full h-full object-contain opacity-90 hover:opacity-100 transition-opacity"
-                                                            onError={(e) => {
-                                                                e.target.style.display = 'none';
-                                                                e.target.nextSibling.style.display = 'flex';
-                                                            }}
-                                                        />
-                                                        <div className="w-12 h-12 bg-rose-50 rounded-full items-center justify-center text-rose-400 text-sm font-bold hidden">
-                                                            {brand.name[0]}
-                                                        </div>
-                                                    </div>
-                                                    <span className="text-[10px] uppercase tracking-wide font-semibold text-gray-500">{brand.name}</span>
-                                                </motion.div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* 💬 Lovely Reviews */}
-                                {!searchQuery && (
-                                    <div className="mt-10 px-5">
-                                        <h3 className="font-bold text-gray-900 text-lg tracking-tight mb-4">Lovely Reviews</h3>
-                                        <div className="flex gap-3 overflow-x-auto no-scrollbar pb-4 -mx-5 px-5 snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-3 md:mx-0 md:px-0 md:overflow-visible">
-                                            {reviews.map((review, idx) => (
-                                                <div key={idx} className="min-w-[220px] bg-white p-4 rounded-2xl border border-pink-100 shadow-sm flex flex-col gap-2 snap-center">
-                                                    <div className="flex gap-1 text-[#FFB040]">
-                                                        {[...Array(review.rating)].map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
-                                                    </div>
-                                                    <p className="text-gray-600 text-xs italic">"{review.comment}"</p>
-                                                    <div className="flex items-center gap-2 mt-auto">
-                                                        <div className="w-5 h-5 bg-rose-100 rounded-full flex items-center justify-center text-rose-500 text-[10px] font-bold">
-                                                            {review.name[0]}
-                                                        </div>
-                                                        <span className="text-xs font-semibold text-gray-800">{review.name}</span>
-                                                        <CheckCircle size={10} className="text-blue-400 ml-auto" />
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* 💌 Newsletter */}
-                                {!searchQuery && (
-                                    <div className="mt-10 px-5 mb-8">
-                                        <div className="bg-gradient-to-br from-pink-100 to-rose-200 rounded-3xl p-6 relative overflow-hidden text-center">
-                                            <Sparkles className="absolute top-4 right-4 text-white/40" size={40} />
-                                            <h3 className="text-xl font-bold text-rose-900 mb-2">Stay in the Loop 🎀</h3>
-                                            <p className="text-rose-800/80 text-sm mb-6">Get the latest trends and exclusive deals sent to your inbox.</p>
-
-                                            <div className="relative">
-                                                <input
-                                                    type="email"
-                                                    placeholder="Enter your email"
-                                                    className="w-full pl-4 pr-12 py-3.5 bg-white/90 backdrop-blur rounded-xl text-sm outline-none focus:ring-2 focus:ring-rose-400 placeholder:text-rose-300"
-                                                />
-                                                <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-rose-500 rounded-lg flex items-center justify-center text-white shadow-md hover:bg-rose-600 transition-colors">
-                                                    <ArrowRight size={16} />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* ✨ Main Product Grid */}
-                                <div className="mt-8 px-5">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <h3 className="font-bold text-gray-900 text-lg tracking-tight">
-                                            {searchQuery ? 'Search Results' : 'Recommended For You'}
-                                        </h3>
-                                        {!searchQuery && <Link to="/shop" className="text-[#FFB040] text-xs font-semibold hover:underline">See All</Link>}
-                                    </div>
-
-                                    {filteredProducts.length === 0 ? (
-                                        <div className="flex flex-col items-center justify-center py-20 opacity-50 col-span-full">
-                                            <div className="w-16 h-16 bg-gray-200 rounded-full mb-4 animate-pulse"></div>
-                                            <p className="text-gray-400">
-                                                {selectedCategory === "All" ? "Loading your favorites..." : `No items in ${selectedCategory}`}
-                                            </p>
-                                        </div>
-                                    ) : (
-                                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 gap-y-6 pb-20">
-                                            {filteredProducts.map(p => (
-                                                <ProductCard
-                                                    key={p.id}
-                                                    product={p}
-                                                    onAdd={() => addToCart(p)}
-                                                    onWish={() => toggleWishlist(p)}
-                                                    wished={isWished(p.id)}
-                                                />
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                                {/* End of max-w-7xl wrapper */}
+                                <Link
+                                    to="/shop"
+                                    className="px-3 py-1 bg-white text-blue-500 text-xs font-semibold rounded-full shadow-sm hover:bg-blue-500 hover:text-white transition-all"
+                                >
+                                    View All
+                                </Link>
                             </div>
+
+                            <div className="flex gap-4 overflow-x-auto no-scrollbar pb-6 pt-2 -mx-5 px-5 snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 lg:grid-cols-5 md:mx-0 md:px-0 md:pt-0 md:overflow-visible">
+                                {newArrivals.map((p, idx) => (
+                                    <div key={p.id} className="min-w-[150px] w-[150px] md:w-auto relative group snap-center">
+                                        {/* 🆕 New Badge */}
+                                        <div className="absolute -top-3 -right-2 z-20 bg-blue-500 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md">
+                                            NEW
+                                        </div>
+
+                                        <div className="transform transition-transform duration-300 group-hover:-translate-y-2">
+                                            <ProductCard
+                                                product={p}
+                                                onAdd={() => addToCart(p)}
+                                                onWish={() => toggleWishlist(p)}
+                                                wished={isWished(p.id)}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* 🏆 Brands We Love */}
+                {!searchQuery && (
+                    <div className="mt-8 px-5">
+                        <div className="flex items-center justify-between mb-4">
+                            <h3 className="font-bold text-gray-900 text-lg tracking-tight">Brands We Love</h3>
+                            <Link to="/shop" className="text-gray-400 text-sm hover:text-[#FFB040] transition-colors">View All</Link>
+                        </div>
+
+                        <div className="flex gap-3 overflow-x-auto no-scrollbar pb-6 -mx-5 px-5 snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-6 md:mx-0 md:px-0 md:overflow-visible">
+                            {brands.map((brand, idx) => (
+                                <motion.div
+                                    key={idx}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="min-w-[80px] h-[80px] bg-white rounded-2xl border border-gray-50 flex flex-col items-center justify-center gap-2 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-md transition-all cursor-pointer snap-center"
+                                >
+                                    <div className="w-12 h-12 flex items-center justify-center">
+                                        <img
+                                            src={brand.logo}
+                                            alt={brand.name}
+                                            className="w-full h-full object-contain opacity-90 hover:opacity-100 transition-opacity"
+                                            onError={(e) => {
+                                                e.target.style.display = 'none';
+                                                e.target.nextSibling.style.display = 'flex';
+                                            }}
+                                        />
+                                        <div className="w-12 h-12 bg-rose-50 rounded-full items-center justify-center text-rose-400 text-sm font-bold hidden">
+                                            {brand.name[0]}
+                                        </div>
+                                    </div>
+                                    <span className="text-[10px] uppercase tracking-wide font-semibold text-gray-500">{brand.name}</span>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* 💬 Lovely Reviews */}
+                {!searchQuery && (
+                    <div className="mt-10 px-5">
+                        <h3 className="font-bold text-gray-900 text-lg tracking-tight mb-4">Lovely Reviews</h3>
+                        <div className="flex gap-3 overflow-x-auto no-scrollbar pb-4 -mx-5 px-5 snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-3 md:mx-0 md:px-0 md:overflow-visible">
+                            {reviews.map((review, idx) => (
+                                <div key={idx} className="min-w-[220px] bg-white p-4 rounded-2xl border border-pink-100 shadow-sm flex flex-col gap-2 snap-center">
+                                    <div className="flex gap-1 text-[#FFB040]">
+                                        {[...Array(review.rating)].map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
+                                    </div>
+                                    <p className="text-gray-600 text-xs italic">"{review.comment}"</p>
+                                    <div className="flex items-center gap-2 mt-auto">
+                                        <div className="w-5 h-5 bg-rose-100 rounded-full flex items-center justify-center text-rose-500 text-[10px] font-bold">
+                                            {review.name[0]}
+                                        </div>
+                                        <span className="text-xs font-semibold text-gray-800">{review.name}</span>
+                                        <CheckCircle size={10} className="text-blue-400 ml-auto" />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* 💌 Newsletter */}
+                {!searchQuery && (
+                    <div className="mt-10 px-5 mb-8">
+                        <div className="bg-gradient-to-br from-pink-100 to-rose-200 rounded-3xl p-6 relative overflow-hidden text-center">
+                            <Sparkles className="absolute top-4 right-4 text-white/40" size={40} />
+                            <h3 className="text-xl font-bold text-rose-900 mb-2">Stay in the Loop 🎀</h3>
+                            <p className="text-rose-800/80 text-sm mb-6">Get the latest trends and exclusive deals sent to your inbox.</p>
+
+                            <div className="relative">
+                                <input
+                                    type="email"
+                                    placeholder="Enter your email"
+                                    className="w-full pl-4 pr-12 py-3.5 bg-white/90 backdrop-blur rounded-xl text-sm outline-none focus:ring-2 focus:ring-rose-400 placeholder:text-rose-300"
+                                />
+                                <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-rose-500 rounded-lg flex items-center justify-center text-white shadow-md hover:bg-rose-600 transition-colors">
+                                    <ArrowRight size={16} />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* ✨ Main Product Grid */}
+                <div className="mt-8 px-5">
+                    <div className="flex items-center justify-between mb-4">
+                        <h3 className="font-bold text-gray-900 text-lg tracking-tight">
+                            {searchQuery ? 'Search Results' : 'Recommended For You'}
+                        </h3>
+                        {!searchQuery && (
+                            <Link
+                                to="/shop"
+                                className="px-3 py-1 bg-white text-[#FFB040] text-xs font-semibold rounded-full shadow-sm border border-gray-100 hover:bg-[#FFB040] hover:text-white transition-all"
+                            >
+                                Shop All
+                            </Link>
+                        )}
+                    </div>
+
+                    {filteredProducts.length === 0 ? (
+                        <div className="flex flex-col items-center justify-center py-20 opacity-50 col-span-full">
+                            <div className="w-16 h-16 bg-gray-200 rounded-full mb-4 animate-pulse"></div>
+                            <p className="text-gray-400">
+                                {selectedCategory === "All" ? "Loading your favorites..." : `No items in ${selectedCategory}`}
+                            </p>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 gap-y-6 pb-20">
+                            {filteredProducts.map(p => (
+                                <ProductCard
+                                    key={p.id}
+                                    product={p}
+                                    onAdd={() => addToCart(p)}
+                                    onWish={() => toggleWishlist(p)}
+                                    wished={isWished(p.id)}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </div>
+                {/* End of max-w-7xl wrapper */}
+            </div>
         </div>
-                );
+    );
 }
