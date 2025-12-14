@@ -79,9 +79,9 @@ export default function Login() {
                 <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
                 <div className="absolute inset-0 bg-[#FFB040]/10 mix-blend-overlay"></div>
 
-                {/* Animated Particles/Orbs */}
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-rose-500/20 rounded-full blur-[120px] animate-pulse"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-orange-400/20 rounded-full blur-[150px] animate-pulse delay-1000"></div>
+                {/* Animated Particles/Orbs (Hidden on Mobile) */}
+                <div className="hidden md:block absolute top-1/4 left-1/4 w-96 h-96 bg-rose-500/20 rounded-full blur-[120px] animate-pulse"></div>
+                <div className="hidden md:block absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-orange-400/20 rounded-full blur-[150px] animate-pulse delay-1000"></div>
             </div>
 
             {/* 📦 Main Container */}
@@ -105,7 +105,7 @@ export default function Login() {
                             <Sparkles className="absolute -top-4 -right-10 text-white/50 animate-bounce" size={32} />
                         </span>
                     </h1>
-                    <p className="text-lg text-white/70 max-w-md font-light leading-relaxed backdrop-blur-sm bg-black/10 p-4 rounded-xl border border-white/5">
+                    <p className="text-lg text-white/70 max-w-md font-light leading-relaxed md:backdrop-blur-sm bg-black/10 p-4 rounded-xl border border-white/5">
                         Discover a curated collection of luxury fashion and beauty essentials designed to highlight your unique radiance.
                     </p>
                 </motion.div>
@@ -117,10 +117,10 @@ export default function Login() {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className="w-full max-w-[480px] lg:mr-12"
                 >
-                    <div className="relative backdrop-blur-xl bg-white/10 dark:bg-black/20 border border-white/20 rounded-[2.5rem] p-8 md:p-10 shadow-2xl shadow-black/20 overflow-hidden">
+                    <div className="relative md:backdrop-blur-xl bg-[#1a0b0b] md:bg-white/10 dark:bg-black/20 border border-white/20 rounded-[2.5rem] p-8 md:p-10 shadow-2xl shadow-black/20 overflow-hidden">
 
-                        {/* Glass Gloss Effect */}
-                        <div className="absolute -top-24 -right-24 w-48 h-48 bg-white/10 rounded-full blur-[50px]"></div>
+                        {/* Glass Gloss Effect (Hidden on mobile) */}
+                        <div className="hidden md:block absolute -top-24 -right-24 w-48 h-48 bg-white/10 rounded-full blur-[50px]"></div>
 
                         <div className="text-center mb-10 relative z-10">
                             <h2 className="font-serif text-4xl text-white mb-2 tracking-wide">Welcome Back</h2>
@@ -134,7 +134,7 @@ export default function Login() {
                                         initial={{ opacity: 0, height: 0 }}
                                         animate={{ opacity: 1, height: "auto" }}
                                         exit={{ opacity: 0, height: 0 }}
-                                        className="bg-red-500/10 border border-red-500/30 text-red-200 text-sm px-4 py-3 rounded-xl flex items-center gap-2 backdrop-blur-md"
+                                        className="bg-red-500/10 border border-red-500/30 text-red-200 text-sm px-4 py-3 rounded-xl flex items-center gap-2 md:backdrop-blur-md"
                                     >
                                         <span className="flex items-center justify-center w-5 h-5 bg-red-500 rounded-full text-[10px] text-white font-bold">!</span>
                                         {error}
@@ -153,7 +153,7 @@ export default function Login() {
                                             type="email"
                                             value={email}
                                             onChange={e => setEmail(e.target.value)}
-                                            className="w-full pl-12 pr-4 py-4 bg-black/20 text-white placeholder:text-white/30 border border-white/10 rounded-2xl focus:outline-none focus:bg-black/40 focus:border-[#FFB040]/50 focus:ring-1 focus:ring-[#FFB040]/30 transition-all font-medium backdrop-blur-sm"
+                                            className="w-full pl-12 pr-4 py-4 bg-black/20 text-white placeholder:text-white/30 border border-white/10 rounded-2xl focus:outline-none focus:bg-black/40 focus:border-[#FFB040]/50 focus:ring-1 focus:ring-[#FFB040]/30 transition-all font-medium md:backdrop-blur-sm"
                                             placeholder="name@example.com"
                                             required
                                         />
@@ -170,7 +170,7 @@ export default function Login() {
                                             type={showPassword ? "text" : "password"}
                                             value={password}
                                             onChange={e => setPassword(e.target.value)}
-                                            className="w-full pl-12 pr-12 py-4 bg-black/20 text-white placeholder:text-white/30 border border-white/10 rounded-2xl focus:outline-none focus:bg-black/40 focus:border-[#FFB040]/50 focus:ring-1 focus:ring-[#FFB040]/30 transition-all font-medium tracking-wider backdrop-blur-sm"
+                                            className="w-full pl-12 pr-12 py-4 bg-black/20 text-white placeholder:text-white/30 border border-white/10 rounded-2xl focus:outline-none focus:bg-black/40 focus:border-[#FFB040]/50 focus:ring-1 focus:ring-[#FFB040]/30 transition-all font-medium tracking-wider md:backdrop-blur-sm"
                                             placeholder="••••••••"
                                             required
                                         />
@@ -231,7 +231,7 @@ export default function Login() {
                             ].map((social, idx) => (
                                 <button
                                     key={idx}
-                                    className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-white/30 hover:scale-110 transition-all duration-300 backdrop-blur-sm group"
+                                    className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-white/30 hover:scale-110 transition-all duration-300 md:backdrop-blur-sm group"
                                 >
                                     <span className={`text-xl font-medium ${social.color || 'text-white'} group-hover:rotate-6 transition-transform block`}>
                                         {social.icon}

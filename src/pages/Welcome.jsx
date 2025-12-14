@@ -53,7 +53,7 @@ export default function Welcome() {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-[#FFB040]/30 bg-[#FFB040]/10 backdrop-blur-md mb-8"
+                    className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-[#FFB040]/30 bg-[#FFB040]/10 md:backdrop-blur-md mb-8"
                 >
                     <Sparkles size={16} className="text-[#FFB040]" />
                     <span className="text-[#FFB040] text-sm font-medium tracking-widest uppercase">Premium Fashion Destination</span>
@@ -99,7 +99,7 @@ export default function Welcome() {
 
                     <Link
                         to="/register"
-                        className="w-full sm:w-48 py-4 bg-white/5 border border-white/10 text-white font-medium text-base rounded-2xl hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 transition-all backdrop-blur-md"
+                        className="w-full sm:w-48 py-4 bg-white/10 md:bg-white/5 border border-white/10 text-white font-medium text-base rounded-2xl hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 transition-all md:backdrop-blur-md"
                     >
                         Create Account
                     </Link>
