@@ -153,7 +153,7 @@ export default function ProductDetails() {
                                     <button
                                         key={idx}
                                         onClick={() => setActiveImage(img)}
-                                        className={`w-16 h-16 flex-shrink-0 rounded-2xl border bg-white shadow-sm p-1.5 transition-all ${activeImage === img ? 'border-2 border-gray-900 opacity-100' : 'border-gray-100 opacity-60'}`}
+                                        className={`w-16 h-16 flex-shrink-0 rounded-2xl border bg-white shadow-sm p-1.5 transition-all focus:outline-none focus:ring-0 ${activeImage === img ? 'border-2 border-gray-900 opacity-100' : 'border-gray-100 opacity-60'}`}
                                     >
                                         <img src={getOptimizedImageUrl(img, 150)} className="w-full h-full object-contain mix-blend-multiply" alt="" />
                                     </button>
