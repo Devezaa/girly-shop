@@ -76,7 +76,7 @@ export default function HeroSlider() {
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.3 }}
-                            className="inline-block px-3 py-1 mb-2 md:mb-4 text-[10px] md:text-xs font-bold tracking-wider text-white uppercase bg-white/20 backdrop-blur-md rounded-full border border-white/30"
+                            className="inline-block px-2 py-0.5 md:px-3 md:py-1 mb-2 md:mb-4 text-[10px] md:text-xs font-bold tracking-wider text-white uppercase bg-white/10 md:bg-white/20 md:backdrop-blur-md rounded-full border border-white/20 md:border-white/30"
                         >
                             Featured Collection
                         </motion.span>
