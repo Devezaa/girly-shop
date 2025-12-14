@@ -4,6 +4,7 @@
  * @param {object} options - Optimization options (width, height, etc.)
  * @returns {string} - The optimized URL
  */
+// 🚀 Optimized defaults: Auto format (WebP/AVIF), Auto quality (good balance), Auto width
 export const getOptimizedImageUrl = (url, { width = 'auto', quality = 'auto', format = 'auto' } = {}) => {
     if (!url || !url.includes('cloudinary.com')) return url;
 

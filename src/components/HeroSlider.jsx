@@ -59,10 +59,13 @@ export default function HeroSlider() {
                     transition={{ duration: 0.8 }}
                     className="absolute inset-0"
                 >
-                    {/* Background Image */}
-                    <div
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${getOptimizedImageUrl(banners[currentIndex].src, 1200)})` }}
+                    {/* Background Image (Converted to <img> for LCP LCP LCP!) */}
+                    <img
+                        src={getOptimizedImageUrl(banners[currentIndex].src, 1200)}
+                        alt={banners[currentIndex].title}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        priority="true" // React hint (or standard fetchpriority="high" below)
+                        fetchpriority="high"
                     />
                     {/* Dark Overlay for Text Readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
