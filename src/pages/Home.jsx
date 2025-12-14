@@ -28,9 +28,9 @@ export default function Home() {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="text-gray-600 max-w-xl leading-relaxed mb-8"
         >
-          Discover your beauty, style, and confidence — all in one place.  
-          Explore our curated selection of <strong>makeup</strong>,  
-          <strong>fashion</strong>, and <strong>accessories</strong>  
+          Discover your beauty, style, and confidence — all in one place.
+          Explore our curated selection of <strong>makeup</strong>,
+          <strong>fashion</strong>, and <strong>accessories</strong>
           designed for modern, confident women.
         </motion.p>
 
@@ -42,7 +42,7 @@ export default function Home() {
         >
           <Link
             to="/shop"
-            className="px-6 py-3 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold shadow hover:shadow-md transition-all hover:scale-105 active:scale-95"
+            className="px-5 py-2.5 md:px-8 md:py-4 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold shadow hover:shadow-md transition-all hover:scale-105 active:scale-95 text-sm md:text-base"
           >
             Shop Now ✨
           </Link>
@@ -65,7 +65,7 @@ export default function Home() {
               title="Trendy Fashion"
               icon={<ShoppingBag className="w-5 h-5 text-pink-500" />}
             >
-              We bring the latest and most stylish clothing  
+              We bring the latest and most stylish clothing
               designed to make you shine in every occasion.
             </Card>
 
@@ -73,7 +73,7 @@ export default function Home() {
               title="Makeup & Skincare"
               icon={<Sparkles className="w-5 h-5 text-pink-500" />}
             >
-              Discover our premium beauty products that enhance  
+              Discover our premium beauty products that enhance
               your natural glow and confidence every day.
             </Card>
 
@@ -81,7 +81,7 @@ export default function Home() {
               title="Made With Love"
               icon={<Heart className="w-5 h-5 text-pink-500" />}
             >
-              Every product is chosen with care to make you  
+              Every product is chosen with care to make you
               feel loved, confident, and truly beautiful 💖
             </Card>
           </div>

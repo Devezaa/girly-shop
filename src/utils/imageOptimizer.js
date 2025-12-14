@@ -1,0 +1,20 @@
+/**
+ * Optimizes Cloudinary URLs for performance
+ * @param {string} url - The original image URL
+ * @param {object} options - Optimization options (width, height, etc.)
+ * @returns {string} - The optimized URL
+ */
+export const getOptimizedImageUrl = (url, { width = 'auto', quality = 'auto', format = 'auto' } = {}) => {
+    if (!url || !url.includes('cloudinary.com')) return url;
+
+    // Split URL to insert transformations
+    const parts = url.split('/upload/');
+    if (parts.length !== 2) return url; // Unexpected format
+
+    const transformations = [];
+    if (quality) transformations.push(`q_${quality}`);
+    if (format) transformations.push(`f_${format}`);
+    if (width && width !== 'auto') transformations.push(`w_${width}`);
+
+    return `${parts[0]}/upload/${transformations.join(',')}/${parts[1]}`;
+};

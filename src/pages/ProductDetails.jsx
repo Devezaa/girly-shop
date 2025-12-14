@@ -272,12 +272,12 @@ export default function ProductDetails() {
                         <button
                             onClick={handleAddToCart}
                             disabled={isOutOfStock}
-                            className={`flex-1 font-bold text-lg rounded-full py-4 px-8 shadow-xl transition-all flex items-center justify-center gap-3 
+                            className={`flex-1 font-bold text-sm md:text-lg rounded-full py-3 px-4 md:py-4 md:px-8 shadow-xl transition-all flex items-center justify-center gap-2 md:gap-3 
                                 ${isOutOfStock
                                     ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
                                     : 'bg-gradient-to-r from-gray-900 to-gray-800 text-white hover:shadow-2xl hover:scale-[1.01]'}`}
                         >
-                            <ShoppingBag size={22} />
+                            <ShoppingBag size={20} className="md:w-[22px] md:h-[22px]" />
                             {isOutOfStock ? "Out of Stock" : "Add to Cart"}
                         </button>
                     </div>

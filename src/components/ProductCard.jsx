@@ -1,6 +1,7 @@
 import React from "react";
 import { Heart, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
+import { getOptimizedImageUrl } from "../utils/imageOptimizer";
 
 export default function ProductCard({ product, onAdd, onWish, wished }) {
   // 🛡️ Guard Clause (Prevents crash if product is missing)
@@ -8,6 +9,9 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
 
   // 🛡️ Safe Parsing (fixes crash if price is text string)
   const price = parseFloat(product.price) || 0;
+
+  // Optimize Image for Card (Width 400px is usually enough for cards)
+  const imageUrl = getOptimizedImageUrl(product.image, { width: 400 });
 
   // 🎨 Minimalist Gray Style (Restored)
   return (
@@ -17,7 +21,7 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
         {/* 🖼️ Image */}
         <div className="absolute inset-0 flex items-center justify-center p-6 pb-20">
           <img
-            src={product.image}
+            src={imageUrl}
             alt={product.name}
             onError={(e) => { e.target.style.display = 'none'; }} // Hide broken image to remove duplicate text visual if alt shows up ugly
             className="w-full h-full object-contain p-4 mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
