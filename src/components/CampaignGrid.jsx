@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { API_BASE_URL } from '../config';
+import { getOptimizedImageUrl } from '../utils/imageOptimizer';
 
 const CampaignGrid = ({ showTitle = true }) => {
     const [promotions, setPromotions] = useState([]);
@@ -68,9 +69,11 @@ const CampaignGrid = ({ showTitle = true }) => {
                     >
                         <div className="aspect-[4/5] md:aspect-[3/4] overflow-hidden">
                             <img
-                                src={promo.image}
+                                src={getOptimizedImageUrl(promo.image)}
                                 alt={promo.title}
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                referrerPolicy="no-referrer"
+                                loading="lazy"
                             />
                         </div>
                         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent p-6 md:p-8 pt-24">
