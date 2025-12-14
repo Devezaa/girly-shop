@@ -15,9 +15,17 @@ import "./App.css";          // 💄 app-level transitions and layout
 // 💕 Root App Component
 import App from "./App.jsx";
 
+// 🛒 Cart & Wishlist Providers
+import { CartProvider } from "./hooks/useCart";
+import { WishlistProvider } from "./hooks/useWishlist";
+
 // 🚀 Mount React App (React 18)
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <CartProvider>
+      <WishlistProvider>
+        <App />
+      </WishlistProvider>
+    </CartProvider>
   </React.StrictMode>
 );

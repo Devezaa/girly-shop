@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
@@ -18,6 +19,17 @@ export default function Modal({ open, onClose, title, children, size = "md" }) {
     md: "max-w-lg",
     lg: "max-w-2xl",
   };
+
+  // Close on Escape key
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (open && e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [open, onClose]);
 
   return (
     <AnimatePresence>

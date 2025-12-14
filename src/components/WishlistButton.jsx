@@ -11,25 +11,27 @@ import { Heart } from "lucide-react";
  */
 
 export default function WishlistButton({ active = false, onToggle, size = 36 }) {
+  // 📐 Dynamic Icon Size (approx 50% of button)
+  const iconSize = Math.round(size * 0.5);
+
   return (
     <motion.button
       whileTap={{ scale: 0.85 }}
       onClick={onToggle}
       aria-label={active ? "Remove from wishlist" : "Add to wishlist"}
-      className={`relative flex items-center justify-center rounded-full border transition-all duration-300 shadow-sm ${
-        active
+      className={`relative flex items-center justify-center rounded-full border transition-all duration-300 shadow-sm ${active
           ? "bg-pink-100 border-pink-300 hover:bg-pink-200"
           : "bg-white border-pink-100 hover:border-pink-300 hover:bg-pink-50"
-      }`}
+        }`}
       style={{
         width: `${size}px`,
         height: `${size}px`,
       }}
     >
       <Heart
-        className={`w-4 h-4 transition-colors ${
-          active ? "fill-pink-500 text-pink-500" : "text-pink-600"
-        }`}
+        size={iconSize}
+        className={`transition-colors ${active ? "fill-pink-500 text-pink-500" : "text-pink-600"
+          }`}
       />
       {active && (
         <motion.span

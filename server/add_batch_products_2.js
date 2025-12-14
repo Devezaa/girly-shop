@@ -1,18 +1,21 @@
-
 require('dotenv').config({ path: './.env' });
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
-const path = require('path');
+const { Pool } = require('pg');
 
-// Configure Cloudinary
+// 1. Configure Cloudinary
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-const productsPath = path.join(__dirname, 'data/products.json');
+// 2. Configure Database
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+});
 
+// 3. New Product Data
 const newProductsBatch = [
     {
         name: "Hada Labo Koi-Gokujyun UV White Gel SPF50+ PA++++",
@@ -68,12 +71,15 @@ const newProductsBatch = [
     }
 ];
 
-async function addBatch() {
-    try {
-        console.log('🚀 Starting Batch Addition...');
+async function addProductBatch() {
+    console.log('🚀 Starting Product Batch Addition to Database...');
+    const client = await pool.connect();
 
-        let productsData = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
-        let maxId = productsData.reduce((max, p) => (p.id > max ? p.id : max), 0);
+    try {
+        await client.query('BEGIN'); // Start Transaction
+
+        // Note: With SERIAL/BIGSERIAL 'id' column in Postgres, we don't need to manually calculate ID.
+        // We let the database handle it.
 
         for (const item of newProductsBatch) {
             console.log(`\n📤 Processing: ${item.name}`);
@@ -83,45 +89,62 @@ async function addBatch() {
                 continue;
             }
 
-            // Upload Image
+            // 1. Upload to Cloudinary
             const uploadResult = await cloudinary.uploader.upload(item.imagePath, {
                 folder: 'girly-shop/products',
                 public_id: item.publicId,
                 overwrite: true
             });
-            console.log(`   ✅ Image uploaded: ${uploadResult.secure_url}`);
+            console.log(`   ✅ Cloudinary: ${uploadResult.secure_url}`);
 
-            // Create Product
-            maxId++;
-            const newProduct = {
-                id: maxId,
-                name: item.name,
-                price: item.price,
-                image: uploadResult.secure_url,
-                category: item.category,
-                rating: item.rating,
-                reviews: item.reviews,
-                isNew: true,
-                stock: 50,
-                brand: item.brand,
-                volume: item.volume,
-                description: item.description,
-                howToUse: ["Apply as directed.", "Suitable for daily use."],
-                ingredients: "", // Simplified
-                highlights: item.highlights
-            };
+            // 2. Insert into PostgreSQL
+            const query = `
+                INSERT INTO products (
+                    name, price, image, category, rating, reviews, 
+                    is_new, stock, brand, volume, description, 
+                    highlights, how_to_use, ingredients
+                )
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+                RETURNING id;
+            `;
 
-            productsData.push(newProduct);
-            console.log(`   🎉 Added ID: ${maxId}`);
+            // Default values
+            const howToUse = ["Apply as directed.", "Suitable for daily use."];
+            const ingredients = "";
+            const stock = 50;
+            const isNew = true;
+
+            const values = [
+                item.name,
+                item.price,
+                uploadResult.secure_url,
+                item.category,
+                item.rating,
+                item.reviews,
+                isNew,
+                stock,
+                item.brand,
+                item.volume,
+                item.description,
+                JSON.stringify(item.highlights), // Store array as JSON string
+                JSON.stringify(howToUse),
+                ingredients
+            ];
+
+            const res = await client.query(query, values);
+            console.log(`   🎉 Database: Inserted Product ID ${res.rows[0].id}`);
         }
 
-        // Save All
-        fs.writeFileSync(productsPath, JSON.stringify(productsData, null, 2));
-        console.log('\n✅ Batch completed successfully!');
+        await client.query('COMMIT');
+        console.log('\n✅ All products added successfully!');
 
     } catch (error) {
+        await client.query('ROLLBACK');
         console.error('❌ Batch Error:', error);
+    } finally {
+        client.release();
+        pool.end();
     }
 }
 
-addBatch();
+addProductBatch();

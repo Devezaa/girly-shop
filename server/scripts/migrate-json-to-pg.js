@@ -108,10 +108,16 @@ const migrateData = async () => {
             const idVal = parseInt(user.id.replace('u', ''));
 
             await client.query(`
-                INSERT INTO users (username, email, password, role, avatar, wishlist)
-                VALUES ($1, $2, $3, $4, $5, $6)
-                ON CONFLICT (email) DO NOTHING
-             `, [user.username, user.email, user.password, user.role, user.avatar, JSON.stringify(user.wishlist)]);
+                INSERT INTO users (id, username, email, password, role, avatar, wishlist)
+                VALUES ($1, $2, $3, $4, $5, $6, $7)
+                ON CONFLICT (id) DO UPDATE SET
+                    username = EXCLUDED.username,
+                    email = EXCLUDED.email,
+                    password = EXCLUDED.password,
+                    role = EXCLUDED.role,
+                    avatar = EXCLUDED.avatar,
+                    wishlist = EXCLUDED.wishlist
+             `, [idVal, user.username, user.email, user.password, user.role, user.avatar, JSON.stringify(user.wishlist)]);
         }
         console.log(`Migrated ${users.length} users.`);
 
@@ -145,9 +151,12 @@ const migrateData = async () => {
                 product.ingredients || ""
             ]);
 
-            // Adjust sequence to max id
-            await client.query(`SELECT setval('products_id_seq', (SELECT MAX(id) FROM products))`);
         }
+        // Adjust sequence to max id (Performance fix: Run ONCE after loop)
+        await client.query(`SELECT setval('products_id_seq', (SELECT MAX(id) FROM products))`);
+        // Also fix users sequence just in case
+        await client.query(`SELECT setval('users_id_seq', (SELECT MAX(id) FROM users))`);
+
         console.log(`Migrated ${products.length} products.`);
 
         // Migrate Banners
@@ -167,7 +176,15 @@ const migrateData = async () => {
             await client.query(`
                 INSERT INTO vouchers (id, code, title, subtitle, discount_amount, type, display_discount, valid, color, text_color)
                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-                ON CONFLICT (code) DO NOTHING
+                ON CONFLICT (code) DO UPDATE SET
+                    title = EXCLUDED.title,
+                    subtitle = EXCLUDED.subtitle,
+                    discount_amount = EXCLUDED.discount_amount,
+                    type = EXCLUDED.type,
+                    display_discount = EXCLUDED.display_discount,
+                    valid = EXCLUDED.valid,
+                    color = EXCLUDED.color,
+                    text_color = EXCLUDED.text_color
             `, [
                 voucher.id,
                 voucher.code,

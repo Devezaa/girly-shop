@@ -2,14 +2,15 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingBag, Heart, Sparkles, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "../context/CartContext";
 
 /**
  * Header Component
  * ----------------
- * Props:
- *  - cartCount: number (optional) => total items in cart
+ * Connects directly to CartContext for badge count.
  */
-export default function Header({ cartCount = 0 }) {
+export default function Header() {
+  const { totalItems: cartCount } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -29,12 +30,12 @@ export default function Header({ cartCount = 0 }) {
     >
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-pink-500" />
           <span className="font-bold text-lg text-pink-600 tracking-tight">
             Lovely Boutique
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
@@ -44,12 +45,12 @@ export default function Header({ cartCount = 0 }) {
           <Link to="/shop" className="hover:text-pink-600 transition">
             Shop
           </Link>
-          <a href="#about" className="hover:text-pink-600 transition">
+          <Link to="/about" className="hover:text-pink-600 transition">
             About
-          </a>
-          <a href="#contact" className="hover:text-pink-600 transition">
+          </Link>
+          <Link to="/contact" className="hover:text-pink-600 transition">
             Contact
-          </a>
+          </Link>
         </nav>
 
         {/* Icons */}
@@ -99,34 +100,34 @@ export default function Header({ cartCount = 0 }) {
             className="md:hidden bg-white border-t border-pink-100 shadow-sm"
           >
             <nav className="flex flex-col px-6 py-3 space-y-3 text-sm">
-              <a
-                href="#home"
+              <Link
+                to="/home"
                 onClick={() => setMenuOpen(false)}
                 className="hover:text-pink-600 transition"
               >
                 Home
-              </a>
-              <a
-                href="#shop"
+              </Link>
+              <Link
+                to="/shop"
                 onClick={() => setMenuOpen(false)}
                 className="hover:text-pink-600 transition"
               >
                 Shop
-              </a>
-              <a
-                href="#about"
+              </Link>
+              <Link
+                to="/about"
                 onClick={() => setMenuOpen(false)}
                 className="hover:text-pink-600 transition"
               >
                 About
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                to="/contact"
                 onClick={() => setMenuOpen(false)}
                 className="hover:text-pink-600 transition"
               >
                 Contact
-              </a>
+              </Link>
             </nav>
           </motion.div>
         )}

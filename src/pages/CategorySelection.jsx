@@ -71,7 +71,7 @@ export default function CategorySelection() {
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="flex-1 my-10"
             >
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {categories.map((cat, index) => {
                         const isSelected = selected.includes(cat.id);
                         return (

@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { API_BASE_URL } from '../config';
 import { ArrowLeft, Heart, ShoppingBag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,16 @@ export default function Wishlist() {
 
   // 🔄 Fetch Products to match IDs
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/products`)
+    if (wishlist.size === 0) {
+      setProducts([]);
+      setLoading(false);
+      return;
+    }
+
+    const ids = Array.from(wishlist).join(',');
+    setLoading(true);
+
+    fetch(`${API_BASE_URL}/api/products?ids=${ids}`)
       .then(res => res.json())
       .then(data => {
         setProducts(data);
@@ -27,14 +36,12 @@ export default function Wishlist() {
         console.error("Failed to fetch products for wishlist:", err);
         setLoading(false);
       });
-  }, []);
+  }, [wishlist]); // Re-fetch when wishlist changes
 
-  // 🔍 Filter products that are in the wishlist Set
-  const wishedProducts = useMemo(() => {
-    return products.filter((p) => wishlist.has(String(p.id)));
-  }, [wishlist, products]);
-
-  const isEmpty = wishedProducts.length === 0;
+  // 🔍 Filter products (Safety check + Convert Set to Array logic replaced by API)
+  // We can just use 'products' directly now since API returns exactly what we asked for.
+  const wishedProducts = products;
+  const isEmpty = wishlist.size === 0;
 
   return (
     <div className="min-h-screen relative font-sans overflow-hidden">

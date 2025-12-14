@@ -4,14 +4,14 @@ const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 const path = require('path');
 
+const db = require('./db');
+
 // Configure Cloudinary
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
-
-const bannersPath = path.join(__dirname, 'data/banners.json');
 
 const newBanners = [
     {
@@ -34,13 +34,6 @@ async function addBannersBatch() {
     try {
         console.log('🚀 Starting Banner Addition...');
 
-        let bannersData = [];
-        if (fs.existsSync(bannersPath)) {
-            bannersData = JSON.parse(fs.readFileSync(bannersPath, 'utf8'));
-        }
-
-        let maxId = bannersData.reduce((max, b) => (b.id > max ? b.id : max), 0);
-
         for (const item of newBanners) {
             console.log(`\n📤 Processing Banner: ${item.title}`);
 
@@ -57,27 +50,29 @@ async function addBannersBatch() {
             });
             console.log(`   ✅ Image uploaded: ${uploadResult.secure_url}`);
 
-            // Create Banner
-            maxId++;
-            const newBanner = {
-                id: maxId,
-                src: uploadResult.secure_url,
-                title: item.title,
-                subtitle: item.subtitle,
-                btnText: item.btnText
-            };
+            // Insert into PostgreSQL
+            // We use a big random ID or let Serial handle it if we changed schema, but schema had BIGINT PRIMARY KEY.
+            // Let's generate a timestamp-based ID to be safe or just let the DB handle it if it was SERIAL.
+            // Looking at migration script: "id BIGINT PRIMARY KEY". It's not SERIAL in the CREATE TABLE provided earlier (migrate-json-to-pg.js:58).
+            // So we must provide an ID.
+            const newId = Date.now() + Math.floor(Math.random() * 1000);
 
-            // Add to beginning of array so they show first
-            bannersData.unshift(newBanner);
-            console.log(`   🎉 Added banner ID: ${maxId}`);
+            const res = await db.query(
+                `INSERT INTO banners (id, src, title, subtitle, btn_text)
+                 VALUES ($1, $2, $3, $4, $5)
+                 RETURNING id`,
+                [newId, uploadResult.secure_url, item.title, item.subtitle, item.btnText]
+            );
+
+            console.log(`   🎉 Added banner to DB with ID: ${res.rows[0].id}`);
         }
 
-        // Save All
-        fs.writeFileSync(bannersPath, JSON.stringify(bannersData, null, 2));
-        console.log('\n✅ All banners saved successfully!');
+        console.log('\n✅ All banners processed successfully!');
 
     } catch (error) {
         console.error('❌ Banner Batch Error:', error);
+    } finally {
+        process.exit();
     }
 }
 

@@ -24,8 +24,16 @@
   /* Peach */
   --color-text: #5A3E36;
   /* Dark Brownish Text */
-  --color-accent: #6B9C96;
   /* Teal/Green accent from logo */
+  --color-accent: #6B9C96;
+
+  /* 🌸 Missing Variables Added */
+  --color-pink: #ec4899;
+  /* Pink 500 */
+  --color-rose: #be185d;
+  /* Pink 700 */
+  --color-soft: #fff1f2;
+  /* Rose 50 */
 }
 
 /* 🩰 Global Base */

@@ -11,15 +11,20 @@ export default function Welcome() {
     const backgroundX = useTransform(mouseX, (value) => value * -1);
     const backgroundY = useTransform(mouseY, (value) => value * -1);
 
-    useEffect(() => {
-        if (window.innerWidth <= 768) return;
+    const [imageLoaded, setImageLoaded] = React.useState(false);
 
+    useEffect(() => {
+        // Initial check only, but listen for resize to re-enable if needed
         const handleMouseMove = (e) => {
-            mouseX.set((e.clientX / window.innerWidth) * 20);
-            mouseY.set((e.clientY / window.innerHeight) * 20);
+            if (window.innerWidth > 768) {
+                mouseX.set((e.clientX / window.innerWidth) * 20);
+                mouseY.set((e.clientY / window.innerHeight) * 20);
+            }
         };
 
+        // Add handler regardless, check width INSIDE to allow dynamic resizing
         window.addEventListener("mousemove", handleMouseMove);
+
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, [mouseX, mouseY]);
 
@@ -31,13 +36,15 @@ export default function Welcome() {
                 <motion.div
                     className="absolute inset-0"
                     style={{ x: backgroundX, y: backgroundY }}
-                    animate={{ scale: 1.1 }}
-                    transition={{ type: "tween", ease: "linear", duration: 0.2 }}
+                    initial={{ scale: 1.1, opacity: 0 }}
+                    animate={{ scale: 1.1, opacity: imageLoaded ? 1 : 0 }}
+                    transition={{ opacity: { duration: 1 }, scale: { type: "tween", ease: "linear", duration: 0.2 } }}
                 >
                     <img
                         src="https://res.cloudinary.com/daqrcfqrt/image/upload/v1765713211/girly-shop/ui/login-premium-products_wuyeda.jpg"
-                        alt="Background"
+                        alt="Background of luxury cosmetic products"
                         className="w-full h-full object-cover opacity-60"
+                        onLoad={() => setImageLoaded(true)}
                     />
                 </motion.div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a0b0b] via-[#1a0b0b]/80 to-transparent"></div>

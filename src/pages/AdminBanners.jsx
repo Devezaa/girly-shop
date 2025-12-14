@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { API_BASE_URL } from '../config';
-import { Save, Trash2, Plus, Image as ImageIcon, Loader2, Upload } from "lucide-react";
+import { Save, Trash2, Plus, Image as ImageIcon, Loader2, Upload, ChevronUp, ChevronDown } from "lucide-react";
 
 export default function AdminBanners() {
     const [banners, setBanners] = useState([]);
@@ -28,6 +28,20 @@ export default function AdminBanners() {
             const newBanners = banners.filter((_, i) => i !== index);
             setBanners(newBanners);
         }
+    };
+
+    const handleMove = (index, direction) => {
+        const newBanners = [...banners];
+        const targetIndex = index + direction;
+
+        if (targetIndex < 0 || targetIndex >= newBanners.length) return;
+
+        // Swap items
+        const temp = newBanners[index];
+        newBanners[index] = newBanners[targetIndex];
+        newBanners[targetIndex] = temp;
+
+        setBanners(newBanners);
     };
 
     const handleAdd = () => {
@@ -66,6 +80,13 @@ export default function AdminBanners() {
     };
 
     const handleSave = () => {
+        // Validation Logic
+        const isInvalid = banners.some(b => !b.src || !b.title.trim());
+        if (isInvalid) {
+            alert("Please ensure all banners have both an Image and a Title before saving.");
+            return;
+        }
+
         fetch(`${API_BASE_URL}/api/banners`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -101,6 +122,26 @@ export default function AdminBanners() {
             <div className="max-w-5xl mx-auto px-6 py-8 space-y-6">
                 {banners.map((banner, index) => (
                     <div key={banner.id || index} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row gap-6 items-start group">
+
+                        {/* Order Controls */}
+                        <div className="flex flex-col gap-1 pt-2">
+                            <button
+                                onClick={() => handleMove(index, -1)}
+                                disabled={index === 0}
+                                className="p-1 text-gray-400 hover:text-gray-800 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-gray-100 rounded"
+                            >
+                                <ChevronUp size={20} />
+                            </button>
+                            <span className="text-xs font-bold text-gray-400 text-center">{index + 1}</span>
+                            <button
+                                onClick={() => handleMove(index, 1)}
+                                disabled={index === banners.length - 1}
+                                className="p-1 text-gray-400 hover:text-gray-800 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-gray-100 rounded"
+                            >
+                                <ChevronDown size={20} />
+                            </button>
+                        </div>
+
                         {/* Image Preview / Upload */}
                         <div className="w-full md:w-1/3 aspect-video bg-gray-100 rounded-xl overflow-hidden relative cursor-pointer border-2 border-transparent hover:border-pink-300 transition-colors">
                             {banner.src ? (
@@ -129,12 +170,13 @@ export default function AdminBanners() {
                         <div className="flex-1 w-full space-y-4">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label className="text-xs font-bold text-gray-500 uppercase">Title</label>
+                                    <label className="text-xs font-bold text-gray-500 uppercase">Title <span className="text-red-500">*</span></label>
                                     <input
                                         type="text"
                                         value={banner.title}
                                         onChange={(e) => handleChange(index, 'title', e.target.value)}
-                                        className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pink-300 outline-none font-bold"
+                                        className={`w-full mt-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pink-300 outline-none font-bold ${!banner.title.trim() ? 'border-red-300' : 'border-gray-200'}`}
+                                        placeholder="Banner Title"
                                     />
                                 </div>
                                 <div>

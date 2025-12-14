@@ -11,7 +11,17 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-const promosPath = path.join(__dirname, 'data/promotions.json');
+require('dotenv').config({ path: './.env' });
+const cloudinary = require('cloudinary').v2;
+const fs = require('fs');
+const db = require('./db');
+
+// Configure Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 const newPromos = [
     {
@@ -46,14 +56,7 @@ const newPromos = [
 
 async function addPromos() {
     try {
-        console.log('🚀 Starting Promotion Images Addition...');
-
-        let promoData = [];
-        if (fs.existsSync(promosPath)) {
-            promoData = JSON.parse(fs.readFileSync(promosPath, 'utf8'));
-        }
-
-        let maxId = promoData.reduce((max, p) => (p.id > max ? p.id : max), 0);
+        console.log('🚀 Starting Promotion Images Addition to DB...');
 
         for (const item of newPromos) {
             console.log(`\n📤 Processing: ${item.title}`);
@@ -63,7 +66,7 @@ async function addPromos() {
                 continue;
             }
 
-            // Upload Image
+            // 1. Upload Image
             const uploadResult = await cloudinary.uploader.upload(item.imagePath, {
                 folder: 'girly-shop/promotions',
                 public_id: item.publicId,
@@ -71,27 +74,39 @@ async function addPromos() {
             });
             console.log(`   ✅ Image uploaded: ${uploadResult.secure_url}`);
 
-            // Create Promo Entry
-            maxId++;
-            const newPromo = {
-                id: maxId,
-                title: item.title,
-                subtitle: item.subtitle,
-                image: uploadResult.secure_url,
-                type: item.type,
-                dateAdded: new Date().toISOString()
-            };
+            // 2. Insert into PostgreSQL (using banners table as fallback for promotions)
+            // Generate a unique ID (Schema uses BIGINT, so timestamp is safe)
+            const newId = Date.now() + Math.floor(Math.random() * 1000);
 
-            promoData.push(newPromo);
-            console.log(`   🎉 Added ID: ${maxId}`);
+            // Mapping 'promotions' to 'banners' table structure:
+            // src <- image
+            // title <- title
+            // subtitle <- subtitle
+            // alt <- title
+            // btn_text <- "View Details" (default)
+            const res = await db.query(
+                `INSERT INTO banners (id, src, alt, title, subtitle, btn_text)
+                 VALUES ($1, $2, $3, $4, $5, $6)
+                 RETURNING id`,
+                [
+                    newId,
+                    uploadResult.secure_url,
+                    item.title, // alt
+                    item.title,
+                    item.subtitle,
+                    "View Details" // default btn_text
+                ]
+            );
+
+            console.log(`   🎉 Added promotion to DB (banners table) with ID: ${res.rows[0].id}`);
         }
 
-        // Save All
-        fs.writeFileSync(promosPath, JSON.stringify(promoData, null, 2));
-        console.log('\n✅ Promotion images saved successfully!');
+        console.log('\n✅ All promotion images processed successfully!');
 
     } catch (error) {
         console.error('❌ Error:', error);
+    } finally {
+        process.exit();
     }
 }
 

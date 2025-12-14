@@ -1,12 +1,13 @@
-import { useEffect, useState, useMemo } from "react";
+import { createContext, useContext, useEffect, useState, useMemo } from "react";
 
 /**
- * 🌸 useCart Hook — Lovely Boutique
+ * 🌸 Cart Context — Lovely Boutique
  * ---------------------------------
- * Reusable shopping cart hook with full persistence and helper functions.
- * Perfect for small or independent components.
+ * Global state for the shopping cart.
  */
-export default function useCart() {
+const CartContext = createContext();
+
+export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
   /** 🩷 Load cart from localStorage */
@@ -64,14 +65,33 @@ export default function useCart() {
   /** 🛒 Check if product exists */
   const inCart = (id) => cart.some((p) => p.id === id);
 
-  return {
-    cart,
-    addToCart,
-    removeFromCart,
-    updateQty,
-    clearCart,
-    totalItems,
-    totalPrice,
-    inCart,
-  };
+  return (
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        updateQty,
+        clearCart,
+        totalItems,
+        totalPrice,
+        inCart,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+}
+
+/**
+ * 🌸 useCart Hook
+ * ---------------------------------
+ * Consumes the global CartContext.
+ */
+export default function useCart() {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error("useCart must be used within a CartProvider 🌸");
+  }
+  return context;
 }

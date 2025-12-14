@@ -1,19 +1,39 @@
-// 🌸 Lovely Boutique — Product Data
-// ---------------------------------
-// Sample mock product data for display in the shop grid.
+/**
+ * 🌸 Product Data Type Definition
+ * @typedef {Object} Product
+ * @property {string} id - Unique identifier
+ * @property {string} name - Product name
+ * @property {string} category - Category ID
+ * @property {number} price - Current price
+ * @property {number} [oldPrice] - Original price (for discount display)
+ * @property {number} rating - Product rating (0-5)
+ * @property {string} image - Image URL
+ * @property {string} badge - Badge text (e.g., "Hot", "New")
+ * @property {string} description - Short description
+ * @property {number} [stock] - Available stock count
+ */
 
+/**
+ * 🌸 Lovely Boutique — Product Data
+ * ---------------------------------
+ * Sample mock product data for display in the shop grid.
+ *
+ * @type {Product[]}
+ */
 export const PRODUCTS = [
   {
     id: "p1",
     name: "Silky Matte Lipstick 💄",
     category: "makeup",
     price: 9.99,
+    oldPrice: 12.99, // 🏷️ Discounted
     rating: 4.8,
     image:
       "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&auto=format&fit=crop",
     badge: "Hot",
     description:
-      "លេបស្ទីកទន់ស្អាត មានពណ៌ផ្កាឈូកស្រាល បន្ថែមភាពទាក់ទាញដល់មុខស្អាតៗ 💋",
+      "A soft, beautiful matte lipstick in light pink, adding a charming touch to your lovely look 💋",
+    stock: 15,
   },
   {
     id: "p2",
@@ -25,7 +45,8 @@ export const PRODUCTS = [
       "https://images.unsplash.com/photo-1520975918318-3e1c3b219b1d?w=600&auto=format&fit=crop",
     badge: "New",
     description:
-      "សម្លៀកបំពាក់ទាន់សម័យ ស្អាតសម្រាប់រដូវក្តៅ ងាយស្រួល និងស្រីស្អាតជាប្រចាំ 🌸",
+      "A stylish and beautiful summer dress, comfortable and perfect for everyday elegance 🌸",
+    stock: 50,
   },
   {
     id: "p3",
@@ -37,19 +58,22 @@ export const PRODUCTS = [
       "https://images.unsplash.com/photo-1585386959984-a4155223168a?w=600&auto=format&fit=crop",
     badge: "Best Seller",
     description:
-      "គ្រឿងអលង្ការស្រស់ស្អាតដែលបន្ថែមភាព elegant និង luxurious ទៅលើសម្លៀកបំពាក់របស់អ្នក 💖",
+      "Beautiful jewelry that adds a touch of elegance and luxury to your outfit 💖",
+    stock: 3, // ⚠️ Low Stock
   },
   {
     id: "p4",
     name: "Gentle Rose Skincare Set 🧴",
     category: "skincare",
     price: 42.0,
+    oldPrice: 55.0, // 🏷️ Discounted
     rating: 4.9,
     image:
       "https://images.unsplash.com/photo-1615397349754-6f1a3a81e1f1?w=600&auto=format&fit=crop",
     badge: "Popular",
     description:
-      "សំណុំផលិតផលថែរក្សាស្បែកផ្កាឈូក បន្ថែមសំណើម និងភាពទន់រលោងសម្រាប់ស្បែក។ 🌷",
+      "A rose-infused skincare set that adds moisture and leaves your skin soft and glowing. 🌷",
+    stock: 20,
   },
   {
     id: "p5",
@@ -61,7 +85,8 @@ export const PRODUCTS = [
       "https://images.unsplash.com/photo-1585386959984-cd8b9c37b0f4?w=600&auto=format&fit=crop",
     badge: "Limited",
     description:
-      "ក្លិនទន់ៗបែបផ្កាឈូក សមស្របសម្រាប់ស្ត្រីដែលចូលចិត្តភាពទន់ភ្លន់និង feminine ✨",
+      "A soft, floral rose scent, perfect for women who love a gentle and feminine touch ✨",
+    stock: 0, // ❌ Out of Stock
   },
   {
     id: "p6",
@@ -73,19 +98,22 @@ export const PRODUCTS = [
       "https://images.unsplash.com/photo-1600180758890-6a9e3b1ce3c5?w=600&auto=format&fit=crop",
     badge: "Trending",
     description:
-      "ប្លាសផ្កាឈូកមានពណ៌ស្អាតទន់ៗ ងាយលាប និងធ្វើឲ្យមុខស្រស់ស្អាតជាប្រចាំ។ 💖",
+      "A soft pink blush with beautiful color, easy to apply for a fresh, daily glow. 💖",
+    stock: 25,
   },
   {
     id: "p7",
     name: "Luxury Hair Serum 💆‍♀️",
     category: "haircare",
     price: 22.5,
+    oldPrice: 28.0, // 🏷️ Discounted
     rating: 4.8,
     image:
       "https://images.unsplash.com/photo-1586953208448-8f0db8cf4f74?w=600&auto=format&fit=crop",
     badge: "New Arrival",
     description:
-      "សេរ៉ូមថែសក់ធ្វើឲ្យសក់ទន់រលោង មានក្លិនផ្កាឈូកស្រស់ស្អាត។ 🌺",
+      "A hair serum that makes your hair soft and shiny, with a beautiful floral scent. 🌺",
+    stock: 12,
   },
   {
     id: "p8",
@@ -97,6 +125,7 @@ export const PRODUCTS = [
       "https://images.unsplash.com/photo-1618354691465-9aa3c72e8d4d?w=600&auto=format&fit=crop",
     badge: "Featured",
     description:
-      "កាបូបដៃបែប classic មានសោភ័ណភាព និងសមស្របសម្រាប់គ្រប់ឱកាស។ 💼",
+      "A classic handbag with great aesthetics, suitable for every occasion. 💼",
+    stock: 4, // ⚠️ Low Stock
   },
 ];

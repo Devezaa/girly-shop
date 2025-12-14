@@ -1,12 +1,13 @@
-import { useEffect, useState, useMemo } from "react";
+import { createContext, useContext, useEffect, useState, useMemo } from "react";
 
 /**
- * 🌷 useWishlist Hook — Lovely Boutique
+ * 🌷 Wishlist Context — Lovely Boutique
  * -------------------------------------
- * Custom hook for managing user's wishlist.
- * Persistent, lightweight, and reusable.
+ * Global state for managing user's wishlist.
  */
-export default function useWishlist() {
+const WishlistContext = createContext();
+
+export function WishlistProvider({ children }) {
   const [wishlist, setWishlist] = useState(new Set());
 
   /** 🩷 Load wishlist from localStorage on mount */
@@ -55,12 +56,31 @@ export default function useWishlist() {
   /** 💕 Check if a product is wished */
   const isWished = (id) => wishlist.has(id);
 
-  return {
-    wishlist,
-    toggleWishlist,
-    removeFromWishlist,
-    clearWishlist,
-    wishlistCount,
-    isWished,
-  };
+  return (
+    <WishlistContext.Provider
+      value={{
+        wishlist,
+        toggleWishlist,
+        removeFromWishlist,
+        clearWishlist,
+        wishlistCount,
+        isWished,
+      }}
+    >
+      {children}
+    </WishlistContext.Provider>
+  );
+}
+
+/**
+ * 🌷 useWishlist Hook
+ * -------------------
+ * Consumes the global WishlistContext.
+ */
+export default function useWishlist() {
+  const context = useContext(WishlistContext);
+  if (!context) {
+    throw new Error("useWishlist must be used within a WishlistProvider 🌸");
+  }
+  return context;
 }

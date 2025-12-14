@@ -34,7 +34,7 @@ export default function BottomNav() {
                         key={item.label}
                         to={item.to}
                         className={({ isActive }) => `
-              relative flex flex-col items-center gap-1 p-2 transition-colors duration-300
+              relative flex flex-col items-center gap-1 p-2 transition-all duration-300 active:scale-90
               ${isActive ? "text-pink-500" : "text-gray-400 hover:text-gray-600"}
             `}
                     >

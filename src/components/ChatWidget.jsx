@@ -35,7 +35,10 @@ export default function ChatWidget() {
         });
 
         socket.on('receive_message', (data) => {
-            setMessages((prev) => [...prev, data]);
+            setMessages((prev) => {
+                if (prev.some(msg => msg.id === data.id)) return prev;
+                return [...prev, data];
+            });
         });
 
         socket.on('message_updated', (data) => {
@@ -66,7 +69,16 @@ export default function ChatWidget() {
             time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
 
-        socket.emit('send_message', msgData);
+        // Optimistic Update
+        setMessages((prev) => [...prev, msgData]);
+
+        try {
+            socket.emit('send_message', msgData);
+        } catch (error) {
+            console.error("Socket emit failed", error);
+            // Optional: Mark message as failed?
+        }
+
         setInputValue("");
     };
 
@@ -132,10 +144,16 @@ export default function ChatWidget() {
                     type: "media",
                     time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                 };
+
+                // Optimistic Update (Media)
+                setMessages((prev) => [...prev, msgData]);
                 socket.emit('send_message', msgData);
+            } else {
+                alert("Upload failed: " + (data.message || "Unknown error"));
             }
         } catch (err) {
             console.error("Upload failed", err);
+            alert("Failed to upload file. Please check your connection.");
         }
     };
 

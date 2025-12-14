@@ -13,15 +13,22 @@ export function CartProvider({ children }) {
   const [appliedVoucher, setAppliedVoucher] = useState(null); // { code, discountAmount, type }
   const [isInitialized, setIsInitialized] = useState(false);
   const [availableVouchers, setAvailableVouchers] = useState([]); // 🎟️ Dynamic Vouchers
+  const [isCartOpen, setIsCartOpen] = useState(false); // 🛒 Drawer State
+
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
 
   /** ✅ Load from localStorage on first render */
   useEffect(() => {
     try {
-      const saved = JSON.parse(localStorage.getItem("girly_cart") || "[]");
-      setCart(saved);
+      const savedCart = JSON.parse(localStorage.getItem("girly_cart") || "[]");
+      const savedVoucher = JSON.parse(localStorage.getItem("girly_voucher") || "null");
+      setCart(savedCart);
+      setAppliedVoucher(savedVoucher);
     } catch {
       console.warn("Failed to load saved cart data.");
       setCart([]);
+      setAppliedVoucher(null);
     } finally {
       setIsInitialized(true);
     }
@@ -41,10 +48,11 @@ export function CartProvider({ children }) {
 
     try {
       localStorage.setItem("girly_cart", JSON.stringify(cart));
+      localStorage.setItem("girly_voucher", JSON.stringify(appliedVoucher));
     } catch (err) {
       console.error("Failed to save cart:", err);
     }
-  }, [cart, isInitialized]);
+  }, [cart, appliedVoucher, isInitialized]);
 
   /** 🛒 Add item to cart */
   const addToCart = (product) => {
@@ -73,7 +81,17 @@ export function CartProvider({ children }) {
   };
 
   /** 🧹 Clear cart */
-  const clearCart = () => setCart([]);
+  const clearCart = () => {
+    setCart([]);
+    setAppliedVoucher(null); // Optional: clear voucher too? Or keep it? Usually clearing cart clears voucher context.
+    // Let's keep voucher for now, it's safer unless user explicitly removes it or logic dictates otherwise.
+    // Actually, usually clearing cart (checkout success) should clear voucher.
+    // But if just clearing items, maybe keep it? Let's check `clearCart` usage.
+    // If it's used for logout manually, we might want to clear.
+    // For now, let's play it safe and NOT clear voucher automatically unless explicitly requested, 
+    // to match standard e-commerce "persistence" behavior. 
+    // Wait, if cart is empty, discount shouldn't apply financially, but the code remains "applied" ready for next item.
+  };
 
   /** 🩷 Helper — Get product quantity */
   const getItemQty = (id) => {
@@ -111,9 +129,14 @@ export function CartProvider({ children }) {
       return { success: false, message: "Invalid voucher code" };
     }
 
-    // Check Date Validity (Optional Enhancement)
-    // const now = new Date();
-    // if (new Date(voucher.validUntil) < now) return { success: false, message: "Voucher expired" };
+    // Check Date Validity (Optional Enhancement - now possible with ISO dates in vouchers)
+    if (voucher.expiryDate) {
+      const now = new Date();
+      const expiry = new Date(voucher.expiryDate);
+      if (expiry < now) {
+        return { success: false, message: "Voucher expired" };
+      }
+    }
 
     setAppliedVoucher(voucher);
     return { success: true, message: `Voucher applied! ${voucher.displayDiscount} OFF` };
@@ -138,7 +161,10 @@ export function CartProvider({ children }) {
     finalTotal,
     appliedVoucher,
     applyVoucher,
-    removeVoucher
+    removeVoucher,
+    isCartOpen,
+    openCart,
+    closeCart
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

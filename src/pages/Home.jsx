@@ -4,7 +4,6 @@ import Background from "../components/Background";
 import Card from "../components/Card";
 import HeroSlider from "../components/HeroSlider";
 import CampaignGrid from "../components/CampaignGrid";
-import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -31,29 +30,31 @@ export default function Home() {
           </motion.h2>
 
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
-            <Card
-              title="Trendy Fashion"
-              icon={<ShoppingBag className="w-5 h-5 text-pink-500" />}
-            >
-              We bring the latest and most stylish clothing
-              designed to make you shine in every occasion.
-            </Card>
-
-            <Card
-              title="Makeup & Skincare"
-              icon={<Sparkles className="w-5 h-5 text-pink-500" />}
-            >
-              Discover our premium beauty products that enhance
-              your natural glow and confidence every day.
-            </Card>
-
-            <Card
-              title="Made With Love"
-              icon={<Heart className="w-5 h-5 text-pink-500" />}
-            >
-              Every product is chosen with care to make you
-              feel loved, confident, and truly beautiful 💖
-            </Card>
+            {[
+              {
+                title: "Trendy Fashion",
+                icon: <ShoppingBag className="w-5 h-5 text-pink-500" />,
+                text: "We bring the latest and most stylish clothing designed to make you shine in every occasion."
+              },
+              {
+                title: "Makeup & Skincare",
+                icon: <Sparkles className="w-5 h-5 text-pink-500" />,
+                text: "Discover our premium beauty products that enhance your natural glow and confidence every day."
+              },
+              {
+                title: "Made With Love",
+                icon: <Heart className="w-5 h-5 text-pink-500" />,
+                text: "Every product is chosen with care to make you feel loved, confident, and truly beautiful 💖"
+              }
+            ].map((feature, idx) => (
+              <Card
+                key={idx}
+                title={feature.title}
+                icon={feature.icon}
+              >
+                {feature.text}
+              </Card>
+            ))}
           </div>
         </section>
 

@@ -1,10 +1,19 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Heart, Sparkles, Star } from "lucide-react";
 import Background from "../components/Background";
 import Card from "../components/Card";
 
 const About = () => {
+  // 🌱 SEO: Title & Description
+  useEffect(() => {
+    document.title = "About Us | Lovely Boutique";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Learn more about Lovely Boutique – your destination for modern beauty, fashion, and self-love. 🌸");
+    }
+  }, []);
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-gradient-to-b from-pink-50 via-white to-rose-50">
       {/* Lightweight Animated Background */}
@@ -41,7 +50,7 @@ const About = () => {
 
         {/* Cards Section */}
         <div
-          className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-y-8 sm:gap-6"
           aria-label="Lovely Boutique Highlights"
         >
           <Card

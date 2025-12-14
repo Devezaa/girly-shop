@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { API_BASE_URL } from '../config';
-import { Plus, Edit2, Trash2, Search, Save, X, MoreHorizontal, Package, TrendingUp, AlertCircle, Tag, DollarSign } from "lucide-react";
+import { Plus, Edit2, Trash2, Search, Save, X, MoreHorizontal, Package, TrendingUp, AlertCircle, Tag, DollarSign, ChevronLeft, ChevronRight, ArrowUpDown } from "lucide-react";
 import AdminProductForm from "../components/AdminProductForm";
 
 export default function AdminProducts() {
@@ -12,6 +12,11 @@ export default function AdminProducts() {
     // 🏷️ Inline Edit State
     const [inlineEditId, setInlineEditId] = useState(null);
     const [inlinePrice, setInlinePrice] = useState("");
+
+    // 📄 Pagination & Sort State
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(10);
+    const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
 
     // 🔄 Fetch Products
     const fetchProducts = () => {
@@ -25,7 +30,6 @@ export default function AdminProducts() {
         fetchProducts();
     }, []);
 
-    // ➕ Handle Create/Update via Modal
     const handleSave = (formData) => {
         const method = editingProduct ? "PUT" : "POST";
         const url = editingProduct
@@ -49,7 +53,6 @@ export default function AdminProducts() {
             });
     };
 
-    // 🗑️ Handle Delete
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this product?")) {
             await fetch(`${API_BASE_URL}/api/products/${id}`, { method: "DELETE" })
@@ -60,7 +63,6 @@ export default function AdminProducts() {
         }
     };
 
-    // ⚡ Inline Price Editing Handlers
     const startInlineEdit = (product) => {
         setInlineEditId(product.id);
         setInlinePrice(product.price);
@@ -86,9 +88,49 @@ export default function AdminProducts() {
             });
     };
 
-    const filteredProducts = products.filter(p =>
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (p.brand && p.brand.toLowerCase().includes(searchQuery.toLowerCase()))
+    const handleSort = (key) => {
+        let direction = 'asc';
+        if (sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
+        }
+        setSortConfig({ key, direction });
+    };
+
+    // 🔄 Filter, Sort, & Paginate Logic
+    const processedProducts = useMemo(() => {
+        let items = products.filter(p =>
+            p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            (p.brand && p.brand.toLowerCase().includes(searchQuery.toLowerCase()))
+        );
+
+        if (sortConfig.key) {
+            items.sort((a, b) => {
+                let aVal = a[sortConfig.key];
+                let bVal = b[sortConfig.key];
+
+                // Handle numbers (price, stock)
+                if (sortConfig.key === 'price' || sortConfig.key === 'stock') {
+                    aVal = parseFloat(aVal) || 0;
+                    bVal = parseFloat(bVal) || 0;
+                } else {
+                    // Strings (case insensitive)
+                    aVal = (aVal || '').toString().toLowerCase();
+                    bVal = (bVal || '').toString().toLowerCase();
+                }
+
+                if (aVal < bVal) return sortConfig.direction === 'asc' ? -1 : 1;
+                if (aVal > bVal) return sortConfig.direction === 'asc' ? 1 : -1;
+                return 0;
+            });
+        }
+
+        return items;
+    }, [products, searchQuery, sortConfig]);
+
+    const totalPages = Math.ceil(processedProducts.length / itemsPerPage);
+    const paginatedProducts = processedProducts.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
     );
 
     // 📊 Stats Calculation
@@ -158,7 +200,7 @@ export default function AdminProducts() {
                         type="text"
                         placeholder="Search by name, brand..."
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
                         className="w-full md:max-w-md bg-white border border-gray-200 rounded-xl py-2.5 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-pink-400 shadow-sm text-sm"
                     />
                 </div>
@@ -169,15 +211,23 @@ export default function AdminProducts() {
                         <table className="w-full text-left border-collapse">
                             <thead>
                                 <tr className="bg-gray-50/50 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                                    <th className="p-4 pl-6">Product</th>
-                                    <th className="p-4">Category</th>
-                                    <th className="p-4">Stock</th>
-                                    <th className="p-4">Price</th>
+                                    <th className="p-4 pl-6 cursor-pointer hover:bg-gray-100 transition-colors" onClick={() => handleSort('name')}>
+                                        <div className="flex items-center gap-1">Product <ArrowUpDown size={12} className="text-gray-400" /></div>
+                                    </th>
+                                    <th className="p-4 cursor-pointer hover:bg-gray-100 transition-colors" onClick={() => handleSort('category')}>
+                                        <div className="flex items-center gap-1">Category <ArrowUpDown size={12} className="text-gray-400" /></div>
+                                    </th>
+                                    <th className="p-4 cursor-pointer hover:bg-gray-100 transition-colors" onClick={() => handleSort('stock')}>
+                                        <div className="flex items-center gap-1">Stock <ArrowUpDown size={12} className="text-gray-400" /></div>
+                                    </th>
+                                    <th className="p-4 cursor-pointer hover:bg-gray-100 transition-colors" onClick={() => handleSort('price')}>
+                                        <div className="flex items-center gap-1">Price <ArrowUpDown size={12} className="text-gray-400" /></div>
+                                    </th>
                                     <th className="p-4 text-right pr-6">Actions</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-100">
-                                {filteredProducts.map(product => {
+                                {paginatedProducts.map(product => {
                                     const stock = product.stock || 0;
                                     const isLowStock = stock > 0 && stock < 5;
                                     const isOutOfStock = stock === 0;
@@ -275,7 +325,9 @@ export default function AdminProducts() {
                             </tbody>
                         </table>
                     </div>
-                    {filteredProducts.length === 0 && (
+
+                    {/* Empty State */}
+                    {processedProducts.length === 0 && (
                         <div className="p-16 text-center text-gray-400">
                             <div className="flex flex-col items-center justify-center gap-3">
                                 <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center">
@@ -283,6 +335,40 @@ export default function AdminProducts() {
                                 </div>
                                 <h3 className="text-gray-900 font-medium">No products found</h3>
                                 <p className="text-sm text-gray-500">We couldn't find anything matching "{searchQuery}"</p>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Pagination Controls */}
+                    {totalPages > 1 && (
+                        <div className="px-6 py-4 flex items-center justify-between border-t border-gray-100 bg-gray-50/50">
+                            <span className="text-xs text-gray-500">
+                                Showing <span className="font-semibold">{(currentPage - 1) * itemsPerPage + 1}</span> to <span className="font-semibold">{Math.min(currentPage * itemsPerPage, processedProducts.length)}</span> of <span className="font-semibold">{processedProducts.length}</span> results
+                            </span>
+                            <div className="flex items-center gap-2">
+                                <button
+                                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                                    disabled={currentPage === 1}
+                                    className="p-2 border border-gray-200 rounded-lg hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                >
+                                    <ChevronLeft size={16} />
+                                </button>
+                                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                                    <button
+                                        key={page}
+                                        onClick={() => setCurrentPage(page)}
+                                        className={`w-8 h-8 rounded-lg text-xs font-semibold ${currentPage === page ? 'bg-gray-900 text-white' : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'}`}
+                                    >
+                                        {page}
+                                    </button>
+                                ))}
+                                <button
+                                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                                    disabled={currentPage === totalPages}
+                                    className="p-2 border border-gray-200 rounded-lg hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                >
+                                    <ChevronRight size={16} />
+                                </button>
                             </div>
                         </div>
                     )}

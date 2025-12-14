@@ -11,8 +11,20 @@ cloudinary.config({
 });
 
 const PUBLIC_DIR = path.join(__dirname, '../public');
-const BANNERS_PATH = path.join(__dirname, 'data/banners.json');
-const PRODUCTS_PATH = path.join(__dirname, 'data/products.json');
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
+const cloudinary = require('cloudinary').v2;
+const fs = require('fs');
+const db = require('./db');
+
+// Configure Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+const PUBLIC_DIR = path.join(__dirname, '../public');
 
 async function uploadImage(localPath, folder) {
     // localPath might be "/banners/banner-laneige.jpg"
@@ -43,67 +55,57 @@ async function uploadImage(localPath, folder) {
 }
 
 async function migrateBanners() {
-    console.log('\n--- Migrating Banners ---');
-    if (!fs.existsSync(BANNERS_PATH)) {
-        console.error('Banners file not found');
-        return;
-    }
+    console.log('\n--- Migrating Banners (DB) ---');
+    try {
+        const res = await db.query('SELECT id, src FROM banners');
+        const banners = res.rows;
+        let updateCount = 0;
 
-    const banners = JSON.parse(fs.readFileSync(BANNERS_PATH, 'utf8'));
-    let updated = false;
-
-    for (let banner of banners) {
-        if (banner.src && !banner.src.startsWith('http')) {
-            // It's a local path
-            const newUrl = await uploadImage(banner.src, 'banners');
-            if (newUrl) {
-                banner.src = newUrl;
-                updated = true;
+        for (let banner of banners) {
+            if (banner.src && !banner.src.startsWith('http')) {
+                // It's a local path
+                const newUrl = await uploadImage(banner.src, 'banners');
+                if (newUrl) {
+                    await db.query('UPDATE banners SET src = $1 WHERE id = $2', [newUrl, banner.id]);
+                    console.log(`   Updated Banner ID ${banner.id}`);
+                    updateCount++;
+                }
             }
         }
-    }
-
-    if (updated) {
-        fs.writeFileSync(BANNERS_PATH, JSON.stringify(banners, null, 2));
-        console.log('💾 Updated banners.json');
-    } else {
-        console.log('No local banners found or updated.');
+        console.log(`\n💾 Updated ${updateCount} banners in DB.`);
+    } catch (error) {
+        console.error('Error migrating banners:', error);
     }
 }
 
 async function migrateProducts() {
-    console.log('\n--- Migrating Products ---');
-    if (!fs.existsSync(PRODUCTS_PATH)) {
-        console.error('Products file not found');
-        return;
-    }
+    console.log('\n--- Migrating Products (DB) ---');
+    try {
+        const res = await db.query('SELECT id, image FROM products');
+        const products = res.rows;
+        let updateCount = 0;
 
-    const products = JSON.parse(fs.readFileSync(PRODUCTS_PATH, 'utf8'));
-    let updated = false;
-
-    for (let product of products) {
-        if (product.image && !product.image.startsWith('http')) {
-            // It's a local path
-            const newUrl = await uploadImage(product.image, 'products');
-            if (newUrl) {
-                product.image = newUrl;
-                updated = true;
+        for (let product of products) {
+            if (product.image && !product.image.startsWith('http')) {
+                // It's a local path
+                const newUrl = await uploadImage(product.image, 'products');
+                if (newUrl) {
+                    await db.query('UPDATE products SET image = $1 WHERE id = $2', [newUrl, product.id]);
+                    console.log(`   Updated Product ID ${product.id}`);
+                    updateCount++;
+                }
             }
         }
-    }
-
-    if (updated) {
-        fs.writeFileSync(PRODUCTS_PATH, JSON.stringify(products, null, 2));
-        console.log('💾 Updated products.json');
-    } else {
-        console.log('No local product images found or updated.');
+        console.log(`\n💾 Updated ${updateCount} products in DB.`);
+    } catch (error) {
+        console.error('Error migrating products:', error);
     }
 }
 
 async function migrateUIAssets() {
     console.log('\n--- Migrating UI Assets ---');
     const assets = ['login-premium-products.png', 'user-avatar.jpg'];
-    
+
     for (const asset of assets) {
         const newUrl = await uploadImage(asset, 'ui');
         if (newUrl) {
@@ -117,6 +119,7 @@ async function main() {
     await migrateProducts();
     await migrateUIAssets();
     console.log('\n🎉 Migration Complete!');
+    process.exit();
 }
 
 main();

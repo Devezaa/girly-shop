@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowLeft, Ticket, CheckCircle2, ShoppingBag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function VoucherGuide() {
     const navigate = useNavigate();
@@ -28,9 +29,9 @@ export default function VoucherGuide() {
 
     return (
         <div className="min-h-screen bg-white pb-20 font-sans">
-            {/* Header */}
-            <div className="bg-[#FFFBF2] sticky top-0 z-30 px-6 py-4 border-b border-gray-100 flex items-center gap-4">
-                <button onClick={() => navigate(-1)} className="text-gray-600 hover:text-black">
+            {/* Header - Glassmorphism */}
+            <div className="sticky top-0 z-30 px-6 py-4 border-b border-gray-100 flex items-center gap-4 bg-[#FFFBF2]/80 backdrop-blur-md">
+                <button onClick={() => navigate(-1)} className="text-gray-600 hover:text-black transition-colors">
                     <ArrowLeft size={24} />
                 </button>
                 <h1 className="text-xl font-bold text-gray-900">How to use Voucher?</h1>
@@ -48,7 +49,13 @@ export default function VoucherGuide() {
                     <div className="absolute left-[27px] top-4 bottom-4 w-0.5 bg-gray-100 -z-10"></div>
 
                     {steps.map((step, idx) => (
-                        <div key={idx} className="flex gap-6">
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: idx * 0.2, duration: 0.5 }}
+                            className="flex gap-6"
+                        >
                             <div className={`w-14 h-14 shrink-0 rounded-full flex items-center justify-center border-4 border-white shadow-sm ${step.color} z-10`}>
                                 {step.icon}
                             </div>
@@ -56,11 +63,16 @@ export default function VoucherGuide() {
                                 <h3 className="font-bold text-lg text-gray-900 mb-1">Step {idx + 1}: {step.title}</h3>
                                 <p className="text-gray-600 leading-relaxed">{step.desc}</p>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
-                <div className="mt-12 bg-gray-50 rounded-2xl p-6 text-center">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.6, duration: 0.5 }}
+                    className="mt-12 bg-gray-50 rounded-2xl p-6 text-center"
+                >
                     <p className="font-medium text-gray-800 mb-4">Ready to save?</p>
                     <button
                         onClick={() => navigate('/vouchers')}
@@ -68,7 +80,7 @@ export default function VoucherGuide() {
                     >
                         Get Vouchers Now
                     </button>
-                </div>
+                </motion.div>
 
             </div>
         </div>

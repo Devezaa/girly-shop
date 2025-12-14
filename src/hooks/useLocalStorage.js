@@ -31,6 +31,28 @@ export default function useLocalStorage(key, initialValue) {
     }
   }, [key, storedValue]);
 
+  /** 🔄 Listen for changes in other tabs */
+  useEffect(() => {
+    const handleStorageChange = (e) => {
+      // Only act if the changed key matches our key
+      if (e.key === key) {
+        try {
+          // If e.newValue is null, it means the item was removed
+          const newValue = e.newValue ? JSON.parse(e.newValue) : initialValue;
+          setStoredValue(newValue);
+        } catch (err) {
+          console.error("Error parsing new value from storage event:", err);
+        }
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, [key, initialValue]);
+
   /** 🧹 Optional clear method */
   const clearValue = () => {
     try {

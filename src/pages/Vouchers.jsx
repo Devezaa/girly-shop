@@ -22,23 +22,34 @@ export default function Vouchers() {
         setTimeout(() => setCopiedId(null), 2000);
     };
 
+    // 🏷️ Filtered List
+    const filteredVouchers = vouchers.filter(v => activeTab === 'All' || v.type === activeTab);
+
     return (
         <div className="min-h-screen bg-[#FFFBEF] pb-10 pt-4 font-sans px-5 md:px-0">
             <div className="max-w-7xl mx-auto">
 
-                {/* Desktop Title */}
-                <div className="hidden md:block px-6 py-8">
-                    <h2 className="text-2xl font-bold text-gray-800">My Vouchers</h2>
-                    <p className="text-gray-500 text-sm">Manage your discounts and special offers</p>
+                {/* 🔙 Header / Title */}
+                <div className="flex items-center gap-4 px-6 md:px-0 py-6 md:py-8">
+                    <button
+                        onClick={() => navigate(-1)}
+                        className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-gray-600 hover:text-[#FFB040] hover:scale-110 transition-all border border-gray-100"
+                    >
+                        <ArrowLeft size={20} />
+                    </button>
+                    <div>
+                        <h2 className="text-2xl font-bold text-gray-800">My Vouchers</h2>
+                        <p className="hidden md:block text-gray-500 text-sm">Manage your discounts and special offers</p>
+                    </div>
                 </div>
 
                 {/* 🏷️ Tabs */}
-                <div className="px-6 flex gap-3 mb-8">
-                    {["All", "Face", "Hair"].map((tab) => (
+                <div className="px-6 md:px-0 flex gap-3 mb-8 overflow-x-auto no-scrollbar pb-2">
+                    {["All", "Face", "Hair", "Body"].map((tab) => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${activeTab === tab
+                            className={`px-6 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${activeTab === tab
                                 ? "bg-[#FFB040] text-white shadow-md shadow-orange-200"
                                 : "bg-white text-[#FFB040] border border-[#FFB040]"
                                 }`}
@@ -49,8 +60,8 @@ export default function Vouchers() {
                 </div>
 
                 {/* 🎟️ Voucher List */}
-                <div className="px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {vouchers.map((v) => (
+                <div className="px-6 md:px-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {filteredVouchers.map((v) => (
                         <div key={v.id} className={`relative flex rounded-2xl overflow-hidden shadow-sm min-h-[140px] bg-gradient-to-r ${v.color}`}>
                             {/* Left Side (Content) */}
                             <div className="flex-[2] p-5 flex flex-col justify-center relative z-10">
@@ -67,6 +78,7 @@ export default function Vouchers() {
 
                             {/* Dashed Line Divider */}
                             <div className="w-[1px] my-3 border-l-2 border-dashed border-gray-400/30 relative">
+                                {/* Matched Background Cutouts (#FFFBEF) */}
                                 <div className="absolute -top-4 -left-2 w-4 h-4 bg-[#FFFBEF] rounded-full" />
                                 <div className="absolute -bottom-4 -left-2 w-4 h-4 bg-[#FFFBEF] rounded-full" />
                             </div>

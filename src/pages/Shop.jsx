@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { API_BASE_URL } from '../config';
 import { Search, Filter, ShoppingBag } from "lucide-react";
 import ProductCard from "../components/ProductCard";
+import ErrorDisplay from "../components/common/ErrorDisplay";
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
 import { motion } from "framer-motion";
@@ -12,26 +13,39 @@ export default function Shop() {
     const [products, setProducts] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     // 🔄 Fetch Products
     useEffect(() => {
+        fetchProducts();
+    }, []);
+
+    const fetchProducts = () => {
+        setLoading(true);
+        setError(null);
         fetch(`${API_BASE_URL}/api/products`)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw new Error("Failed to connect to server");
+                return res.json();
+            })
             .then(data => {
                 setProducts(data);
                 setLoading(false);
             })
             .catch(err => {
                 console.error("Failed to fetch products:", err);
+                setError(err.message || "Something went wrong");
                 setLoading(false);
             });
-    }, []);
+    };
 
-    // 🔍 Search Filter
-    const filteredProducts = products.filter(p =>
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.category.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    // 🔍 Search Filter (Memoized for performance)
+    const filteredProducts = useMemo(() => {
+        return products.filter(p =>
+            p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            p.category.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    }, [products, searchQuery]);
 
     return (
         <div className="min-h-screen bg-[#FAFAFA] pb-32 pt-8 font-sans px-5 md:px-0">
@@ -63,6 +77,11 @@ export default function Shop() {
                     <div className="flex items-center justify-center py-20">
                         <div className="w-10 h-10 border-4 border-pink-200 border-t-pink-500 rounded-full animate-spin"></div>
                     </div>
+                ) : error ? (
+                    <ErrorDisplay
+                        message="Failed to load products. Please check your internet connection."
+                        onRetry={fetchProducts}
+                    />
                 ) : filteredProducts.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-20 opacity-50">
                         <ShoppingBag size={48} className="text-gray-300 mb-4" />

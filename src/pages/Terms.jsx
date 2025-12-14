@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, ScrollText, ShieldCheck, RefreshCcw } from "lucide-react";
+import { ArrowLeft, ScrollText, ShieldCheck, RefreshCcw, Truck } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Terms() {
@@ -62,7 +62,10 @@ export default function Terms() {
                     </section>
 
                     <section>
-                        <h3 className="font-bold text-gray-800 mb-3 ml-1">3. Shipping</h3>
+                        <div className="flex items-center gap-2 mb-3">
+                            <Truck size={20} className="text-green-500" />
+                            <h3 className="font-bold text-gray-800">3. Shipping</h3>
+                        </div>
                         <div className="bg-white rounded-xl p-5 border border-gray-100 text-sm text-gray-600 leading-relaxed">
                             Delays can happen, but we promise to do our best. Usually standard delivery takes 1-3 days in Phnom Penh and 2-5 days for provinces.
                         </div>

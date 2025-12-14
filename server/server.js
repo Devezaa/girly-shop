@@ -12,6 +12,35 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 const SECRET_KEY = "girly-shop-secret-key-change-this-in-prod"; // In production, use .env
 
+// 🛡️ Simple In-Memory Rate Limiter (No external deps)
+const loginAttempts = new Map();
+const rateLimiterMiddleware = (req, res, next) => {
+    const ip = req.ip;
+    const now = Date.now();
+    const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+    const MAX_ATTEMPTS = 5;
+
+    const record = loginAttempts.get(ip);
+
+    if (record) {
+        if (now - record.startTime > WINDOW_MS) {
+            // Reset window
+            loginAttempts.set(ip, { count: 1, startTime: now });
+        } else {
+            if (record.count >= MAX_ATTEMPTS) {
+                return res.status(429).json({
+                    success: false,
+                    message: "Too many login attempts. Please try again later."
+                });
+            }
+            record.count++;
+        }
+    } else {
+        loginAttempts.set(ip, { count: 1, startTime: now });
+    }
+    next();
+};
+
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
@@ -109,14 +138,30 @@ app.post('/api/upload', (req, res) => {
 
 // 🛍️ GET Products (with Search)
 app.get('/api/products', async (req, res) => {
-    const { search } = req.query;
+    const { search, ids } = req.query;
     try {
         let queryText = 'SELECT * FROM products';
         let queryParams = [];
+        let whereClauses = [];
 
         if (search) {
-            queryText += ' WHERE name ILIKE $1 OR category ILIKE $1';
+            whereClauses.push('(name ILIKE $' + (queryParams.length + 1) + ' OR category ILIKE $' + (queryParams.length + 1) + ')');
             queryParams.push(`%${search}%`);
+        }
+
+        if (ids) {
+            const idList = ids.split(',').map(id => parseInt(id, 10)).filter(id => !isNaN(id));
+            if (idList.length > 0) {
+                whereClauses.push(`id = ANY($${queryParams.length + 1})`);
+                queryParams.push(idList);
+            } else {
+                // ids provided but empty or invalid, return empty result if intent was to filter by specific ids
+                return res.json([]);
+            }
+        }
+
+        if (whereClauses.length > 0) {
+            queryText += ' WHERE ' + whereClauses.join(' AND ');
         }
 
         queryText += ' ORDER BY id ASC'; // Consistent ordering
@@ -299,8 +344,7 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
-// 🔐 Login (Secure)
-app.post('/api/auth/login', async (req, res) => {
+app.post('/api/auth/login', rateLimiterMiddleware, async (req, res) => {
     const { email, password } = req.body;
     try {
         const result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
@@ -487,16 +531,12 @@ app.get('/api/vouchers', async (req, res) => {
     }
 });
 
-// 🌟 GET Promotions
-app.get('/api/promotions', (req, res) => {
+// 🌟 GET Promotions (Migrated to DB)
+app.get('/api/promotions', async (req, res) => {
     try {
-        const promoPath = path.join(__dirname, 'data/promotions.json');
-        if (fs.existsSync(promoPath)) {
-            const data = fs.readFileSync(promoPath, 'utf8');
-            res.json(JSON.parse(data));
-        } else {
-            res.json([]);
-        }
+        // Fetch from banners table as promotions are now consolidated there
+        const result = await db.query('SELECT * FROM banners ORDER BY id ASC');
+        res.json(result.rows);
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Error fetching promotions" });
@@ -532,6 +572,16 @@ app.post('/api/vouchers', async (req, res) => {
     } finally {
         client.release();
     }
+});
+
+// 🚨 Centralized Error Handler
+app.use((err, req, res, next) => {
+    console.error("🔥 Unhandled Error:", err.stack);
+    res.status(500).json({
+        success: false,
+        message: "Internal Server Error",
+        error: process.env.NODE_ENV === 'development' ? err.message : undefined
+    });
 });
 
 server.listen(PORT, () => {

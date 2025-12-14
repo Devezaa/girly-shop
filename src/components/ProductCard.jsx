@@ -3,7 +3,7 @@ import { Heart, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getOptimizedImageUrl } from "../utils/imageOptimizer";
 
-export default function ProductCard({ product, onAdd, onWish, wished }) {
+export default function ProductCard({ product, onWish, wished }) {
   // 🛡️ Guard Clause (Prevents crash if product is missing)
   if (!product) return null;
 

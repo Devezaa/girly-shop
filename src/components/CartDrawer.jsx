@@ -13,9 +13,19 @@ import { useCart } from "../context/CartContext";
  *  - onRemove: function → remove specific item
  *  - onClear: function → clear all items
  */
-export default function CartDrawer({ open, items = [], onClose, onRemove, onClear }) {
-  // Use context for voucher logic
-  const { discount, finalTotal, applyVoucher, removeVoucher, appliedVoucher, totalPrice } = useCart();
+export default function CartDrawer({ open, onClose }) {
+  // Use context for cart data and actions
+  const {
+    cart: items,
+    removeFromCart: onRemove,
+    clearCart: onClear,
+    discount,
+    finalTotal,
+    applyVoucher,
+    removeVoucher,
+    appliedVoucher,
+    totalPrice
+  } = useCart();
   const [voucherCode, setVoucherCode] = useState("");
   const [message, setMessage] = useState(null); // { type: 'success' | 'error', text: '' }
 

@@ -8,6 +8,7 @@ import { getOptimizedImageUrl } from '../utils/imageOptimizer';
 const CampaignGrid = ({ showTitle = true }) => {
     const [promotions, setPromotions] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         const fetchPromos = async () => {
@@ -18,9 +19,11 @@ const CampaignGrid = ({ showTitle = true }) => {
                     setPromotions(data);
                 } else {
                     console.error('Failed to fetch promotions');
+                    setError(true);
                 }
             } catch (error) {
                 console.error('Error fetching promotions:', error);
+                setError(true);
             } finally {
                 setLoading(false);
             }
@@ -37,7 +40,7 @@ const CampaignGrid = ({ showTitle = true }) => {
         );
     }
 
-    if (promotions.length === 0) return null;
+    if (error || promotions.length === 0) return null;
 
     return (
         <section className="w-full">
@@ -87,7 +90,7 @@ const CampaignGrid = ({ showTitle = true }) => {
                                 {promo.subtitle}
                             </p>
                             <Link
-                                to="/shop"
+                                to={promo.link || "/shop"}
                                 className="inline-block text-white border-b border-white pb-1 hover:text-rose-200 hover:border-rose-200 transition-colors"
                             >
                                 Shop the Look

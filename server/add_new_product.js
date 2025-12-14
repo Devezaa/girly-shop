@@ -1,8 +1,10 @@
 
 require('dotenv').config({ path: './.env' });
 const cloudinary = require('cloudinary').v2;
+require('dotenv').config({ path: './.env' });
+const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
-const path = require('path');
+const db = require('./db');
 
 // Configure Cloudinary
 cloudinary.config({
@@ -12,7 +14,6 @@ cloudinary.config({
 });
 
 const imagePath = String.raw`C:/Users/ASUS/.gemini/antigravity/brain/1bedac30-b5c2-4a5d-9f07-8210c04f2b4a/uploaded_image_1765707451714.png`;
-const productsPath = path.join(__dirname, 'data/products.json');
 
 async function addProduct() {
     try {
@@ -32,20 +33,12 @@ async function addProduct() {
 
         console.log(`✅ Image uploaded: ${uploadResult.secure_url}`);
 
-        // 2. Read Products Data
-        const productsData = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
-
-        // 3. Generate New ID
-        const maxId = productsData.reduce((max, p) => (p.id > max ? p.id : max), 0);
-        const newId = maxId + 1;
-
-        // 4. Create New Product Object
+        // 2. Prepare Data
         const newProduct = {
-            id: newId,
             name: "KLEN Herbal Hair Shampoo & Conditioner",
-            price: 8.50, // Estimated
+            price: 8.50,
             image: uploadResult.secure_url,
-            category: "Treat", // Hair Care
+            category: "Treat",
             rating: 4.8,
             reviews: 0,
             isNew: true,
@@ -67,14 +60,38 @@ async function addProduct() {
             ]
         };
 
-        // 5. Append and Save
-        productsData.push(newProduct);
-        fs.writeFileSync(productsPath, JSON.stringify(productsData, null, 2));
+        // 3. Insert into DB
+        const res = await db.query(
+            `INSERT INTO products (
+                name, price, image, category, rating, reviews, 
+                is_new, stock, brand, volume, description, 
+                how_to_use, ingredients, highlights
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+            RETURNING id`,
+            [
+                newProduct.name,
+                newProduct.price,
+                newProduct.image,
+                newProduct.category,
+                newProduct.rating,
+                newProduct.reviews,
+                newProduct.isNew,
+                newProduct.stock,
+                newProduct.brand,
+                newProduct.volume,
+                newProduct.description,
+                JSON.stringify(newProduct.howToUse),
+                newProduct.ingredients,
+                JSON.stringify(newProduct.highlights)
+            ]
+        );
 
-        console.log(`🎉 Product added successfully with ID: ${newId}`);
+        console.log(`🎉 Product added successfully to DB with ID: ${res.rows[0].id}`);
 
     } catch (error) {
         console.error('❌ Error:', error);
+    } finally {
+        process.exit();
     }
 }
 

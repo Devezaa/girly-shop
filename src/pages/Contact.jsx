@@ -1,10 +1,18 @@
 import { motion } from "framer-motion";
-import { useState, memo } from "react";
+import { useState, useEffect, memo } from "react";
 import Background from "../components/Background";
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+
+  // 🌸 Automatically hide toast after 2.5s with cleanup
+  useEffect(() => {
+    if (sent) {
+      const timer = setTimeout(() => setSent(false), 2500);
+      return () => clearTimeout(timer);
+    }
+  }, [sent]);
 
   /** 🌸 Handle input changes */
   const handleChange = (e) => {
@@ -20,9 +28,6 @@ const Contact = () => {
     if (name.trim() && email.trim() && message.trim()) {
       setSent(true);
       setFormData({ name: "", email: "", message: "" });
-
-      // Automatically hide toast after 2.5s
-      setTimeout(() => setSent(false), 2500);
     }
   };
 

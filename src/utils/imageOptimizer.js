@@ -15,6 +15,7 @@ export const getOptimizedImageUrl = (url, { width = 'auto', quality = 'auto', fo
     const transformations = [];
     if (quality) transformations.push(`q_${quality}`);
     if (format) transformations.push(`f_${format}`);
+    transformations.push('dpr_auto'); // 🌟 High-res (Retina) support
     if (width && width !== 'auto') transformations.push(`w_${width}`);
 
     return `${parts[0]}/upload/${transformations.join(',')}/${parts[1]}`;

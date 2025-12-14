@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route, useLocation, useNavigationType, Navigate 
 import { AnimatePresence, motion } from "framer-motion";
 import { lazy, Suspense, useEffect } from "react";
 import Layout from "../components/Layout";
-import BottomNav from "../components/BottomNav";
 import ProtectedRoute from "../components/ProtectedRoute";
 
 // 📦 Lazy Load Pages
@@ -78,7 +77,6 @@ function AnimatedRoutes() {
 
           <Route path="/category-selection" element={<CategorySelection />} />
           <Route path="/categories" element={<CategorySelection />} />
-          <Route path="/categories" element={<CategorySelection />} />
 
           {/* 👑 Admin Route */}
           <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
@@ -123,7 +121,6 @@ export default function AppRouter() {
       <ScrollToTop />
       <Suspense fallback={<LoadingScreen />}>
         <AnimatedRoutes />
-        <BottomNav />
       </Suspense>
     </BrowserRouter>
   );

@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { LogOut, User, Bell, Shield, ScrollText, Ticket, ChevronRight, HelpCircle, Heart, Settings as SettingsIcon } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 export default function Settings() {
     const navigate = useNavigate();
     const { user, logout } = useAuth();
+    const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
     const handleLogout = () => {
         logout();
@@ -46,7 +49,7 @@ export default function Settings() {
     }
 
     return (
-        <div className="min-h-screen bg-[#FAFAFA] pb-24 font-sans">
+        <div className="min-h-screen bg-[#FAFAFA] pb-24 font-sans relative">
             {/* Header (Mobile Only) */}
             <div className="md:hidden bg-white px-6 py-6 border-b border-gray-100 sticky top-0 z-30">
                 <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
@@ -60,7 +63,12 @@ export default function Settings() {
                 </div>
             </div>
 
-            <div className="max-w-6xl mx-auto px-5 md:px-6 py-6 md:py-12">
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="max-w-6xl mx-auto px-5 md:px-6 py-6 md:py-12"
+            >
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
 
                     {/* 👈 Left Sidebar: Profile Card */}
@@ -84,7 +92,7 @@ export default function Settings() {
                                     Edit Profile
                                 </button>
                                 <button
-                                    onClick={handleLogout}
+                                    onClick={() => setShowLogoutConfirm(true)}
                                     className="w-full py-2.5 rounded-xl text-gray-400 hover:text-rose-500 hover:bg-rose-50 transition-colors flex items-center justify-center gap-2"
                                 >
                                     <LogOut size={16} />
@@ -97,7 +105,12 @@ export default function Settings() {
                     {/* 👉 Right Content: Settings Grid */}
                     <div className="md:col-span-8 lg:col-span-9 space-y-8">
                         {sections.map((section, idx) => (
-                            <div key={idx}>
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: idx * 0.1 + 0.2 }}
+                            >
                                 <h3 className="font-bold text-gray-900 mb-4 px-1 flex items-center gap-2">
                                     {section.title === "Account" ? <User size={18} className="text-pink-500" /> : <SettingsIcon size={18} className="text-pink-500" />}
                                     {section.title}
@@ -120,13 +133,13 @@ export default function Settings() {
                                         </button>
                                     ))}
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
 
                         {/* Mobile Logout (Hidden on Desktop) */}
                         <div className="md:hidden mt-8">
                             <button
-                                onClick={handleLogout}
+                                onClick={() => setShowLogoutConfirm(true)}
                                 className="w-full bg-white border border-rose-100 text-rose-500 font-bold py-4 rounded-2xl flex items-center justify-center gap-2 hover:bg-rose-50 transition-colors shadow-sm"
                             >
                                 <LogOut size={20} />
@@ -135,7 +148,49 @@ export default function Settings() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
+
+            {/* Logout Confirmation Modal */}
+            <AnimatePresence>
+                {showLogoutConfirm && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-6"
+                        onClick={() => setShowLogoutConfirm(false)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            className="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl text-center"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <div className="w-16 h-16 bg-rose-50 rounded-full flex items-center justify-center text-rose-500 mx-auto mb-4">
+                                <LogOut size={32} />
+                            </div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Log Out?</h3>
+                            <p className="text-gray-500 mb-6">Are you sure you want to sign out of your account?</p>
+
+                            <div className="flex gap-3">
+                                <button
+                                    onClick={() => setShowLogoutConfirm(false)}
+                                    className="flex-1 py-3 rounded-xl border border-gray-100 font-bold text-gray-600 hover:bg-gray-50"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={handleLogout}
+                                    className="flex-1 py-3 rounded-xl bg-rose-500 text-white font-bold shadow-lg shadow-rose-200 hover:bg-rose-600"
+                                >
+                                    Log Out
+                                </button>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }
