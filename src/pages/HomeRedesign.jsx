@@ -186,7 +186,7 @@ export default function HomeRedesign() {
                         {/* All Button */}
                         <motion.button
                             onClick={() => setSelectedCategory("All")}
-                            className={`flex flex-col items-center gap-2 min-w-[80px] p-3 rounded-2xl border transition-all duration-300 group snap-center
+                            className={`flex flex-col items-center gap-2 min-w-[80px] p-3 rounded-2xl border transition-all duration-300 group snap-center focus:outline-none focus:ring-0
                                 ${selectedCategory === 'All'
                                     ? 'bg-gray-900 text-white border-transparent shadow-md'
                                     : 'bg-white text-gray-400 border-gray-100 hover:border-gray-200 hover:shadow-sm'
@@ -204,7 +204,7 @@ export default function HomeRedesign() {
                             <motion.button
                                 key={idx}
                                 onClick={() => setSelectedCategory(cat.name)}
-                                className={`flex flex-col items-center gap-2 min-w-[80px] p-3 rounded-2xl border transition-all duration-300 group snap-center
+                                className={`flex flex-col items-center gap-2 min-w-[80px] p-3 rounded-2xl border transition-all duration-300 group snap-center focus:outline-none focus:ring-0
                                     ${selectedCategory === cat.name
                                         ? 'bg-gray-900 text-white border-transparent shadow-md'
                                         : 'bg-white text-gray-400 border-gray-100 hover:border-gray-200 hover:shadow-sm'
