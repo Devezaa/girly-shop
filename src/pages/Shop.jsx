@@ -72,7 +72,7 @@ export default function Shop() {
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="grid grid-cols-2 lg:grid-cols-4 gap-4 gap-y-8"
+                        className="grid grid-cols-2 lg:grid-cols-4 gap-3 gap-y-6 md:gap-4 md:gap-y-8"
                     >
                         {filteredProducts.map(p => (
                             <ProductCard

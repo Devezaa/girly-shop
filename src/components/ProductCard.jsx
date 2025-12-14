@@ -16,19 +16,19 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
   // 🎨 Minimalist Gray Style (Restored)
   return (
     <Link to={`/product/${product.id}`} className="block group">
-      <div className="bg-[#E5E5E5] rounded-[20px] p-4 relative aspect-[4/5] flex flex-col justify-between overflow-hidden hover:shadow-lg transition-all duration-300">
+      <div className="bg-[#F3F4F6] rounded-2xl p-3 relative aspect-[4/5] flex flex-col justify-between overflow-hidden hover:shadow-md transition-all duration-300 group-hover:scale-[1.02]">
 
         {/* 🖼️ Image */}
-        <div className="absolute inset-0 flex items-center justify-center p-6 pb-20">
+        <div className="absolute inset-0 flex items-center justify-center p-4 pb-16">
           <img
             src={imageUrl}
             alt={product.name}
-            onError={(e) => { e.target.style.display = 'none'; }} // Hide broken image to remove duplicate text visual if alt shows up ugly
-            className="w-full h-full object-contain p-4 mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
+            onError={(e) => { e.target.style.display = 'none'; }}
+            className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500"
           />
         </div>
 
-        {/* ❤️ Heart Icon (Now Top Left) */}
+        {/* ❤️ Heart Icon */}
         <button
           type="button"
           onClick={(e) => {
@@ -36,12 +36,12 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
             e.stopPropagation();
             onWish && onWish();
           }}
-          className="absolute top-4 left-4 z-10 p-2"
+          className="absolute top-3 left-3 z-10"
         >
-          <Heart size={20} className={`text-black transition-colors ${wished ? "fill-pink-500 text-pink-500" : "hover:fill-black"}`} />
+          <Heart size={20} className={`transition-colors ${wished ? "fill-rose-500 text-rose-500" : "text-gray-400 hover:text-gray-600"}`} />
         </button>
 
-        {/* 🛍️ Add to Cart Icon (Top Right) */}
+        {/* 🛍️ Add to Cart Icon */}
         <button
           type="button"
           onClick={(e) => {
@@ -49,22 +49,18 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
             e.stopPropagation();
             if (onAdd) onAdd();
           }}
-          className="absolute top-4 right-4 z-10 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-sm hover:scale-110 transition-transform active:scale-95"
+          className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-sm hover:scale-110 transition-transform active:scale-95"
         >
           <ShoppingBag size={18} className="text-gray-800" />
         </button>
 
-        {/* 📝 Content Overlay (Bottom Left) */}
-        <div className="relative z-10 mt-auto">
-          <h3 className="font-serif font-medium text-black text-xl leading-tight mb-1 truncate">
+        {/* 📝 Content Overlay */}
+        <div className="relative z-10 mt-auto bg-white/60 backdrop-blur-sm rounded-xl p-3 border border-white/50">
+          <h3 className="font-serif font-medium text-gray-900 text-sm md:text-base leading-tight mb-1 truncate">
             {product.name}
           </h3>
-          <div className="flex items-center justify-between mt-1">
-            <span className="font-bold text-gray-900">${price.toFixed(2)}</span>
-            <div className="flex items-center gap-2 text-gray-500 text-sm font-light group-hover:gap-3 transition-all">
-              <span>Detail</span>
-              <span className="text-xs">⟶</span>
-            </div>
+          <div className="flex items-center justify-between">
+            <span className="font-bold text-gray-900 text-sm md:text-base">${price.toFixed(2)}</span>
           </div>
         </div>
       </div>

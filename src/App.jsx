@@ -4,6 +4,7 @@ import { CartProvider } from "./context/CartContext";
 import { WishlistProvider } from "./context/WishlistContext";
 import { AuthProvider } from "./context/AuthContext";
 import AppRouter from "./router/AppRouter";
+import BottomNav from "./components/BottomNav";
 
 // 🌸 Loading fallback during lazy-loaded route transitions
 const Loading = () => (
@@ -21,6 +22,7 @@ export default function App() {
           <div id="root-app" className="min-h-screen bg-gray-50">
             <AuthProvider>
               <AppRouter />
+              <BottomNav />
             </AuthProvider>
           </div>
         </Suspense>

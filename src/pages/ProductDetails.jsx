@@ -54,7 +54,7 @@ export default function ProductDetails() {
     const isLowStock = stock > 0 && stock < 5;
 
     return (
-        <div className="min-h-screen bg-[#FAFAFA] pb-10 font-sans">
+        <div className="min-h-screen bg-[#FAFAFA] pb-24 md:pb-10 font-sans">
             {/* 🔙 Header */}
             <div className="sticky top-0 left-0 right-0 bg-white/80 backdrop-blur-md p-4 flex justify-between items-center z-40 border-b border-gray-100">
                 <button onClick={() => navigate(-1)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
@@ -272,7 +272,7 @@ export default function ProductDetails() {
                         <button
                             onClick={handleAddToCart}
                             disabled={isOutOfStock}
-                            className={`flex-1 font-bold text-sm md:text-lg rounded-full py-3 px-4 md:py-4 md:px-8 shadow-xl transition-all flex items-center justify-center gap-2 md:gap-3 
+                            className={`flex-1 font-bold text-base md:text-lg rounded-full py-3 px-6 md:py-4 md:px-8 shadow-xl transition-all flex items-center justify-center gap-2 md:gap-3 
                                 ${isOutOfStock
                                     ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
                                     : 'bg-gradient-to-r from-gray-900 to-gray-800 text-white hover:shadow-2xl hover:scale-[1.01]'}`}
