@@ -43,15 +43,15 @@ export default function CartDrawer({ open, items = [], onClose, onRemove, onClea
           className="fixed inset-0 z-50"
         >
           {/* Overlay */}
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
+          <div className="absolute inset-0 bg-black/60 md:bg-black/40 md:backdrop-blur-sm" onClick={onClose} />
 
           {/* Drawer */}
           <motion.div
             initial={{ x: 400 }}
             animate={{ x: 0 }}
             exit={{ x: 400 }}
-            transition={{ type: "spring", stiffness: 260, damping: 25 }}
-            className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl flex flex-col rounded-l-3xl"
+            transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
+            className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl flex flex-col rounded-l-3xl md:rounded-l-3xl rounded-none"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-pink-100">
@@ -185,7 +185,7 @@ export default function CartDrawer({ open, items = [], onClose, onRemove, onClea
                   Clear All
                 </button>
                 <button
-                  className="w-1/2 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 text-white px-3 py-2 shadow-md hover:shadow-lg active:scale-[0.98] transition"
+                  className="w-1/2 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 text-white px-3 py-2 shadow-md hover:shadow-lg active:scale-[0.98] transition font-medium"
                 >
                   Checkout
                 </button>
