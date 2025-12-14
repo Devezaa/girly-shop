@@ -30,7 +30,7 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
           />
         </div>
 
-        {/* ❤️ Heart Icon */}
+        {/* ❤️ Heart Icon - Bottom Right of Image */}
         <button
           type="button"
           onClick={(e) => {
@@ -38,22 +38,9 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
             e.stopPropagation();
             onWish && onWish();
           }}
-          className="absolute top-3 left-3 z-10"
+          className="absolute bottom-20 right-3 z-10 p-2 bg-white/80 backdrop-blur-sm rounded-full shadow-sm hover:bg-white transition-all"
         >
-          <Heart size={20} strokeWidth={1.5} className={`transition-colors ${wished ? "fill-rose-500 text-rose-500" : "text-gray-400 hover:text-gray-600"}`} />
-        </button>
-
-        {/* 🛍️ Add to Cart Icon - Minimal Circle */}
-        <button
-          type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (onAdd) onAdd();
-          }}
-          className="absolute top-3 right-3 z-10 w-9 h-9 bg-gray-50 flex items-center justify-center rounded-full hover:bg-gray-900 hover:text-white transition-all active:scale-95 group-hover:bg-gray-900 group-hover:text-white"
-        >
-          <ShoppingBag size={16} className="text-current transition-colors" />
+          <Heart size={18} className={`transition-colors ${wished ? "fill-rose-500 text-rose-500" : "text-gray-400 hover:text-gray-600"}`} />
         </button>
 
         {/* 📝 Content - Clean Bottom (No Floating Block) */}
