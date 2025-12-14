@@ -35,8 +35,7 @@ export default function Welcome() {
                     transition={{ type: "tween", ease: "linear", duration: 0.2 }}
                 >
                     <img
-                        src="/welcome-premium.png"
-                        onError={(e) => e.currentTarget.src = "/login-premium-products.png"}
+                        src="/login-premium-products.png"
                         alt="Background"
                         className="w-full h-full object-cover opacity-60"
                     />
