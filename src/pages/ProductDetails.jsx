@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { API_BASE_URL } from '../config';
+import { getOptimizedImageUrl } from '../utils/imageOptimizer';
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Heart, Star, Minus, Plus, ShoppingBag, ShieldCheck, Truck, Award, Check, Package, Droplet } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -83,7 +84,7 @@ export default function ProductDetails() {
                             initial={{ opacity: 0.8, scale: 0.98 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.3 }}
-                            src={activeImage}
+                            src={getOptimizedImageUrl(activeImage, 800)}
                             alt={product.name}
                             className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                         />
@@ -119,7 +120,7 @@ export default function ProductDetails() {
                                     onClick={() => setActiveImage(img)}
                                     className={`w-20 h-20 flex-shrink-0 bg-white rounded-xl border-2 p-1 overflow-hidden transition-all ${activeImage === img ? 'border-pink-500 shadow-md scale-105' : 'border-transparent opacity-70 hover:opacity-100'}`}
                                 >
-                                    <img src={img} className="w-full h-full object-contain" alt="" />
+                                    <img src={getOptimizedImageUrl(img, 150)} className="w-full h-full object-contain" alt="" />
                                 </button>
                             ))}
                         </div>

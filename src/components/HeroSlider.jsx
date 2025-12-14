@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getOptimizedImageUrl } from "../utils/imageOptimizer";
 import { motion, AnimatePresence } from "framer-motion";
 import { API_BASE_URL } from '../config';
 import { Link } from "react-router-dom";
@@ -61,7 +62,7 @@ export default function HeroSlider() {
                     {/* Background Image */}
                     <div
                         className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${banners[currentIndex].src})` }}
+                        style={{ backgroundImage: `url(${getOptimizedImageUrl(banners[currentIndex].src, 1200)})` }}
                     />
                     {/* Dark Overlay for Text Readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
