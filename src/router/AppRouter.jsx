@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, useLocation, useNavigationType } from "re
 import { AnimatePresence, motion } from "framer-motion";
 import { lazy, Suspense, useEffect } from "react";
 import Layout from "../components/Layout";
+import BottomNav from "../components/BottomNav";
 import ProtectedRoute from "../components/ProtectedRoute";
 
 // 📦 Lazy Load Pages
@@ -120,6 +121,7 @@ export default function AppRouter() {
       <ScrollToTop />
       <Suspense fallback={<LoadingScreen />}>
         <AnimatedRoutes />
+        <BottomNav />
       </Suspense>
     </BrowserRouter>
   );
