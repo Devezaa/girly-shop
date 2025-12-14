@@ -278,8 +278,8 @@ export default function ProductDetails() {
                 </div>
 
                 {/* 📝 Expanded Details Section (Moved to Bottom - Full Width) */}
-                <div className="lg:col-span-12 pt-12 border-t border-gray-100 mt-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+                <div className="lg:col-span-12 pt-8 md:pt-12 border-t border-gray-100 mt-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-24">
 
                         {/* Left Column: Usage & Ingredients */}
                         <div className="space-y-12">

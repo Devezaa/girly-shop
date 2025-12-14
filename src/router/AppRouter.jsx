@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation, useNavigationType } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, useNavigationType, Navigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { lazy, Suspense, useEffect } from "react";
 import Layout from "../components/Layout";
@@ -104,6 +104,7 @@ function AnimatedRoutes() {
             {/* ℹ️ Informational Pages */}
             <Route path="/terms" element={<Terms />} />
             <Route path="/voucher-guide" element={<VoucherGuide />} />
+            <Route path="/product" element={<Navigate to="/shop" replace />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/vouchers" element={<Vouchers />} />
           </Route>
