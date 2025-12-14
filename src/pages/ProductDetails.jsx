@@ -56,8 +56,7 @@ export default function ProductDetails() {
 
     return (
         <div className="min-h-screen bg-[#FAFAFA] pb-24 md:pb-10 font-sans">
-            {/* 🔙 Header */}
-            <div className="sticky top-0 left-0 right-0 bg-white/80 backdrop-blur-md p-4 flex justify-between items-center z-40 border-b border-gray-100">
+            <div className="sticky top-0 left-0 right-0 bg-white md:bg-white/80 md:backdrop-blur-md p-4 flex justify-between items-center z-40 border-b border-gray-100">
                 <button onClick={() => navigate(-1)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                     <ArrowLeft size={24} className="text-gray-800" />
                 </button>

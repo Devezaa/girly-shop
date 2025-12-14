@@ -56,7 +56,7 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
         </button>
 
         {/* 📝 Content Overlay */}
-        <div className="relative z-10 mt-auto bg-white/60 backdrop-blur-sm rounded-xl p-3 border border-white/50">
+        <div className="relative z-10 mt-auto bg-white/95 md:bg-white/60 md:backdrop-blur-sm rounded-xl p-3 border border-white/50">
           <h3 className="font-serif font-medium text-gray-900 text-sm md:text-base leading-tight mb-1 truncate">
             {product.name}
           </h3>
