@@ -182,40 +182,40 @@ export default function HomeRedesign() {
                         </div>
                     </div>
 
-                    <div className="flex gap-4 justify-start overflow-x-auto no-scrollbar pb-4 px-1 md:grid md:grid-cols-5 md:gap-6 md:justify-center">
+                    <div className="flex gap-3 justify-start overflow-x-auto no-scrollbar pb-4 px-1 snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-5 md:gap-6 md:justify-center">
                         {/* All Button */}
                         <motion.button
                             onClick={() => setSelectedCategory("All")}
-                            className={`flex flex-col items-center gap-3 min-w-[100px] p-4 rounded-2xl border transition-all duration-300 group
+                            className={`flex flex-col items-center gap-2 min-w-[80px] p-3 rounded-2xl border transition-all duration-300 group snap-center
                                 ${selectedCategory === 'All'
-                                    ? 'bg-gray-900 text-white border-gray-900 shadow-lg'
-                                    : 'bg-white text-gray-400 border-gray-100 hover:border-gray-300 hover:shadow-md'
+                                    ? 'bg-gray-900 text-white border-gray-900 shadow-md'
+                                    : 'bg-white text-gray-400 border-gray-100 hover:border-gray-300 hover:shadow-sm'
                                 }`}
                             whileHover={{ y: -5 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${selectedCategory === 'All' ? 'bg-white/20' : 'bg-gray-50 group-hover:bg-gray-100'}`}>
-                                <SlidersHorizontal size={20} strokeWidth={1.5} className={selectedCategory === 'All' ? 'text-white' : 'text-gray-500'} />
+                            <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${selectedCategory === 'All' ? 'bg-white/20' : 'bg-gray-50 group-hover:bg-gray-100'}`}>
+                                <SlidersHorizontal size={18} strokeWidth={1.5} className={selectedCategory === 'All' ? 'text-white' : 'text-gray-500'} />
                             </div>
-                            <span className="text-sm font-medium">All</span>
+                            <span className="text-xs font-medium">All</span>
                         </motion.button>
 
                         {categories.map((cat, idx) => (
                             <motion.button
                                 key={idx}
                                 onClick={() => setSelectedCategory(cat.name)}
-                                className={`flex flex-col items-center gap-3 min-w-[100px] p-4 rounded-2xl border transition-all duration-300 group
+                                className={`flex flex-col items-center gap-2 min-w-[80px] p-3 rounded-2xl border transition-all duration-300 group snap-center
                                     ${selectedCategory === cat.name
-                                        ? cat.color + ' border-transparent shadow-lg ring-2 ring-offset-2 ring-gray-200'
-                                        : 'bg-white text-gray-400 border-gray-100 hover:border-gray-200 hover:shadow-md'
+                                        ? cat.color + ' border-transparent shadow-md ring-1 ring-offset-1 ring-gray-200'
+                                        : 'bg-white text-gray-400 border-gray-100 hover:border-gray-200 hover:shadow-sm'
                                     }`}
                                 whileHover={{ y: -5 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${selectedCategory === cat.name ? 'bg-white/20' : 'bg-' + cat.color.split(' ')[0].replace('bg-', '') + '/10 group-hover:bg-' + cat.color.split(' ')[0].replace('bg-', '') + '/20'}`}>
-                                    <cat.icon size={20} strokeWidth={1.5} className={selectedCategory === cat.name ? 'text-current' : 'text-gray-400 group-hover:text-gray-600'} />
+                                <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${selectedCategory === cat.name ? 'bg-white/20' : 'bg-' + cat.color.split(' ')[0].replace('bg-', '') + '/10 group-hover:bg-' + cat.color.split(' ')[0].replace('bg-', '') + '/20'}`}>
+                                    <cat.icon size={18} strokeWidth={1.5} className={selectedCategory === cat.name ? 'text-current' : 'text-gray-400 group-hover:text-gray-600'} />
                                 </div>
-                                <span className={`text-sm font-medium ${selectedCategory === cat.name ? 'text-current' : 'text-gray-500 group-hover:text-gray-800'}`}>{cat.name}</span>
+                                <span className={`text-xs font-medium ${selectedCategory === cat.name ? 'text-current' : 'text-gray-500 group-hover:text-gray-800'}`}>{cat.name}</span>
                             </motion.button>
                         ))}
                     </div>
