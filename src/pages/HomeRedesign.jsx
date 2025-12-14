@@ -150,7 +150,7 @@ export default function HomeRedesign() {
                                                 {banner.subtitle}
                                             </p>
                                             <Link to="/shop">
-                                                <button className="bg-white/90 backdrop-blur-sm text-gray-900 px-6 py-2.5 rounded-full font-medium text-sm hover:bg-white hover:scale-105 transition-all shadow-lg flex items-center gap-2">
+                                                <button className="bg-white text-gray-900 px-6 py-2.5 rounded-full font-medium text-sm hover:bg-white hover:scale-105 transition-all shadow-lg flex items-center gap-2 md:bg-white/90 md:backdrop-blur-sm">
                                                     {banner.btnText} <ArrowRight size={16} />
                                                 </button>
                                             </Link>
@@ -166,7 +166,7 @@ export default function HomeRedesign() {
                                 <button
                                     key={idx}
                                     onClick={() => setCurrentBanner(idx)}
-                                    className={`h-1.5 rounded-full transition-all duration-300 shadow-sm backdrop-blur-sm ${currentBanner === idx ? 'bg-white w-6' : 'bg-white/50 w-1.5'}`}
+                                    className={`h-1.5 rounded-full transition-all duration-300 shadow-sm ${currentBanner === idx ? 'bg-white w-6' : 'bg-white/50 w-1.5'}`}
                                 />
                             ))}
                         </div>
