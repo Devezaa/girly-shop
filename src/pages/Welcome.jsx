@@ -75,7 +75,7 @@ export default function Welcome() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
-                    className="text-white/60 text-lg md:text-xl font-light max-w-2xl leading-relaxed mb-12"
+                    className="text-white/60 text-lg md:text-xl font-light max-w-2xl leading-relaxed mb-8"
                 >
                     Curated luxury fashion and beauty essentials for the modern muse.
                     Step into a world where style meets sophistication.
@@ -99,7 +99,7 @@ export default function Welcome() {
 
                     <Link
                         to="/register"
-                        className="w-full sm:w-48 py-4 bg-white/10 md:bg-white/5 border border-white/10 text-white font-medium text-base rounded-2xl hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 transition-all md:backdrop-blur-md"
+                        className="w-full sm:w-48 py-4 bg-gray-900/90 md:bg-white/5 border border-white/10 text-white font-medium text-base rounded-2xl hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 transition-all md:backdrop-blur-md"
                     >
                         Create Account
                     </Link>
