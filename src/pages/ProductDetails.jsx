@@ -232,21 +232,26 @@ export default function ProductDetails() {
 
                         {/* Add to Cart Section (Visible on all devices) */}
                         <div className="flex flex-col gap-4 pt-6 border-t border-gray-100 pb-24 md:pb-0">
-                            <div className="flex items-center gap-4">
-                                <div className={`flex items-center gap-6 bg-gray-50 rounded-2xl px-5 py-4 ${isOutOfStock ? 'opacity-50 pointer-events-none' : ''}`}>
-                                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="text-gray-400 hover:text-black">
-                                        <Minus size={20} />
-                                    </button>
-                                    <span className="font-bold text-gray-900 text-lg w-6 text-center">{quantity}</span>
-                                    <button onClick={() => setQuantity(Math.min(stock, quantity + 1))} className={`text-gray-400 hover:text-black ${quantity >= stock ? 'opacity-30 cursor-not-allowed' : ''}`}>
-                                        <Plus size={20} />
-                                    </button>
+                            <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3 md:gap-4">
+                                {/* Qty Stepper */}
+                                <div className={`flex items-center justify-between md:justify-center gap-6 bg-gray-50 rounded-2xl px-6 py-4 md:px-5 md:py-4 border border-gray-100 md:border-transparent ${isOutOfStock ? 'opacity-50 pointer-events-none' : ''}`}>
+                                    <span className="md:hidden font-bold text-gray-900 text-sm">Quantity</span>
+                                    <div className="flex items-center gap-6">
+                                        <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-8 h-8 flex items-center justify-center bg-white md:bg-transparent rounded-full md:rounded-none shadow-sm md:shadow-none border md:border-none border-gray-100 text-gray-400 hover:text-black transition-colors">
+                                            <Minus size={18} />
+                                        </button>
+                                        <span className="font-bold text-gray-900 text-lg w-6 text-center">{quantity}</span>
+                                        <button onClick={() => setQuantity(Math.min(stock, quantity + 1))} className={`w-8 h-8 flex items-center justify-center bg-white md:bg-transparent rounded-full md:rounded-none shadow-sm md:shadow-none border md:border-none border-gray-100 text-gray-400 hover:text-black transition-colors ${quantity >= stock ? 'opacity-30 cursor-not-allowed' : ''}`}>
+                                            <Plus size={18} />
+                                        </button>
+                                    </div>
                                 </div>
+
                                 <div className="flex-1 flex flex-col gap-2">
                                     <button
                                         onClick={handleAddToCart}
                                         disabled={isOutOfStock}
-                                        className={`w-full min-w-[200px] h-[60px] rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all hover:-translate-y-1 hover:shadow-xl
+                                        className={`w-full min-w-[200px] h-[56px] md:h-[60px] rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all active:scale-[0.98] hover:-translate-y-1 hover:shadow-xl
                                             ${isOutOfStock
                                                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                                                 : isLowStock
@@ -255,7 +260,9 @@ export default function ProductDetails() {
                                     >
                                         {isOutOfStock ? "Out of Stock" : (
                                             <>
-                                                <ShoppingBag size={20} /> {isLowStock ? `Order Now - Only ${stock} Left!` : `Add to Cart — $${(product.price * quantity).toFixed(2)}`}
+                                                <ShoppingBag size={20} className="hidden md:block" />
+                                                <ShoppingBag size={18} className="md:hidden" />
+                                                <span>{isLowStock ? `Order Now - Only ${stock} Left` : `Add to Cart — $${(product.price * quantity).toFixed(2)}`}</span>
                                             </>
                                         )}
                                     </button>
