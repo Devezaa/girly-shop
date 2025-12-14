@@ -21,11 +21,10 @@ export default function Header({ cartCount = 0 }) {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/80 backdrop-blur-md border-b border-pink-100 shadow-sm"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled
+        ? "bg-white/95 md:bg-white/80 md:backdrop-blur-md border-b border-pink-100 shadow-sm"
+        : "bg-transparent"
+        }`}
     >
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
@@ -96,7 +95,7 @@ export default function Header({ cartCount = 0 }) {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -10, opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden bg-white/95 backdrop-blur-md border-t border-pink-100 shadow-sm"
+            className="md:hidden bg-white border-t border-pink-100 shadow-sm"
           >
             <nav className="flex flex-col px-6 py-3 space-y-3 text-sm">
               <a
