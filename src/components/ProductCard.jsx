@@ -27,33 +27,27 @@ export default function ProductCard({ product, onAdd, onWish, wished }) {
             className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
             decoding="async"
-          />
-        </div>
-
-        {/* ❤️ Heart Icon - Bottom Right of Image */}
-        <button
-          type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            onWish && onWish();
-          }}
-          className="absolute bottom-20 right-3 z-10 p-2 bg-white/80 backdrop-blur-sm rounded-full shadow-sm hover:bg-white transition-all"
-        >
-          <Heart size={18} className={`transition-colors ${wished ? "fill-rose-500 text-rose-500" : "text-gray-400 hover:text-gray-600"}`} />
-        </button>
-
-        {/* 📝 Content - Clean Bottom (No Floating Block) */}
+            {/* 📝 Content - Clean Bottom (No Floating Block) */}
         <div className="relative z-10 mt-auto pt-2 border-t border-gray-50">
-          <h3 className="font-serif font-medium text-gray-900 text-sm leading-tight mb-1 line-clamp-1">
-            {product.name}
-          </h3>
-          <div className="flex items-center justify-between">
-            <span className="font-bold text-gray-900 text-base">${price.toFixed(2)}</span>
-            {/* Optional: Add Rating Stars here if available, or keep simple */}
+            <h3 className="font-serif font-medium text-gray-900 text-sm leading-tight mb-1 line-clamp-1">
+              {product.name}
+            </h3>
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-gray-900 text-base">${price.toFixed(2)}</span>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  onWish && onWish();
+                }}
+                className="p-1.5 rounded-full hover:bg-gray-50 transition-colors"
+              >
+                <Heart size={18} strokeWidth={1.5} className={`transition-colors ${wished ? "fill-rose-500 text-rose-500" : "text-gray-400 hover:text-gray-600"}`} />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
     </Link>
   );
 }
